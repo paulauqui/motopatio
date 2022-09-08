@@ -8,7 +8,7 @@ export default defineConfig({
         // laravel(['resources/js/app.js']),
         laravel({
             input: [
-                'resources/css/app.css',
+                'resources/sass/app.scss',
                 'resources/js/app.js',
             ],
         }),

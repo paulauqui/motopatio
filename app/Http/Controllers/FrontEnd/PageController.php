@@ -19,4 +19,14 @@ class PageController extends Controller
             'phpVersion' => PHP_VERSION,
         ]);
     }
+
+    public function welcome()
+    {
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
+    }
 }

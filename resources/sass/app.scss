@@ -1,5 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import 'bootstrap/scss/bootstrap';
+@import '~fontawesome-4.7/css/font-awesome.min.css';
+
+@import '../sass/variables.scss';
+@import 'icons';
+@import 'icons-two';
+@import 'theme';
+@import 'skin';

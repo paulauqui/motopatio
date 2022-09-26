@@ -1,104 +1,378 @@
 <template>
-    <div>
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
-                <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                            <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                <BreezeApplicationLogo class="block h-9 w-auto" />
-                                </Link>
-                            </div>
-
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </BreezeNavLink>
-                            </div>
-                        </div>
-
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <!-- Settings Dropdown -->
-                            <div class="ml-3 relative">
-                                <BreezeDropdown align="right" width="48">
-                                    <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-
-
-                                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </template>
-
-                                    <template #content>
-                                        <BreezeDropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
-                                        </BreezeDropdownLink>
-                                    </template>
-                                </BreezeDropdown>
-                            </div>
-                        </div>
-
-                        <!-- Hamburger -->
-                        <div class="-mr-2 flex items-center sm:hidden">
-                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                    <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
+    <div id="wrapper">
+        <div id="top-bar" class="top-bar">
+            <div class="container">
+                <div class="clearfix top-bar-wrapper">
+                    <!--LANGS-->
+                    <!-- Header Top bar Login -->
+                    <div class="pull-right hidden-xs top-bar-auth">
+                        <div class="header-login-url">
+                            <a href="login-register/index.html">
+                                <i class="fa fa-user"></i><span
+                                class="vt-top">Iniciar sesión</span>
+                            </a>
+                            <span class="vertical-divider"></span>
+                            <a href="login-register/index.html">Registrarse</a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Responsive Navigation Menu -->
-                <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                    <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </BreezeResponsiveNavLink>
+                    <!-- Header top bar Socials -->
+                    <div class="pull-right top-bar-socials">
+                        <div class="header-top-bar-socs">
+                            <ul class="clearfix">
+                                <li>
+                                    <a href="https://www.facebook.com/Moto-Patio-100249085479518" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://instagram.com/MotoPatioLat" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/channel/UCs21hds-lf75bd2MUcx4NqA" target="_blank">
+                                        <i class="fa fa-youtube-play"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://wa.me/593998562501" target="_blank">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">
-                                <!--{{ $page.props.auth.user.name }}-->
+                    <div class="pull-right xs-pull-left top-bar-info-wrap">
+                        <ul class="top-bar-info clearfix">
+                            <li>
+                                <i class=" stm-service-icon-sales_hours"
+                                   style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                Lun - Sab 8.00 - 18.00
+                            </li>
+                            <li>
+                                <div id="top-bar-address-header" class="fancy-iframe" data-iframe="true" data-src="">
+                                    <i class=" stm-service-icon-pin_2"
+                                       style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                    Iñaquito y Amazonas
+                                </div>
+                            </li>
+                            <li>
+                                <i class=" stm-service-icon-sales_phone"
+                                   style="color: rgba(255,255,255,1); font-size: 15px;"></i> <a
+                                href="tel:+593 99 251 4694">
+                                +593 99 251 4694</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="header">
+            <div class="header-listing header-listing-fixed listing-nontransparent-header ">
+                <div class="listing-header-bg"></div>
+                <div class="container header-inner-content">
+                    <!--Logo-->
+                    <div class="listing-logo-main" style="margin-top: 13px; ">
+                        <a class="bloglogo" href="index.html">
+                            <BreezeApplicationLogo class="block"/>
+                        </a>
+                    </div>
+                    <div class="listing-service-right clearfix" style="">
+                        <div class="listing-right-actions clearfix">
+                            <a href="add-a-car/index.html" class="listing_add_cart heading-font">
+                                <div>
+                                    <i class=" stm-lt-icon-add_car" style=""></i> Añadir Moto
+                                </div>
+                            </a>
+                            <div class="pull-right">
+                                <div class="lOffer-account-unit">
+                                    <a href="login-register/index.html" class="lOffer-account">
+                                        <i class=" stm-service-icon-user" style=""></i> </a>
+                                    <div class="lOffer-account-dropdown stm-login-form-unregistered">
+                                        <form method="post">
+                                            <div class="form-group">
+                                                <h4>Usuario o correo electrónico</h4>
+                                                <input type="text" name="stm_user_login" autocomplete="off"
+                                                       placeholder="Introducir usuario o correo electrónico"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h4>Contraseña</h4>
+                                                <input type="password" name="stm_user_password" autocomplete="off"
+                                                       placeholder="Introducir contraseña"/>
+                                            </div>
+
+                                            <div class="form-group form-checker">
+                                                <label>
+                                                    <input type="checkbox" name="stm_remember_me"/>
+                                                    <span>Recuérdame</span>
+                                                </label>
+                                            </div>
+                                            <input type="submit" value="Iniciar sesión"/>
+                                            <span class="stm-listing-loader"><i class="stm-icon-load1"></i></span>
+                                            <a href="login-register/index.html" class="stm_label">Registrarse</a>
+                                            <div class="stm-validation-message"></div>
+                                        </form>
+                                    </div>
+                                    <div class="stm-user-mobile-info-wrapper">
+                                        <div class="stm-login-form-mobile-unregistered">
+                                            <form method="post">
+
+                                                <div class="form-group">
+                                                    <h4>Usuario o correo electrónico</h4>
+                                                    <input type="text" name="stm_user_login"
+                                                           placeholder="Introducir usuario o correo electrónico"/>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h4>Contraseña</h4>
+                                                    <input type="password" name="stm_user_password"
+                                                           placeholder="Introducir contraseña"/>
+                                                </div>
+
+                                                <div class="form-group form-checker">
+                                                    <label>
+                                                        <input type="checkbox" name="stm_remember_me"/>
+                                                        <span>Recuérdame</span>
+                                                    </label>
+                                                </div>
+                                                <input type="submit" value="Iniciar sesión"/>
+                                                <span class="stm-listing-loader"><i class="stm-icon-load1"></i></span>
+                                                <a href="login-register/index.html" class="stm_label">Registrarse</a>
+                                                <div class="stm-validation-message"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="font-medium text-sm text-gray-500">
-                                <!--{{ $page.props.auth.user.email }}-->
+                            <div class="pull-right">
+                                <a class="lOffer-compare"
+                                   href="comparar/index.html"
+                                   title="Ver comparación"
+                                >
+                                    <i class="list-icon stm-service-icon-listing-compare" style=""></i> <span
+                                    class="list-badge"><span class="stm-current-cars-in-compare"
+                                                             data-contains="compare-count"></span></span>
+                                </a>
+                            </div>
+
+                            <div class="listing-menu-mobile-wrapper">
+                                <div class="stm-menu-trigger">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="stm-opened-menu-listing">
+                                    <ul class="listing-menu-mobile heading-font d-inline d-md-none">
+                                        <li id="menu-item-5012"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4473 current_page_item menu-item-5012">
+                                            <a href="index.html" aria-current="page">Inicio</a></li>
+                                        <li id="menu-item-5286"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5286">
+                                            <a href="motos/index.html">Motos</a></li>
+                                        <li id="menu-item-5013"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5013">
+                                            <a href="dealers-list/index.html">Patios</a></li>
+                                        <li id="menu-item-5014"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5014">
+                                            <a href="prices/index.html">Planes</a></li>
+
+                                        <li class="stm_compare_mobile"><a href="comparar/index.html">Comparar</a></li>
+                                    </ul>
+                                    <div id="top-bar" class="top-bar">
+                                        <div class="container">
+
+                                            <div class="clearfix top-bar-wrapper">
+                                                <!--LANGS-->
+                                                <!-- Header Top bar Login -->
+                                                <div class="pull-right hidden-xs top-bar-auth">
+                                                    <div class="header-login-url">
+                                                        <a href="login-register/index.html">
+                                                            <i class="fa fa-user"></i><span
+                                                            class="vt-top">Iniciar sesión</span>
+                                                        </a>
+                                                        <span class="vertical-divider"></span>
+                                                        <a href="login-register/index.html">Registrarse</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Header top bar Socials -->
+                                                <div class="pull-right top-bar-socials">
+                                                    <div class="header-top-bar-socs">
+                                                        <ul class="clearfix">
+                                                            <li>
+                                                                <a href="https://www.facebook.com/Moto-Patio-100249085479518"
+                                                                   target="_blank">
+                                                                    <i class="fa fa-facebook"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://instagram.com/MotoPatioLat"
+                                                                   target="_blank">
+                                                                    <i class="fa fa-instagram"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://www.youtube.com/channel/UCs21hds-lf75bd2MUcx4NqA"
+                                                                   target="_blank">
+                                                                    <i class="fa fa-youtube-play"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://wa.me/593998562501" target="_blank">
+                                                                    <i class="fa fa-whatsapp"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pull-right xs-pull-left top-bar-info-wrap">
+                                                    <ul class="top-bar-info clearfix">
+                                                        <li><i class=" stm-service-icon-sales_hours"
+                                                               style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                                            Lun
+                                                            - Sab 8.00 - 18.00
+                                                        </li>
+                                                        <li>
+                                                            <div id="top-bar-address" class="fancy-iframe"
+                                                                 data-iframe="true"
+                                                                 data-src="">
+                                                                <i class=" stm-service-icon-pin_2"
+                                                                   style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                                                Iñaquito y Amazonas
+                                                            </div>
+                                                        </li>
+                                                        <li><i class=" stm-service-icon-sales_phone"
+                                                               style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                                            <a href="tel:+593 99 251 4694">+593 99 251 4694</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mt-3 space-y-1">
-                            <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
-                            </BreezeResponsiveNavLink>
-                        </div>
+                        <ul class="listing-menu clearfix" style="margin-top: 17px; ">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4473 current_page_item menu-item-5012">
+                                <a href="index.html" aria-current="page">Inicio</a></li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5286"><a
+                                href="motos/index.html">Motos</a></li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5013"><a
+                                href="dealers-list/index.html">Patios</a></li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5014"><a
+                                href="prices/index.html">Planes</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </div>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
-
-            <!-- Page Content -->
+        <div id="main">
             <main>
-                <slot />
+                <slot/>
             </main>
         </div>
     </div>
+
+    <footer id="footer">
+        <div id="footer-main">
+            <div class="footer_widgets_wrapper less_4">
+                <div class="container">
+                    <div class="widgets cols_3 clearfix">
+                        <aside id="search-7" class="widget widget_search">
+                            <div class="widget-wrapper">
+                                <form role="search" method="get" class="search-form" action="https://motopatio.com/">
+                                    <label>
+                                        <span class="screen-reader-text">Buscar:</span>
+                                        <input type="search" class="search-field" placeholder="Buscar &hellip;" value=""
+                                               name="s"/>
+                                    </label>
+                                    <input type="submit" class="search-submit" value="Buscar"/>
+                                </form>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-copyright" style="background-color: #1a2c33;">
+            <div class="container footer-copyright">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="clearfix">
+                            <div class="copyright-text">© 2021 Moto patio</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="clearfix">
+                            <div class="pull-right xs-pull-left">
+                                <!-- Header top bar Socials -->
+                                <div class="pull-right">
+                                    <div class="copyright-socials">
+                                        <ul class="clearfix">
+                                            <li>
+                                                <a href="https://www.facebook.com/Moto-Patio-100249085479518"
+                                                   target="_blank">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://instagram.com/MotoPatioLat" target="_blank">
+                                                    <i class="fa fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://wa.me/593998562501" target="_blank">
+                                                    <i class="fa fa-whatsapp"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.youtube.com/channel/UCs21hds-lf75bd2MUcx4NqA"
+                                                   target="_blank">
+                                                    <i class="fa fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="global-alerts"></div>        <!-- Searchform -->
+        <div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body heading_font">
+                        <div class="search-title">Búsqueda</div>
+                        <form method="get" id="searchform" action="https://motopatio.com/">
+                            <div class="search-wrapper">
+                                <input placeholder="Empezar a escribir aquí..." type="text"
+                                       class="form-control search-input" value="" name="s" id="s"/>
+                                <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
 </template>
 
 <script>
@@ -107,7 +381,7 @@
     import BreezeDropdownLink from '@/Components/DropdownLink.vue'
     import BreezeNavLink from '@/Components/NavLink.vue'
     import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
-    import { Link } from '@inertiajs/inertia-vue3';
+    import {Link} from '@inertiajs/inertia-vue3';
 
     export default {
         components: {

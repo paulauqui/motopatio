@@ -1,4 +1,4 @@
-@import 'bootstrap/scss/bootstrap';
+@import '~bootstrap3/dist/css/bootstrap.min.css';
 @import '~fontawesome-4.7/css/font-awesome.min.css';
 
 @import '../sass/variables.scss';
@@ -6,3 +6,4 @@
 @import 'icons-two';
 @import 'theme';
 @import 'skin';
+@import 'backery';

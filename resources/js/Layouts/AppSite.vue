@@ -167,7 +167,7 @@
                                     <span></span>
                                 </div>
                                 <div class="stm-opened-menu-listing">
-                                    <ul class="listing-menu-mobile heading-font d-inline d-md-none">
+                                    <ul class="listing-menu-mobile heading-font visible-xs visible-sm clearfix">
                                         <li id="menu-item-5012"
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4473 current_page_item menu-item-5012">
                                             <a href="index.html" aria-current="page">Inicio</a></li>

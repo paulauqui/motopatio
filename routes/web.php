@@ -17,6 +17,7 @@ use App\Http\Controllers\FrontEnd\PageController;
 */
 
 Route::get('/', [PageController::class, 'home'])->name('frontend.home');
+Route::get('producto', [PageController::class, 'producto'])->name('producto.index');
 Route::get('welcome', [PageController::class, 'home'])->name('frontend.welcome');
 
 Route::get('/dashboard', function () {

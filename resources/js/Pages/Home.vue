@@ -17,14 +17,6 @@
         background-color: #f9f9f9 !important;
     }
 
-    .vc_custom_1626887424630 {
-        margin-top: 10px !important;
-        background-image: url(/image/2021/07/fondoprecio3aa70.png?id=5422) !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-size: contain !important;
-    }
-
     .carousel__item {
         min-height: 200px;
         width: 100%;
@@ -45,33 +37,76 @@
         border: 5px solid white;
     }
 
-    .vc_custom_1625512963830 {
-        margin-bottom: 80px !important;
-        padding-top: 80px !important;
-    }
-
-    .vc_custom_1532498776879 {
-        padding-top: 73px !important;
-        padding-bottom: 53px !important;
-        background-color: #f5f7f7 !important;
-    }
-
     .vc_custom_1532435648972 {
         margin-top: -130px !important;
     }
 
-    .vc_custom_1626885053786 {
-        margin-top: 32px !important;
-    }
+    /*********/
+    /*.vc_separator {*/
+    /*display: -webkit-box;*/
+    /*display: -webkit-flex;*/
+    /*display: -ms-flexbox;*/
+    /*display: flex;*/
+    /*-webkit-box-orient: horizontal;*/
+    /*-webkit-box-direction: normal;*/
+    /*-webkit-flex-direction: row;*/
+    /*-ms-flex-direction: row;*/
+    /*flex-direction: row;*/
+    /*-webkit-flex-wrap: nowrap;*/
+    /*-ms-flex-wrap: nowrap;*/
+    /*flex-wrap: nowrap;*/
+    /*-webkit-box-align: center;*/
+    /*-webkit-align-items: center;*/
+    /*-ms-flex-align: center;*/
+    /*align-items: center;*/
+    /*}*/
 
-    .wpb_animate_when_almost_visible {
-        opacity: 1;
-    }
+    /*.vc_gitem_row .vc_gitem-col {*/
+    /*box-sizing: border-box;*/
+    /*padding: 10px;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: 50% 50%;*/
+    /*background-size: cover;*/
+    /*}*/
 
     .vc_custom_1625512963830 {
         margin-bottom: 80px !important;
         padding-top: 80px !important;
     }
+
+    .vc_custom_heading a, .vc_custom_heading a:focus, .vc_custom_heading a:hover, .vc_custom_heading a:visited {
+        border: none;
+        text-decoration: inherit;
+        color: inherit;
+    }
+
+    .vc_custom_heading a:hover {
+        opacity: .85;
+    }
+
+    .page-template-default .vc_gitem-align-right {
+        color: #e5e5e5;
+        font-size: 15px;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    /*vc_gitem_row .vc_gitem-col {*/
+    /*box-sizing: border-box;*/
+    /*padding: 10px;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: 50% 50%;*/
+    /*background-size: cover;*/
+    /*}*/
+    .vc_custom_1626887424630 {
+        margin-top: 10px !important;
+        background-image: url(/image/2021/07/fondoprecio3.png) !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+    }
+
+
 </style>
 <template>
     <Head title="Home"/>
@@ -127,7 +162,7 @@
                                     <div role="tabpanel" class="tab-pane fade in active" id="stm_all_listing_tab">
                                         <form action="https://motopatio.com/motos/" method="GET">
                                             <button type="submit" class="heading-font"><i
-                                                class="fa fa-search"></i> <span>14</span> Vehículos
+                                                    class="fa fa-search"></i> <span>14</span> Vehículos
                                             </button>
                                             <div class="stm-filter-tab-selects filter stm-vc-ajax-filter">
                                                 <div class="row">
@@ -211,8 +246,8 @@
                                                         </select></div>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 col-xs-12 stm-select-col"><select
-                                                        class="stm-filter-ajax-disabled-field" name="max_price"
-                                                        data-class="stm_select_overflowed">
+                                                            class="stm-filter-ajax-disabled-field" name="max_price"
+                                                            data-class="stm_select_overflowed">
                                                         <option value="">Máx Precio</option>
                                                         <option value="1000">$1,000</option>
                                                         <option value="2000">$2,000</option>
@@ -278,9 +313,9 @@
                                 <div class="wpb_wrapper">
 
                                     <div class="vc_single_image-wrapper   vc_box_border_grey"><img
-                                        class="vc_single_image-img "
-                                        src="/image/2021/10/motopatioimg-2.jpg" width="800" height="800"
-                                        alt="motopatioimg (2)" title="motopatioimg (2)"/></div>
+                                            class="vc_single_image-img "
+                                            src="/image/2021/10/motopatioimg-2.jpg" width="800" height="800"
+                                            alt="motopatioimg (2)" title="motopatioimg (2)"/></div>
                                 </div>
                             </div>
                         </div>
@@ -295,9 +330,9 @@
                                 <div class="wpb_wrapper">
 
                                     <div class="vc_single_image-wrapper   vc_box_border_grey"><img
-                                        class="vc_single_image-img "
-                                        src="/image/2021/10/motopatioimg-1.jpg" width="800" height="800"
-                                        alt="motopatioimg (1)" title="motopatioimg (1)"/></div>
+                                            class="vc_single_image-img "
+                                            src="/image/2021/10/motopatioimg-1.jpg" width="800" height="800"
+                                            alt="motopatioimg (1)" title="motopatioimg (1)"/></div>
                                 </div>
                             </div>
                         </div>
@@ -312,9 +347,9 @@
                                 <div class="wpb_wrapper">
 
                                     <div class="vc_single_image-wrapper   vc_box_border_grey"><img
-                                        class="vc_single_image-img "
-                                        src="/image/2021/10/motopatioimg-3.jpg" width="800" height="800"
-                                        alt="motopatioimg (3)" title="motopatioimg (3)"/></div>
+                                            class="vc_single_image-img "
+                                            src="/image/2021/10/motopatioimg-3.jpg" width="800" height="800"
+                                            alt="motopatioimg (3)" title="motopatioimg (3)"/></div>
                                 </div>
                             </div>
                         </div>
@@ -330,34 +365,82 @@
                             </div>
                             <div class="wpb_text_column wpb_content_element ">
                                 <div class="wpb_wrapper">
-                                    <h1><span style="color: #269aff;"><span style="color: #000000;">Últimas</span> Motos</span>
+                                    <h1>
+                                        <div style="color: #269aff;">
+                                            <span style="color: #000000;">Últimas</span> Motos
+                                        </div>
                                     </h1>
 
                                 </div>
                             </div>
 
-                            <div class="vc_grid-container-wrapper vc_clearfix">
-                                <div class="vc_grid-container vc_clearfix wpb_content_element vc_basic_grid"
-                                     data-initial-loading-animation="fadeIn"
-                                     data-vc-grid-settings="{&quot;page_id&quot;:4473,&quot;style&quot;:&quot;all&quot;,&quot;action&quot;:&quot;vc_get_vc_grid_data&quot;,&quot;shortcode_id&quot;:&quot;1633537920725-566bd2d9-f0a3-0&quot;,&quot;tag&quot;:&quot;vc_basic_grid&quot;}"
-                                     data-vc-request="https://motopatio.com/wp-admin/admin-ajax.php"
-                                     data-vc-post-id="4473" data-vc-public-nonce="44ecddd74e">
-
+                            <div class="vc_grid-container-wrapper vc_clearfix border">
+                                <div class="vc_grid-container vc_clearfix wpb_content_element vc_basic_grid">
                                     <div class="vc_grid row vc_grid-gutter-30px vc_pageable-wrapper vc_hook_hover"
                                          data-vc-pageable-content="true">
                                         <div class="vc_pageable-slide-wrapper vc_clearfix" data-vc-grid-content="true">
-                                            <div
-                                                class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
+                                            <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
+                                                <div class="vc_grid-item-mini vc_clearfix ">
+                                                    <div class="vc_gitem-animated-block ">
+                                                        <div class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
+                                                             style="background-image: url('/image/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg') !important;">
+                                                            <a :href="route('producto.index')"
+                                                               title="Yamaha Yamaha V-Star 650 Custom 2013"
+                                                               class="vc_gitem-link vc-zone-link">
+                                                                <img src="/image/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg"
+                                                                     class="vc_gitem-zone-img" alt="">
+                                                            </a>
+                                                            <div class="vc_gitem-zone-mini"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
+                                                    <div class="vc_gitem-zone-mini">
+                                                        <div class="vc_gitem_row row vc_gitem-row-position-top">
+                                                            <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
+                                                                <div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
+                                                                    <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
+                                                                        <a href="listings/yamaha-yamaha-v-star-650-custom-2013-2/index.html"
+                                                                           class="vc_gitem-link"
+                                                                           title="Yamaha Yamaha V-Star 650 Custom 2013">Yamaha
+                                                                            Yamaha V-Star 650 Custom 2013</a>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                    class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
+                                                                <div
+                                                                        class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
+                                                                    <span class="vc_gitem-post-meta-label">$</span>9200
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vc_gitem_row row vc_gitem-row-position-top">
+                                                            <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
+                                                                <div
+                                                                        class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
+                                                                    <span class="vc_sep_holder vc_sep_holder_l"><span
+                                                                            style="border-color:#a5a5a5;"
+                                                                            class="vc_sep_line"></span></span><span
+                                                                        class="vc_sep_holder vc_sep_holder_r"><span
+                                                                        style="border-color:#a5a5a5;"
+                                                                        class="vc_sep_line"></span></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
                                                 <div class="vc_grid-item-mini vc_clearfix ">
                                                     <div class="vc_gitem-animated-block ">
                                                         <div
-                                                            class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                            style="background-image: url('/image/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg') !important;">
-                                                            <a href="listings/yamaha-yamaha-v-star-650-custom-2013-2/index.html"
+                                                                class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
+                                                                style="background-image: url('/image/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg') !important;">
+                                                            <a href="listings/yamaha-yamaha-v-star-650-custom-2013/index.html"
                                                                title="Yamaha Yamaha V-Star 650 Custom 2013"
-                                                               class="vc_gitem-link vc-zone-link"></a>
-                                                            <img
-                                                                src="/image/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg"
+                                                               class="vc_gitem-link vc-zone-link"></a><img
+                                                                src="/image/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg"
                                                                 class="vc_gitem-zone-img" alt="">
                                                             <div class="vc_gitem-zone-mini"></div>
                                                         </div>
@@ -368,17 +451,17 @@
                                                         <div class="vc_gitem_row row vc_gitem-row-position-top">
                                                             <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
                                                                 <div
-                                                                    class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
+                                                                        class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
                                                                     <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
-                                                                        <a href="listings/yamaha-yamaha-v-star-650-custom-2013-2/index.html"
+                                                                        <a href="listings/yamaha-yamaha-v-star-650-custom-2013/index.html"
                                                                            class="vc_gitem-link"
                                                                            title="Yamaha Yamaha V-Star 650 Custom 2013">Yamaha
                                                                             Yamaha V-Star 650 Custom 2013</a></h3></div>
                                                             </div>
                                                             <div
-                                                                class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
+                                                                    class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
                                                                 <div
-                                                                    class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
+                                                                        class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
                                                                     <span class="vc_gitem-post-meta-label">$</span>9200
                                                                 </div>
                                                             </div>
@@ -386,13 +469,65 @@
                                                         <div class="vc_gitem_row row vc_gitem-row-position-top">
                                                             <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
                                                                 <div
-                                                                    class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
-                                                                    <span class="vc_sep_holder vc_sep_holder_l"><span
+                                                                        class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
+                                                                <span class="vc_sep_holder vc_sep_holder_l"><span
                                                                         style="border-color:#a5a5a5;"
                                                                         class="vc_sep_line"></span></span><span
-                                                                    class="vc_sep_holder vc_sep_holder_r"><span
+                                                                        class="vc_sep_holder vc_sep_holder_r"><span
+                                                                        style="border-color:#a5a5a5;"
+                                                                        class="vc_sep_line"></span></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
+                                                <div class="vc_grid-item-mini vc_clearfix ">
+                                                    <div class="vc_gitem-animated-block ">
+                                                        <div
+                                                                class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
+                                                                style="background-image: url('/image/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg') !important;">
+                                                            <a href="listings/ktm-ktm-790-adventure-r-2019/index.html"
+                                                               title="KTM KTM 790 Adventure R 2019"
+                                                               class="vc_gitem-link vc-zone-link"></a><img
+                                                                src="/image/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg"
+                                                                class="vc_gitem-zone-img" alt="">
+                                                            <div class="vc_gitem-zone-mini"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
+                                                    <div class="vc_gitem-zone-mini">
+                                                        <div class="vc_gitem_row row vc_gitem-row-position-top">
+                                                            <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
+                                                                <div
+                                                                        class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
+                                                                    <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
+                                                                        <a href="listings/ktm-ktm-790-adventure-r-2019/index.html"
+                                                                           class="vc_gitem-link"
+                                                                           title="KTM KTM 790 Adventure R 2019">KTM KTM
+                                                                            790
+                                                                            Adventure R 2019</a></h3></div>
+                                                            </div>
+                                                            <div
+                                                                    class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
+                                                                <div
+                                                                        class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
+                                                                    <span class="vc_gitem-post-meta-label">$</span>22000
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="vc_gitem_row row vc_gitem-row-position-top">
+                                                            <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
+                                                                <div
+                                                                        class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
+                                                            <span class="vc_sep_holder vc_sep_holder_l"><span
                                                                     style="border-color:#a5a5a5;"
-                                                                    class="vc_sep_line"></span></span>
+                                                                    class="vc_sep_line"></span></span><span
+                                                                        class="vc_sep_holder vc_sep_holder_r"><span
+                                                                        style="border-color:#a5a5a5;"
+                                                                        class="vc_sep_line"></span></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -401,264 +536,12 @@
                                             </div>
                                             <div class="vc_clearfix"></div>
                                         </div>
-                                        <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
-                                            <div class="vc_grid-item-mini vc_clearfix ">
-                                                <div class="vc_gitem-animated-block ">
-                                                    <div
-                                                        class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                        style="background-image: url('/image/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg') !important;">
-                                                        <a href="listings/yamaha-yamaha-v-star-650-custom-2013/index.html"
-                                                           title="Yamaha Yamaha V-Star 650 Custom 2013"
-                                                           class="vc_gitem-link vc-zone-link"></a><img
-                                                        src="/image/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg"
-                                                        class="vc_gitem-zone-img" alt="">
-                                                        <div class="vc_gitem-zone-mini"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
-                                                <div class="vc_gitem-zone-mini">
-                                                    <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                                        <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
-                                                            <div
-                                                                class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
-                                                                <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
-                                                                    <a href="listings/yamaha-yamaha-v-star-650-custom-2013/index.html"
-                                                                       class="vc_gitem-link"
-                                                                       title="Yamaha Yamaha V-Star 650 Custom 2013">Yamaha
-                                                                        Yamaha V-Star 650 Custom 2013</a></h3></div>
-                                                        </div>
-                                                        <div
-                                                            class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
-                                                            <div
-                                                                class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
-                                                                <span class="vc_gitem-post-meta-label">$</span>9200
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                                        <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
-                                                            <div
-                                                                class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
-                                                                <span class="vc_sep_holder vc_sep_holder_l"><span
-                                                                    style="border-color:#a5a5a5;"
-                                                                    class="vc_sep_line"></span></span><span
-                                                                class="vc_sep_holder vc_sep_holder_r"><span
-                                                                style="border-color:#a5a5a5;"
-                                                                class="vc_sep_line"></span></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vc_clearfix"></div>
+
                                     </div>
-                                    <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
-                                        <div class="vc_grid-item-mini vc_clearfix ">
-                                            <div class="vc_gitem-animated-block ">
-                                                <div
-                                                    class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    style="background-image: url('/image/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg') !important;">
-                                                    <a href="listings/ktm-ktm-790-adventure-r-2019/index.html"
-                                                       title="KTM KTM 790 Adventure R 2019"
-                                                       class="vc_gitem-link vc-zone-link"></a><img
-                                                    src="/image/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg"
-                                                    class="vc_gitem-zone-img" alt="">
-                                                    <div class="vc_gitem-zone-mini"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
-                                            <div class="vc_gitem-zone-mini">
-                                                <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                                    <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
-                                                        <div
-                                                            class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
-                                                            <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
-                                                                <a href="listings/ktm-ktm-790-adventure-r-2019/index.html"
-                                                                   class="vc_gitem-link"
-                                                                   title="KTM KTM 790 Adventure R 2019">KTM KTM 790
-                                                                    Adventure R 2019</a></h3></div>
-                                                    </div>
-                                                    <div
-                                                        class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
-                                                        <div
-                                                            class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
-                                                            <span class="vc_gitem-post-meta-label">$</span>22000
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                                    <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
-                                                        <div
-                                                            class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
-                                                            <span class="vc_sep_holder vc_sep_holder_l"><span
-                                                                style="border-color:#a5a5a5;"
-                                                                class="vc_sep_line"></span></span><span
-                                                            class="vc_sep_holder vc_sep_holder_r"><span
-                                                            style="border-color:#a5a5a5;"
-                                                            class="vc_sep_line"></span></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="vc_clearfix"></div>
-                                </div>
-                                <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
-                                    <div class="vc_grid-item-mini vc_clearfix ">
-                                        <div class="vc_gitem-animated-block ">
-                                            <div
-                                                class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                style="background-image: url('/image/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-768x1024.jpg') !important;">
-                                                <a href="listings/kawasaki-kawasaki-vn-900-2013/index.html"
-                                                   title="Kawasaki Kawasaki VN 900 2013"
-                                                   class="vc_gitem-link vc-zone-link"></a><img
-                                                src="/image/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-768x1024.jpg"
-                                                class="vc_gitem-zone-img" alt="">
-                                                <div class="vc_gitem-zone-mini"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
-                                        <div class="vc_gitem-zone-mini">
-                                            <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                                <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
-                                                    <div
-                                                        class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
-                                                        <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
-                                                            <a href="listings/kawasaki-kawasaki-vn-900-2013/index.html"
-                                                               class="vc_gitem-link"
-                                                               title="Kawasaki Kawasaki VN 900 2013">Kawasaki Kawasaki
-                                                                VN 900 2013</a></h3></div>
-                                                </div>
-                                                <div
-                                                    class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
-                                                    <div
-                                                        class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
-                                                        <span class="vc_gitem-post-meta-label">$</span>12900
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                                <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
-                                                    <div
-                                                        class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
-                                                        <span class="vc_sep_holder vc_sep_holder_l"><span
-                                                            style="border-color:#a5a5a5;"
-                                                            class="vc_sep_line"></span></span><span
-                                                        class="vc_sep_holder vc_sep_holder_r"><span
-                                                        style="border-color:#a5a5a5;"
-                                                        class="vc_sep_line"></span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="vc_clearfix"></div>
-                            </div>
-                            <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
-                                <div class="vc_grid-item-mini vc_clearfix ">
-                                    <div class="vc_gitem-animated-block ">
-                                        <div
-                                            class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                            style="background-image: url('/image/2022/03/20D020C9-845A-4FCF-BE0B-29CD86F57110-768x1024.jpg') !important;">
-                                            <a href="listings/honda-honda-crf-250-rx-2020/index.html"
-                                               title="Honda Honda CRF 250 RX 2020"
-                                               class="vc_gitem-link vc-zone-link"></a><img
-                                            src="/image/2022/03/20D020C9-845A-4FCF-BE0B-29CD86F57110-768x1024.jpg"
-                                            class="vc_gitem-zone-img" alt="">
-                                            <div class="vc_gitem-zone-mini"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
-                                    <div class="vc_gitem-zone-mini">
-                                        <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                            <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
-                                                <div
-                                                    class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
-                                                    <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
-                                                        <a href="listings/honda-honda-crf-250-rx-2020/index.html"
-                                                           class="vc_gitem-link" title="Honda Honda CRF 250 RX 2020">Honda
-                                                            Honda CRF 250 RX 2020</a></h3></div>
-                                            </div>
-                                            <div
-                                                class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
-                                                <div
-                                                    class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
-                                                    <span class="vc_gitem-post-meta-label">$</span>9800
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                            <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
-                                                <div
-                                                    class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
-                                                    <span class="vc_sep_holder vc_sep_holder_l"><span
-                                                        style="border-color:#a5a5a5;"
-                                                        class="vc_sep_line"></span></span><span
-                                                    class="vc_sep_holder vc_sep_holder_r"><span
-                                                    style="border-color:#a5a5a5;" class="vc_sep_line"></span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="vc_clearfix"></div>
-                        </div>
-                        <div class="vc_grid-item vc_clearfix col-sm-4 vc_grid-item-zone-c-bottom">
-                            <div class="vc_grid-item-mini vc_clearfix ">
-                                <div class="vc_gitem-animated-block ">
-                                    <div
-                                        class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                        style="background-image: url('/image/2022/03/78766DD7-A7EF-44BB-8124-667C96E95151-768x1024.jpg') !important;">
-                                        <a href="listings/suzuki-suzuki-dr650s-2021/index.html"
-                                           title="Suzuki Suzuki DR650S 2021" class="vc_gitem-link vc-zone-link"></a><img
-                                        src="/image/2022/03/78766DD7-A7EF-44BB-8124-667C96E95151-768x1024.jpg"
-                                        class="vc_gitem-zone-img" alt="">
-                                        <div class="vc_gitem-zone-mini"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
-                                <div class="vc_gitem-zone-mini">
-                                    <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                        <div class="col-sm-8 vc_gitem-col vc_gitem-col-align-">
-                                            <div
-                                                class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
-                                                <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
-                                                    <a href="listings/suzuki-suzuki-dr650s-2021/index.html"
-                                                       class="vc_gitem-link" title="Suzuki Suzuki DR650S 2021">Suzuki
-                                                        Suzuki DR650S 2021</a></h3></div>
-                                        </div>
-                                        <div
-                                            class="col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
-                                            <div class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
-                                                <span class="vc_gitem-post-meta-label">$</span>11300
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="vc_gitem_row row vc_gitem-row-position-top">
-                                        <div class="col-sm-12 vc_gitem-col vc_gitem-col-align-">
-                                            <div
-                                                class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
-                                                <span class="vc_sep_holder vc_sep_holder_l"><span
-                                                    style="border-color:#a5a5a5;"
-                                                    class="vc_sep_line"></span></span><span
-                                                class="vc_sep_holder vc_sep_holder_r"><span
-                                                style="border-color:#a5a5a5;" class="vc_sep_line"></span></span>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="vc_clearfix"></div>
                     </div>
                 </div>
             </div>

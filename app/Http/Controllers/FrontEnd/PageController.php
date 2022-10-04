@@ -20,6 +20,11 @@ class PageController extends Controller
         ]);
     }
 
+    public function producto()
+    {
+        return Inertia::render('Producto/Index', []);
+    }
+
     public function welcome()
     {
         return Inertia::render('Welcome', [

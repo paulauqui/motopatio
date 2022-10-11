@@ -16,12 +16,12 @@ class CreatePlanTable extends Migration
         Schema::create('plan', function (Blueprint $table) {
             $table->id();
             $table->string('name', 250);
-            $table->unsignedBigInteger('payment_period_id');
-            $table->smallInteger('duration');
-            $table->smallInteger('publication');
-            $table->smallInteger('featured');
-            $table->smallInteger('microsite');
-            $table->smallInteger('price');
+            $table->unsignedBigInteger('payment_period_id')->nullable();
+            $table->smallInteger('duration')->nullable();
+            $table->smallInteger('publication')->nullable();
+            $table->smallInteger('featured')->nullable();
+            $table->smallInteger('microsite')->nullable();
+            $table->smallInteger('price')->nullable();
             $table->boolean('default');
             $table->boolean('status');
 

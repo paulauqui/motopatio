@@ -18,52 +18,55 @@
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="brand" view="colnames">
-<left>779</left>
+<left>773</left>
 <top>374</top>
-<width>98</width>
-<height>157</height>
+<width>131</width>
+<height>182</height>
 <sql_create_table>CREATE TABLE `brand` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` smallint(6) DEFAULT '1',
   `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="color" view="colnames">
 <left>44</left>
 <top>437</top>
-<width>108</width>
-<height>157</height>
+<width>137</width>
+<height>163</height>
 <sql_create_table>CREATE TABLE `color` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="condition" view="colnames">
-<left>187</left>
-<top>499</top>
+<left>249</left>
+<top>496</top>
 <width>130</width>
 <height>157</height>
 <sql_create_table>CREATE TABLE `condition` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) DEFAULT '1',
+  `order` smallint(6) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="extra_type" view="colnames">
 <left>835</left>
@@ -78,7 +81,7 @@
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="gallery" view="colnames">
 <left>17</left>
@@ -101,15 +104,17 @@
 <table name="model" view="colnames">
 <left>620</left>
 <top>488</top>
-<width>98</width>
-<height>157</height>
+<width>131</width>
+<height>193</height>
 <sql_create_table>CREATE TABLE `model` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` smallint(6) DEFAULT '1',
   `brand_id` bigint(20) unsigned NOT NULL,
   `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `model_brand_id_foreign` (`brand_id`),
   CONSTRAINT `model_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE
@@ -155,21 +160,22 @@
   CONSTRAINT `motorcycle_user_plan_id_foreign` FOREIGN KEY (`user_plan_id`) REFERENCES `user_plan` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
-<table name="plan" view="colnames">
-<left>908</left>
-<top>241</top>
-<width>134</width>
-<height>262</height>
+<table name="plan" view="standard">
+<left>923</left>
+<top>240</top>
+<width>310</width>
+<height>331</height>
 <sql_create_table>CREATE TABLE `plan` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_period_id` bigint(20) unsigned NOT NULL,
-  `duration` smallint(6) NOT NULL,
-  `publication` smallint(6) NOT NULL,
-  `featured` smallint(6) NOT NULL,
-  `microsite` smallint(6) NOT NULL,
-  `price` smallint(6) NOT NULL,
+  `payment_period_id` bigint(20) unsigned DEFAULT NULL,
+  `duration` smallint(6) DEFAULT NULL,
+  `publication` smallint(6) DEFAULT NULL,
+  `featured` smallint(6) DEFAULT NULL,
+  `microsite` smallint(6) DEFAULT NULL,
+  `price` smallint(6) DEFAULT NULL,
   `default` tinyint(1) NOT NULL,
+  `order` smallint(6) NOT NULL DEFAULT '1',
   `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -177,7 +183,7 @@
   PRIMARY KEY (`id`),
   KEY `plan_payment_period_id_foreign` (`payment_period_id`),
   CONSTRAINT `plan_payment_period_id_foreign` FOREIGN KEY (`payment_period_id`) REFERENCES `payment_period` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="user_plan" view="colnames">
 <left>662</left>
@@ -237,8 +243,8 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="payment_period" view="colnames">
-<left>1065</left>
-<top>509</top>
+<left>1255</left>
+<top>500</top>
 <width>184</width>
 <height>172</height>
 <sql_create_table>CREATE TABLE `payment_period` (
@@ -250,7 +256,7 @@
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

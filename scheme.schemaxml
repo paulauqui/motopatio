@@ -118,13 +118,13 @@
   PRIMARY KEY (`id`),
   KEY `model_brand_id_foreign` (`brand_id`),
   CONSTRAINT `model_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 <table name="motorcycle" view="colnames">
-<left>450</left>
+<left>435</left>
 <top>277</top>
-<width>147</width>
-<height>275</height>
+<width>162</width>
+<height>338</height>
 <sql_create_table>CREATE TABLE `motorcycle` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_plan_id` bigint(20) unsigned NOT NULL,
@@ -257,6 +257,110 @@
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="payments_methods" view="colnames">
+<left>579</left>
+<top>774</top>
+<width>183</width>
+<height>202</height>
+<sql_create_table>CREATE TABLE `payments_methods` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` smallint(6) DEFAULT '1',
+  `key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="users" view="colnames">
+<left>1342</left>
+<top>61</top>
+<width>180</width>
+<height>275</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` bigint(20) unsigned DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
+  `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` text COLLATE utf8mb4_unicode_ci,
+  `current_team_id` bigint(20) unsigned DEFAULT NULL,
+  `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `last_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_role_id_foreign` (`role_id`),
+  CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="payments" view="colnames">
+<left>815</left>
+<top>742</top>
+<width>140</width>
+<height>187</height>
+<sql_create_table>CREATE TABLE `payments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_plan_id` bigint(20) unsigned NOT NULL,
+  `payment_method_id` bigint(20) unsigned NOT NULL,
+  `checkout_id` bigint(20) unsigned NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `payments_user_plan_id_foreign` (`user_plan_id`),
+  KEY `payments_payment_method_id_foreign` (`payment_method_id`),
+  KEY `payments_checkout_id_foreign` (`checkout_id`),
+  CONSTRAINT `payments_checkout_id_foreign` FOREIGN KEY (`checkout_id`) REFERENCES `checkout` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `payments_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payments_methods` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `payments_user_plan_id_foreign` FOREIGN KEY (`user_plan_id`) REFERENCES `user_plan` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="checkout" view="colnames">
+<left>1162</left>
+<top>788</top>
+<width>158</width>
+<height>275</height>
+<sql_create_table>CREATE TABLE `checkout` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `business` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address_aditional` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postal` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `information` text COLLATE utf8mb4_unicode_ci,
+  `newsletter` tinyint(1) DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `checkout_user_id_foreign` (`user_id`),
+  CONSTRAINT `checkout_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

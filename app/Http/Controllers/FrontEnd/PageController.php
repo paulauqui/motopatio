@@ -18,6 +18,7 @@ class PageController extends Controller
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
+
     }
 
     public function producto()

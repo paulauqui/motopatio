@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPlanTable extends Migration
+class CreateModelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,19 @@ class CreateUserPlanTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_plan', function (Blueprint $table) {
+        Schema::create('model', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('plan_id');
+            $table->string('name', 250);
+            $table->unsignedBigInteger('brand_id');
+            $table->boolean('status')->default(1)->nullable();
 
-            $table->foreign('user_id')
+            $table->foreign('brand_id')
                 ->references('id')
-                ->on('users')
-                ->constrained()
-                ->onDelete('cascade');
-
-
-            $table->foreign('plan_id')
-                ->references('id')
-                ->on('plan')
+                ->on('brand')
                 ->constrained()
                 ->onDelete('cascade');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -43,6 +36,6 @@ class CreateUserPlanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_plan');
+        Schema::dropIfExists('model');
     }
 }

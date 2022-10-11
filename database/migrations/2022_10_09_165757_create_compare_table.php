@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPlanTable extends Migration
+class CreateCompareTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,17 @@ class CreateUserPlanTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_plan', function (Blueprint $table) {
+        Schema::create('compare', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('plan_id');
+            $table->unsignedBigInteger('motorcycle_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('session', 250);
+
+            $table->foreign('motorcycle_id')
+                ->references('id')
+                ->on('motorcycle')
+                ->constrained()
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
@@ -24,15 +31,7 @@ class CreateUserPlanTable extends Migration
                 ->constrained()
                 ->onDelete('cascade');
 
-
-            $table->foreign('plan_id')
-                ->references('id')
-                ->on('plan')
-                ->constrained()
-                ->onDelete('cascade');
-
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -43,6 +42,6 @@ class CreateUserPlanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_plan');
+        Schema::dropIfExists('compare');
     }
 }

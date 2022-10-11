@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">motopatio.site</database>
+</source>
+<canvas zoom="75">
+<tables>
+<table name="brake" view="colnames">
+<left>31</left>
+<top>267</top>
+<width>97</width>
+<height>156</height>
+<sql_create_table>CREATE TABLE `brake` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="brand" view="colnames">
+<left>779</left>
+<top>374</top>
+<width>98</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `brand` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="color" view="colnames">
+<left>44</left>
+<top>437</top>
+<width>108</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `color` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="condition" view="colnames">
+<left>187</left>
+<top>499</top>
+<width>130</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `condition` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="extra_type" view="colnames">
+<left>835</left>
+<top>34</top>
+<width>144</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `extra_type` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="gallery" view="colnames">
+<left>17</left>
+<top>68</top>
+<width>151</width>
+<height>182</height>
+<sql_create_table>CREATE TABLE `gallery` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `motorcycle_id` bigint(20) unsigned NOT NULL,
+  `image` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `video` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `gallery_motorcycle_id_foreign` (`motorcycle_id`),
+  CONSTRAINT `gallery_motorcycle_id_foreign` FOREIGN KEY (`motorcycle_id`) REFERENCES `motorcycle` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="model" view="colnames">
+<left>620</left>
+<top>488</top>
+<width>98</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `model` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brand_id` bigint(20) unsigned NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `model_brand_id_foreign` (`brand_id`),
+  CONSTRAINT `model_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="motorcycle" view="colnames">
+<left>450</left>
+<top>277</top>
+<width>147</width>
+<height>275</height>
+<sql_create_table>CREATE TABLE `motorcycle` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_plan_id` bigint(20) unsigned NOT NULL,
+  `transmission_id` bigint(20) unsigned DEFAULT NULL,
+  `brake_id` bigint(20) unsigned DEFAULT NULL,
+  `color_id` bigint(20) unsigned DEFAULT NULL,
+  `condition_id` bigint(20) unsigned DEFAULT NULL,
+  `brand_id` bigint(20) unsigned NOT NULL,
+  `model_id` bigint(20) unsigned NOT NULL,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `motor` int(11) NOT NULL,
+  `kilometres` int(11) NOT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `price` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `motorcycle_user_plan_id_foreign` (`user_plan_id`),
+  KEY `motorcycle_transmission_id_foreign` (`transmission_id`),
+  KEY `motorcycle_brake_id_foreign` (`brake_id`),
+  KEY `motorcycle_color_id_foreign` (`color_id`),
+  KEY `motorcycle_condition_id_foreign` (`condition_id`),
+  KEY `motorcycle_brand_id_foreign` (`brand_id`),
+  KEY `motorcycle_model_id_foreign` (`model_id`),
+  CONSTRAINT `motorcycle_brake_id_foreign` FOREIGN KEY (`brake_id`) REFERENCES `brake` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `motorcycle_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `motorcycle_color_id_foreign` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `motorcycle_condition_id_foreign` FOREIGN KEY (`condition_id`) REFERENCES `condition` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `motorcycle_model_id_foreign` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `motorcycle_transmission_id_foreign` FOREIGN KEY (`transmission_id`) REFERENCES `transmission` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `motorcycle_user_plan_id_foreign` FOREIGN KEY (`user_plan_id`) REFERENCES `user_plan` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="plan" view="colnames">
+<left>908</left>
+<top>241</top>
+<width>134</width>
+<height>262</height>
+<sql_create_table>CREATE TABLE `plan` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_period_id` bigint(20) unsigned NOT NULL,
+  `duration` smallint(6) NOT NULL,
+  `publication` smallint(6) NOT NULL,
+  `featured` smallint(6) NOT NULL,
+  `microsite` smallint(6) NOT NULL,
+  `price` smallint(6) NOT NULL,
+  `default` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `plan_payment_period_id_foreign` (`payment_period_id`),
+  CONSTRAINT `plan_payment_period_id_foreign` FOREIGN KEY (`payment_period_id`) REFERENCES `payment_period` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="user_plan" view="colnames">
+<left>662</left>
+<top>208</top>
+<width>131</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `user_plan` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `plan_id` bigint(20) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_plan_user_id_foreign` (`user_id`),
+  KEY `user_plan_plan_id_foreign` (`plan_id`),
+  CONSTRAINT `user_plan_plan_id_foreign` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `user_plan_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="extra" view="colnames">
+<left>622</left>
+<top>17</top>
+<width>109</width>
+<height>156</height>
+<sql_create_table>CREATE TABLE `extra` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `extra_type_id` bigint(20) unsigned NOT NULL,
+  `motorcycle_id` bigint(20) unsigned NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `extra_extra_type_id_foreign` (`extra_type_id`),
+  KEY `extra_motorcycle_id_foreign` (`motorcycle_id`),
+  CONSTRAINT `extra_extra_type_id_foreign` FOREIGN KEY (`extra_type_id`) REFERENCES `extra_type` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `extra_motorcycle_id_foreign` FOREIGN KEY (`motorcycle_id`) REFERENCES `motorcycle` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="compare" view="colnames">
+<left>289</left>
+<top>25</top>
+<width>110</width>
+<height>157</height>
+<sql_create_table>CREATE TABLE `compare` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `motorcycle_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `session` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `compare_motorcycle_id_foreign` (`motorcycle_id`),
+  KEY `compare_user_id_foreign` (`user_id`),
+  CONSTRAINT `compare_motorcycle_id_foreign` FOREIGN KEY (`motorcycle_id`) REFERENCES `motorcycle` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `compare_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="payment_period" view="colnames">
+<left>1065</left>
+<top>509</top>
+<width>184</width>
+<height>172</height>
+<sql_create_table>CREATE TABLE `payment_period` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `days` smallint(6) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

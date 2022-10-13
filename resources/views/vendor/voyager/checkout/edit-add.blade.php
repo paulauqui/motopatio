@@ -75,7 +75,7 @@
                                 @php
                                     $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                                 @endphp
-
+                                {{--@dump(auth()->user()->role)--}}
                                 @foreach($dataTypeRows as $row)
                                     {{--<!-- GET THE DISPLAY OPTIONS -->--}}
                                     @php
@@ -151,18 +151,11 @@
                                                 </span>
                                             </label>
 
-
                                             <div class="">
                                                 {{$pago->description}}
                                             </div>
-
-
                                         </div>
                                     @endforeach
-
-                                    {{--@if($pagos->count()==1 && $pago = $pagos->first())--}}
-                                    {{--<input type="text" name="payment_method_id" value="{{$pago->id}}"/>--}}
-                                    {{--@endif--}}
 
                                     <div class="" style="margin-top: 15px;">
                                         Tus datos personales se utilizarán para procesar tu pedido, mejorar tu

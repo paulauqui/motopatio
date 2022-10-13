@@ -7,6 +7,21 @@
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        .colored-separator .last-short {
+            width: 16px;
+        }
+
+        .colored-separator .first-long, .colored-separator .last-short {
+            display: inline-block;
+            vertical-align: top;
+            width: 33px;
+            height: 5px;
+            transform: skew(-40deg, 0deg);
+            border-radius: 2px;
+            background-color: #ffa000;
+        }
+    </style>
 @stop
 
 @section('page_title', __('voyager::generic.'.($edit ? 'edit' : 'add')).' '.$dataType->getTranslatedAttribute('display_name_singular'))
@@ -31,15 +46,16 @@
                           class="form-edit-add"
                           action="{{ $edit ? route('voyager.'.$dataType->slug.'.update', $dataTypeContent->getKey()) : route('voyager.'.$dataType->slug.'.store') }}"
                           method="POST" enctype="multipart/form-data">
-                        <!-- PUT Method if we are editing -->
-                    @if($edit)
-                        {{ method_field("PUT") }}
-                    @endif
+                        {{--<!-- PUT Method if we are editing -->--}}
+                        @if($edit)
+                            {{ method_field("PUT") }}
+                        @endif
 
-                    <!-- CSRF TOKEN -->
+                        {{--<!-- CSRF TOKEN -->--}}
                         {{ csrf_field() }}
 
                         <div class="panel-body">
+
 
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
@@ -51,65 +67,116 @@
                                 </div>
                             @endif
 
-                        <!-- Adding / Editing -->
-                            @php
-                                $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                            @endphp
-
-                            @foreach($dataTypeRows as $row)
-                            <!-- GET THE DISPLAY OPTIONS -->
+                            <div class="col-12 col-md-6 border">
+                                <div class="form-group col-md-12" style="font-weight: bold; font-size: 20px;">
+                                    Detalles de Facturación
+                                </div>
+                                {{--<!-- Adding / Editing -->--}}
                                 @php
-                                    $display_options = $row->details->display ?? NULL;
-                                    if ($dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')}) {
-                                        $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')};
-                                    }
+                                    $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                                 @endphp
 
-                                @if (isset($row->details->legend) && isset($row->details->legend->text))
-                                    <legend class="text-{{ $row->details->legend->align ?? 'center' }}"
-                                            style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
-                                @endif
+                                @foreach($dataTypeRows as $row)
+                                    {{--<!-- GET THE DISPLAY OPTIONS -->--}}
+                                    @php
+                                        $display_options = $row->details->display ?? NULL;
+                                        if ($dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')}) {
+                                            $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')};
+                                        }
 
-                                {{--@dump($display_options)--}}
-                                <div
-                                    class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }} {{ $errors->has($row->field) ? 'has-error' : '' }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
-                                    {{ $row->slugify }}
-                                    <label class="control-label" for="name">
-                                        {{ $row->getTranslatedAttribute('display_name') }}
-                                        @if($row->required)
-                                            @dump($row->required)
-                                        @endif
-                                    </label>
+                                        $side = (isset($row->details->side))?$row->details->side:'';
+                                    @endphp
 
-                                    @if (isset($row->details->information) && isset($row->details->information->text))
-                                        <span
-                                            class="text-{{ $row->details->information->align ?? 'center' }} small block pb-2">
+                                    @if (isset($row->details->legend) && isset($row->details->legend->text))
+                                        <legend class="text-{{ $row->details->legend->align ?? 'center' }}"
+                                                style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
+                                    @endif
+
+                                    <div
+                                        class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }} {{ $errors->has($row->field) ? 'has-error' : '' }} {{$side}}"
+                                    @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif
+                                    >
+                                        {{ $row->slugify }}
+                                        <label class="control-label" for="name">
+                                            {{ $row->getTranslatedAttribute('display_name') }}
+                                            @if($row->required)
+                                                <span class="ml-2 text-danger">*</span>
+                                            @endif
+                                        </label>
+
+                                        @if (isset($row->details->information) && isset($row->details->information->text))
+                                            <span
+                                                class="text-{{ $row->details->information->align ?? 'center' }} small block pb-2">
                                             {{ $row->details->information->text }}
                                         </span>
-                                    @endif
+                                        @endif
 
-                                    @include('voyager::multilingual.input-hidden-bread-edit-add')
-                                    @if (isset($row->details->view))
-                                        @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => ($edit ? 'edit' : 'add'), 'view' => ($edit ? 'edit' : 'add'), 'options' => $row->details])
-                                    @elseif ($row->type == 'relationship')
-                                        @include('voyager::formfields.relationship', ['options' => $row->details])
-                                    @else
-                                        {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
-                                    @endif
+                                        @include('voyager::multilingual.input-hidden-bread-edit-add')
+                                        @if (isset($row->details->view))
+                                            @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => ($edit ? 'edit' : 'add'), 'view' => ($edit ? 'edit' : 'add'), 'options' => $row->details])
+                                        @elseif ($row->type == 'relationship')
+                                            @include('voyager::formfields.relationship', ['options' => $row->details])
+                                        @else
+                                            {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
+                                        @endif
 
-                                    @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
-                                        {!! $after->handle($row, $dataType, $dataTypeContent) !!}
+                                        @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
+                                            {!! $after->handle($row, $dataType, $dataTypeContent) !!}
+                                        @endforeach
+
+                                        @if ($errors->has($row->field))
+                                            @foreach ($errors->get($row->field) as $error)
+                                                <span class="help-block">{{ $error }}</span>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                @endforeach
+
+                                <div class="col-md-12 border" style="margin-top: 20px;">
+                                    <div class="colored-separator text-left">
+                                        <div class="first-long"></div>
+                                        <div class="last-short"></div>
+                                    </div>
+                                    <div style="font-weight: bold; font-size: 20px;">PAGO</div>
+
+                                    @foreach($pagos as $pago)
+                                        <div class="" style="padding-top: 20px; padding-left: 10px;">
+                                            <label class="btn ">
+                                                <input type="radio" name="payment_method_id"
+                                                       @if ($pago->default) checked @endif
+                                                       value="{{$pago->id}}" style="margin-left: -15px;">
+
+                                                <span style="font-weight: bold; margin-bottom: 5px;">
+                                                    {{$pago->name}}
+                                                </span>
+                                            </label>
+
+
+                                            <div class="">
+                                                {{$pago->description}}
+                                            </div>
+
+
+                                        </div>
                                     @endforeach
 
-                                    @if ($errors->has($row->field))
-                                        @foreach ($errors->get($row->field) as $error)
-                                            <span class="help-block">{{ $error }}</span>
-                                        @endforeach
-                                    @endif
-                                </div>
-                            @endforeach
+                                    {{--@if($pagos->count()==1 && $pago = $pagos->first())--}}
+                                    {{--<input type="text" name="payment_method_id" value="{{$pago->id}}"/>--}}
+                                    {{--@endif--}}
 
-                        </div><!-- panel-body -->
+                                    <div class="" style="margin-top: 15px;">
+                                        Tus datos personales se utilizarán para procesar tu pedido, mejorar tu
+                                        experiencia en esta web y otros propósitos descritos en nuestra política de
+                                        privacidad.
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="side-right" class="border col-12 col-md-6">
+                                <div class="form-group col-md-12" style="font-weight: bold; font-size: 20px;">
+                                    Información Adicional
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="panel-footer">
                             @section('submit-buttons')
@@ -236,6 +303,10 @@
                 $('#confirm_delete_modal').modal('hide');
             });
             $('[data-toggle="tooltip"]').tooltip();
+
+            //$("#prependTo").click(function() {
+            $(".right").appendTo($("#side-right"));
+            //});
         });
     </script>
 @stop

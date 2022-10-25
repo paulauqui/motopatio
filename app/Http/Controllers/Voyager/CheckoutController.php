@@ -282,6 +282,7 @@ class CheckoutController extends VoyagerBaseController
 
     public function edit(Request $request, $id)
     {
+        $pagos = PaymentMethod::getPaymentMethods();
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -325,7 +326,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','pagos'));
     }
 
     // POST BR(E)AD

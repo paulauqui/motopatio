@@ -42,9 +42,9 @@
 @section('content')
     <div class="page-content read container-fluid">
         @include('vendor.voyager.checkout.partials.header')
+        {{--@dump($dataType->readRows)--}}
         <div class="row">
             <div class="col-md-12">
-
                 <div class="panel panel-bordered" style="padding-bottom:5px;">
 
                     @foreach($dataType->readRows as $row)

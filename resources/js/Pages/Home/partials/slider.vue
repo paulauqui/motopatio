@@ -1,6 +1,6 @@
 <template>
     <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true"
-         class="vc_row wpb_row vc_row-fluid stm-zi-1 vc_row-no-padding">
+         class="vc_row wpb_row vc_row-fluid stm-zi-1 vc_row-no-padding" style="position: relative;">
         <div class="wpb_column vc_column_container vc_col-sm-12">
             <div class="vc_column-inner">
                 <div class="wpb_wrapper">

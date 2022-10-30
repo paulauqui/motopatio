@@ -12,7 +12,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        return Inertia::render('Home', [
+        return Inertia::render('Home/index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,

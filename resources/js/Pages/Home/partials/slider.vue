@@ -12,7 +12,7 @@
                             <rs-slides>
                                 <rs-slide data-key="rs-1" data-title="Slide"
                                           data-anim="ei:d;eo:d;s:600;r:0;t:fade;sl:d;">
-                                    <img :src="'asset/uploads/2021/10/toura-scaled.jpg'"
+                                    <img src="/asset/uploads/2021/10/toura-scaled.jpg"
                                          title="toura"
                                          width="2560" height="1109" data-parallax="10" class="rev-slidebg"
                                          data-no-retina/>
@@ -20,14 +20,14 @@
                                 </rs-slide>
                                 <rs-slide data-key="rs-5" data-title="Slide"
                                           data-anim="ei:d;eo:d;s:600;r:0;t:fade;sl:d;">
-                                    <img :src="'asset/uploads/2021/10/baja-scaled.jpg'"
+                                    <img src="/asset/uploads/2021/10/baja-scaled.jpg"
                                          title="baja"
                                          width="2560" height="1109" data-parallax="10" class="rev-slidebg"
                                          data-no-retina/>
                                 </rs-slide>
                                 <rs-slide data-key="rs-3" data-title="Slide"
                                           data-anim="ei:d;eo:d;s:600;r:0;t:fade;sl:d;">
-                                    <img :src="'asset/uploads/2021/10/cardo-scaled.jpg'"
+                                    <img src="/asset/uploads/2021/10/cardo-scaled.jpg"
                                          title="cardo"
                                          width="2560" height="1109" data-parallax="10" class="rev-slidebg"
                                          data-no-retina/>

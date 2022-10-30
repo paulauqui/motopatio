@@ -45,4 +45,9 @@ class PageController extends Controller
     {
         return Inertia::render('Registrar/index', []);
     }
+
+    public function listings($slug)
+    {
+        return Inertia::render('Producto/index', []);
+    }
 }

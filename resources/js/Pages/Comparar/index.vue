@@ -45,7 +45,7 @@
                             <div class="image">
                                 <i class="stm-icon-add_car"></i>
                                 <img class="stm-compare-empty"
-                                     :src="'asset/theme/images/compare-empty.jpg'"
+                                     :src="'/asset/theme/images/compare-empty.jpg'"
                                      alt="Vacío"/>
                             </div>
                             <div class="h5">Añadir Moto para comparar</div>
@@ -56,7 +56,7 @@
                             <div class="image">
                                 <i class="stm-icon-add_car"></i>
                                 <img class="stm-compare-empty"
-                                     :src="'asset/theme/images/compare-empty.jpg'"
+                                     :src="'/asset/theme/images/compare-empty.jpg'"
                                      alt="Vacío"/>
                             </div>
                             <div class="h5">Añadir Moto para comparar</div>
@@ -67,7 +67,7 @@
                             <div class="image">
                                 <i class="stm-icon-add_car"></i>
                                 <img class="stm-compare-empty"
-                                     :src="'asset/theme/images/compare-empty.jpg'"
+                                     :src="'/asset/theme/images/compare-empty.jpg'"
                                      alt="Vacío"/>
                             </div>
                             <div class="h5">Añadir Moto para comparar</div>
@@ -186,7 +186,7 @@
                         <div class="image">
                             <i class="stm-icon-add_car"></i>
                             <img class="stm-compare-empty"
-                                 :src="'asset/theme/images/compare-empty.jpg'"
+                                 :src="'/asset/theme/images/compare-empty.jpg'"
                                  alt="Vacío"/>
                         </div>
                         <div class="h5">Añadir Moto para comparar</div>

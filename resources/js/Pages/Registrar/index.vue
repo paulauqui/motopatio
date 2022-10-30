@@ -109,7 +109,7 @@
                                                        class="wp-social-login-provider wp-social-login-provider-facebook"
                                                        data-provider="Facebook" role="button">
                                                         <img alt="Facebook"
-                                                             :src="'asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/facebook.png'"
+                                                             :src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/facebook.png'"
                                                              aria-hidden="true"/>
                                                     </a>
 
@@ -119,7 +119,7 @@
                                                        class="wp-social-login-provider wp-social-login-provider-google"
                                                        data-provider="Google" role="button">
                                                         <img alt="Google"
-                                                             :src="'asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/google.png'"
+                                                             :src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/google.png'"
                                                              aria-hidden="true"/>
                                                     </a>
 
@@ -129,7 +129,7 @@
                                                        class="wp-social-login-provider wp-social-login-provider-twitter"
                                                        data-provider="Twitter" role="button">
                                                         <img alt="Twitter"
-                                                             :src="'asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/twitter.png'"
+                                                             :src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/twitter.png'"
                                                              aria-hidden="true"/>
                                                     </a>
 

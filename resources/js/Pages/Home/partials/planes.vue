@@ -9,7 +9,7 @@
                         <div class="wpb_wrapper">
                             <div class="vc_single_image-wrapper   vc_box_border_grey"><img
                                 class="vc_single_image-img "
-                                :src="'asset/uploads/2021/10/motopatioimg-2.jpg'" width="800"
+                                src="/asset/uploads/2021/10/motopatioimg-2.jpg" width="800"
                                 height="800"
                                 alt="motopatioimg (2)" title="motopatioimg (2)"/></div>
                         </div>
@@ -27,7 +27,7 @@
 
                             <div class="vc_single_image-wrapper   vc_box_border_grey"><img
                                 class="vc_single_image-img "
-                                :src="'asset/uploads/2021/10/motopatioimg-1.jpg'" width="800"
+                                :src="'/asset/uploads/2021/10/motopatioimg-1.jpg'" width="800"
                                 height="800"
                                 alt="motopatioimg (1)" title="motopatioimg (1)"/></div>
                         </div>
@@ -45,7 +45,7 @@
 
                             <div class="vc_single_image-wrapper   vc_box_border_grey"><img
                                 class="vc_single_image-img "
-                                :src="'asset/uploads/2021/10/motopatioimg-3.jpg'" width="800"
+                                :src="'/asset/uploads/2021/10/motopatioimg-3.jpg'" width="800"
                                 height="800"
                                 alt="motopatioimg (3)" title="motopatioimg (3)"/></div>
                         </div>

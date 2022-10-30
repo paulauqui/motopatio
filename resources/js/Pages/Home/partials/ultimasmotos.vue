@@ -29,11 +29,11 @@
                                             <div class="vc_gitem-animated-block">
                                                 <div
                                                     class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    :style="'background-image: url(\'asset/uploads/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg\') !important;'">
+                                                    :style="'background-image: url(\'/asset/uploads/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg\') !important;'">
                                                     <a href="listings/yamaha-yamaha-v-star-650-custom-2013-2/index.html"
                                                        title="Yamaha Yamaha V-Star 650 Custom 2013"
                                                        class="vc_gitem-link vc-zone-link"></a><img
-                                                    :src="'asset/uploads/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg'"
+                                                    :src="'/asset/uploads/2022/04/31DAEF25-FFD4-4F34-88AA-43553C9A3A43-768x1024.jpg'"
                                                     class="vc_gitem-zone-img" alt="">
                                                     <div class="vc_gitem-zone-mini"></div>
                                                 </div>
@@ -85,11 +85,11 @@
                                             <div class="vc_gitem-animated-block ">
                                                 <div
                                                     class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    :style="'background-image: url(\'asset/uploads/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg\') !important;'">
+                                                    :style="'background-image: url(\'/asset/uploads/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg\') !important;'">
                                                     <a href="listings/yamaha-yamaha-v-star-650-custom-2013/index.html"
                                                        title="Yamaha Yamaha V-Star 650 Custom 2013"
                                                        class="vc_gitem-link vc-zone-link"></a><img
-                                                    :src="'asset/uploads/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg'"
+                                                    :src="'/asset/uploads/2022/03/BD9B0CA2-FC19-4FE1-B6B9-5FDD6C3084E7-768x1024.jpg'"
                                                     class="vc_gitem-zone-img" alt="">
                                                     <div class="vc_gitem-zone-mini"></div>
                                                 </div>
@@ -139,11 +139,11 @@
                                             <div class="vc_gitem-animated-block ">
                                                 <div
                                                     class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    :style="'background-image: url(\'asset/uploads/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg\') !important;'">
+                                                    :style="'background-image: url(\'/asset/uploads/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg\') !important;'">
                                                     <a href="listings/ktm-ktm-790-adventure-r-2019/index.html"
                                                        title="KTM KTM 790 Adventure R 2019"
                                                        class="vc_gitem-link vc-zone-link"></a><img
-                                                    :src="'asset/uploads/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg'"
+                                                    :src="'/asset/uploads/2022/04/2DA14674-2688-4E3D-AAE2-339406CD59BE-768x1024.jpg'"
                                                     class="vc_gitem-zone-img" alt="">
                                                     <div class="vc_gitem-zone-mini"></div>
                                                 </div>
@@ -193,11 +193,11 @@
                                             <div class="vc_gitem-animated-block ">
                                                 <div
                                                     class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    :style="'background-image: url(\'asset/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-768x1024.jpg\') !important;'">
+                                                    :style="'background-image: url(\'/asset/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-768x1024.jpg\') !important;'">
                                                     <a href="listings/kawasaki-kawasaki-vn-900-2013/index.html"
                                                        title="Kawasaki Kawasaki VN 900 2013"
                                                        class="vc_gitem-link vc-zone-link"></a><img
-                                                    :src="'asset/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-768x1024.jpg'"
+                                                    :src="'/asset/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-768x1024.jpg'"
                                                     class="vc_gitem-zone-img" alt="">
                                                     <div class="vc_gitem-zone-mini"></div>
                                                 </div>
@@ -248,11 +248,11 @@
                                             <div class="vc_gitem-animated-block ">
                                                 <div
                                                     class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    :style="'background-image: url(\'asset/uploads/2022/03/20D020C9-845A-4FCF-BE0B-29CD86F57110-768x1024.jpg\') !important;'">
+                                                    :style="'background-image: url(\'/asset/uploads/2022/03/20D020C9-845A-4FCF-BE0B-29CD86F57110-768x1024.jpg\') !important;'">
                                                     <a href="listings/honda-honda-crf-250-rx-2020/index.html"
                                                        title="Honda Honda CRF 250 RX 2020"
                                                        class="vc_gitem-link vc-zone-link"></a><img
-                                                    :src="'asset/uploads/2022/03/20D020C9-845A-4FCF-BE0B-29CD86F57110-768x1024.jpg'"
+                                                    :src="'/asset/uploads/2022/03/20D020C9-845A-4FCF-BE0B-29CD86F57110-768x1024.jpg'"
                                                     class="vc_gitem-zone-img" alt="">
                                                     <div class="vc_gitem-zone-mini"></div>
                                                 </div>
@@ -302,11 +302,11 @@
                                             <div class="vc_gitem-animated-block ">
                                                 <div
                                                     class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
-                                                    :style="'background-image: url(\'asset/uploads/2022/03/78766DD7-A7EF-44BB-8124-667C96E95151-768x1024.jpg\') !important;'">
+                                                    :style="'background-image: url(\'/asset/uploads/2022/03/78766DD7-A7EF-44BB-8124-667C96E95151-768x1024.jpg\') !important;'">
                                                     <a href="listings/suzuki-suzuki-dr650s-2021/index.html"
                                                        title="Suzuki Suzuki DR650S 2021"
                                                        class="vc_gitem-link vc-zone-link"></a><img
-                                                    :src="'asset/uploads/2022/03/78766DD7-A7EF-44BB-8124-667C96E95151-768x1024.jpg'"
+                                                    :src="'/asset/uploads/2022/03/78766DD7-A7EF-44BB-8124-667C96E95151-768x1024.jpg'"
                                                     class="vc_gitem-zone-img" alt="">
                                                     <div class="vc_gitem-zone-mini"></div>
                                                 </div>

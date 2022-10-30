@@ -89,13 +89,16 @@
             <div class="container">
                 <div class="navxtBreads">
                     <!-- Breadcrumb NavXT 6.6.0 -->
-                    <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage"
-                                                                          title="Ir a Moto Patio."
-                                                                          href="../index.html"
-                                                                          class="home"><span
-                        property="name">Moto Patio</span></a><meta
-                        property="position" content="1"></span> &gt; <span property="itemListElement"
-                                                                           typeof="ListItem"><span
+                    <span property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage"
+                           title="Ir a Moto Patio."
+                           href="../index.html"
+                           class="home">
+                            <span
+                                property="name">Moto Patio</span>
+                        </a>
+                        <meta property="position" content="1"/>
+                    </span> &gt; <span property="itemListElement" typeof="ListItem"><span
                     property="name" class="post post-page current-item">Motos</span><meta property="url"
                                                                                           content="index.html"><meta
                     property="position" content="2"></span></div>
@@ -149,7 +152,8 @@
                                                                         value="usado">
                                                                         usado
                                                                     </option>
-                                                                </select></div>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-12 col-sm-6 stm-filter_make">
                                                             <div class="form-group">
@@ -565,14 +569,15 @@
                                                                 data-date="202204040129"
                                                                 data-mileage="0"
                                                             >
-                                                                <a href="../listings/kawasaki-kawasaki-vn-900-2013/index.html"
+                                                                <a href="#"
+                                                                   @click="redirectPage('kawasaki-kawasaki-vn-900-2013')"
                                                                    class="rmv_txt_drctn">
 
                                                                     <div class="image">
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-255x135.jpeg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-255x135.jpeg 1x, https://motopatio.com/wp-content/uploads/2022/03/402EDD94-1035-4607-94F2-39E682D56BA6-510x270.jpeg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="402EDD94-1035-4607-94F2-39E682D56BA6"
                                                                         />
@@ -736,7 +741,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2022/03/64062AF6-4B1C-4AB2-B303-7D71F50AEDFA-255x135.jpeg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2022/03/64062AF6-4B1C-4AB2-B303-7D71F50AEDFA-255x135.jpeg 1x, https://motopatio.com/wp-content/uploads/2022/03/64062AF6-4B1C-4AB2-B303-7D71F50AEDFA-510x270.jpeg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="64062AF6-4B1C-4AB2-B303-7D71F50AEDFA"
                                                                         />
@@ -822,7 +827,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2022/03/35A631C6-0241-4ECE-82B7-2F423A26BE98-255x135.jpeg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2022/03/35A631C6-0241-4ECE-82B7-2F423A26BE98-255x135.jpeg 1x, https://motopatio.com/wp-content/uploads/2022/03/35A631C6-0241-4ECE-82B7-2F423A26BE98-510x270.jpeg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="35A631C6-0241-4ECE-82B7-2F423A26BE98"
                                                                         />
@@ -901,7 +906,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2022/01/220E2173-8251-47DD-A446-E44A39C18A2F-255x135.jpeg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2022/01/220E2173-8251-47DD-A446-E44A39C18A2F-255x135.jpeg 1x, https://motopatio.com/wp-content/uploads/2022/01/220E2173-8251-47DD-A446-E44A39C18A2F-510x270.jpeg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="220E2173-8251-47DD-A446-E44A39C18A2F"
                                                                         />
@@ -986,7 +991,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2022/01/961ECC89-B372-496C-8CBF-B266A7CD61A2-255x135.jpeg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2022/01/961ECC89-B372-496C-8CBF-B266A7CD61A2-255x135.jpeg 1x, https://motopatio.com/wp-content/uploads/2022/01/961ECC89-B372-496C-8CBF-B266A7CD61A2-510x270.jpeg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="961ECC89-B372-496C-8CBF-B266A7CD61A2"
                                                                         />
@@ -1065,7 +1070,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2022/04/BF7B7794-F603-4C9F-A463-D8622A2F6EAB-255x135.jpeg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2022/04/BF7B7794-F603-4C9F-A463-D8622A2F6EAB-255x135.jpeg 1x, https://motopatio.com/wp-content/uploads/2022/04/BF7B7794-F603-4C9F-A463-D8622A2F6EAB-510x270.jpeg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="BF7B7794-F603-4C9F-A463-D8622A2F6EAB"
                                                                         />
@@ -1150,7 +1155,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2021/10/20211007_144423-255x135.jpg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2021/10/20211007_144423-255x135.jpg 1x, https://motopatio.com/wp-content/uploads/2021/10/20211007_144423-510x270.jpg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="20211007_144423"
                                                                         />
@@ -1235,7 +1240,7 @@
                                                                         <img
                                                                             data-src="https://motopatio.com/wp-content/uploads/2021/09/20210925_150646-255x135.jpg"
                                                                             srcset="https://motopatio.com/wp-content/uploads/2021/09/20210925_150646-255x135.jpg 1x, https://motopatio.com/wp-content/uploads/2021/09/20210925_150646-510x270.jpg 2x"
-                                                                            :src="'asset/theme/images/plchldr255.png'"
+                                                                            :src="'/asset/theme/images/plchldr255.png'"
                                                                             class="lazy img-responsive"
                                                                             alt="20210925_150646"
                                                                         />
@@ -1345,6 +1350,11 @@
         name: '@Motos',
         components: {
             Layout
+        },
+        methods: {
+            redirectPage(slug) {
+                this.$inertia.get(this.route('listings.index', slug));
+            },
         },
         mounted() {
             jQuery(document).ready(function () {

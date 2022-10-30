@@ -7,7 +7,7 @@
                 <!--Logo-->
                 <div class="listing-logo-main" style="margin-top: 13px; ">
                     <a class="bloglogo" href="#" @click="redirectPage('home.index')">
-                        <img :src="'asset/uploads/2018/07/logo-motopatio-white.png'"
+                        <img src="/asset/uploads/2018/07/logo-motopatio-white.png"
                              style="width: 112px;"
                              title="Inicio"
                              alt="Logo"
@@ -104,7 +104,8 @@
                                 <ul class="listing-menu-mobile heading-font visible-xs visible-sm clearfix">
                                     <li id="menu-item-5012"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4473 current_page_item menu-item-5012">
-                                        <a href="#" aria-current="page" @click="redirectPage('home.index')">Inicio</a></li>
+                                        <a href="#" aria-current="page" @click="redirectPage('home.index')">Inicio</a>
+                                    </li>
                                     <li id="menu-item-5286"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5286">
                                         <a href="#" @click="redirectPage('motos.index')">Motos</a></li>
@@ -180,7 +181,8 @@
                                            style="color: rgba(255,255,255,1); font-size: 15px;"></i> Iñaquito y Amazonas									</span>
                                                     </li>
                                                     <li>
-                                                        <i class=" stm-service-icon-sales_phone" style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                                        <i class=" stm-service-icon-sales_phone"
+                                                           style="color: rgba(255,255,255,1); font-size: 15px;"></i>
                                                         <a href="tel:+593 99 251 4694"> +593 99 251 4694</a>
                                                     </li>
                                                 </ul>

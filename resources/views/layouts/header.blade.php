@@ -205,11 +205,11 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet" property="stylesheet" media="all"
       type="text/css">
 
-{{--<link rel='stylesheet' id='boostrap-css'--}}
-      {{--href='{{asset('asset/theme/css/bootstrap.min5597.css')}}?ver=5.0'--}}
-      {{--type='text/css' media='all'/>--}}
-{{--<link rel='stylesheet' id='font-awesome-4.7.0-css'--}}
-      {{--href='{{asset('asset/theme/css/font-awesome.min5597.css')}}?ver=5.0' type='text/css' media='all'/>--}}
+<link rel='stylesheet' id='boostrap-css'
+      href='{{asset('asset/theme/css/bootstrap.min5597.css')}}?ver=5.0'
+      type='text/css' media='all'/>
+<link rel='stylesheet' id='font-awesome-4.7.0-css'
+      href='{{asset('asset/theme/css/font-awesome.min5597.css')}}?ver=5.0' type='text/css' media='all'/>
 <link rel='stylesheet' id='stm-select2-css'
       href='{{asset('asset/theme/css/select2.min5597.css')}}?ver=5.0'
       type='text/css' media='all'/>
@@ -565,3 +565,14 @@
       href='{{asset('asset/plugins/js_composer/assets/lib/bower/animate-css/animate.mine6df.css')}}?ver=6.5.0'
       type='text/css'
       media='all'/>
+
+
+<style>
+    .vc_custom_1626887424630 {
+        margin-top: 10px !important;
+        background-image: url('{{asset('asset/uploads/2021/07/fondoprecio3aa70.png')}}?id=5422') !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+    }
+</style>

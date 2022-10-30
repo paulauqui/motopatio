@@ -55,7 +55,7 @@
 <body
     class="home page-template-default page page-id-4473 theme-motors woocommerce-no-js stm-template-listing_two stm-user-not-logged-in header_remove_cart stm-layout-header-listing has-breadcrumb_navxt wpb-js-composer js-comp-ver-6.5.0 vc_responsive elementor-default elementor-kit-5497"
     ontouchstart="">
-<div id="wrapper">
+<div id="wrapper" style="min-height: 626px;">
 
     @include('layouts.top')
 

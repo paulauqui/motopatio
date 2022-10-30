@@ -24,13 +24,7 @@
         background-color: #f9f9f9 !important;
     }
 
-    .vc_custom_1626887424630 {
-        margin-top: 10px !important;
-        /*background-image: url(wp-content/uploads/2021/07/fondoprecio3aa70.png?id=5422) !important;*/
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-size: contain !important;
-    }
+
 </style>
 
 <template>
@@ -39,16 +33,20 @@
         <Slider/>
         <div class="vc_row-full-width"></div>
         <Search/>
-        <div class="stm_cars_on_top  vc_custom_1626885053786">
-            <h2><span style="color: #269aff;"><span style="color: #000000;">Motos</span> Destacadas</span></h2>
-        </div>
+        <Destacados/>
+        <Planes/>
+        <Ultimasmotos/>
+        <Noticias/>
     </div>
 </template>
 
 <script>
-    import 'vue3-carousel/dist/carousel.css';
     import Slider from '@/Pages/Home/partials/slider.vue';
     import Search from '@/Pages/Home/partials/search.vue';
+    import Destacados from '@/Pages/Home/partials/destacados.vue';
+    import Planes from '@/Pages/Home/partials/planes.vue';
+    import Ultimasmotos from '@/Pages/Home/partials/ultimasmotos.vue';
+    import Noticias from '@/Pages/Home/partials/noticias.vue';
     import {Head} from '@inertiajs/inertia-vue3';
 
     export default {
@@ -57,6 +55,10 @@
             Head,
             Slider,
             Search,
+            Destacados,
+            Planes,
+            Noticias,
+            Ultimasmotos
         },
     }
 </script>

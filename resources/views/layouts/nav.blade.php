@@ -1,6 +1,6 @@
 <div id="header">
 
-    <div class="header-listing header-listing-fixed listing-nontransparent-header ">
+    <div class="header-listing header-listing-fixed listing-nontransparent-header">
 
         <div class="listing-header-bg"></div>
         <div class="container header-inner-content">

@@ -7,12 +7,12 @@
                 <!-- Header Top bar Login -->
                 <div class="pull-right hidden-xs top-bar-auth">
                     <div class="header-login-url">
-                        <a href="login-register/index.html">
+                        <a href="#" @click="redirectPage('register.index')">
                             <i class="fa fa-user"></i><span
                             class="vt-top">Iniciar sesión</span>
                         </a>
                         <span class="vertical-divider"></span>
-                        <a href="login-register/index.html">Registrarse</a>
+                        <a href="#" @click="redirectPage('register.index')">Registrarse</a>
                     </div>
                 </div>
 
@@ -76,6 +76,11 @@
         components: {
             Head,
             Link,
+        },
+        methods: {
+            redirectPage(name) {
+                this.$inertia.get(this.route(name));
+            },
         },
         props: {},
     }

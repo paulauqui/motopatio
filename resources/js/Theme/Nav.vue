@@ -1,13 +1,12 @@
 <template>
     <div id="header">
-
         <div class="header-listing header-listing-fixed listing-nontransparent-header">
-
             <div class="listing-header-bg"></div>
+
             <div class="container header-inner-content">
                 <!--Logo-->
                 <div class="listing-logo-main" style="margin-top: 13px; ">
-                    <a class="bloglogo" href="index.html">
+                    <a class="bloglogo" href="#" @click="redirectPage('home.index')">
                         <img :src="'asset/uploads/2018/07/logo-motopatio-white.png'"
                              style="width: 112px;"
                              title="Inicio"
@@ -85,8 +84,9 @@
                         </div>
                         <div class="pull-right">
                             <a class="lOffer-compare"
-                               href="comparar/index.html"
+                               href="#"
                                title="Ver comparación"
+                               @click="redirectPage('comparar.index')"
                             >
                                 <i class="list-icon stm-service-icon-listing-compare" style=""></i> <span
                                 class="list-badge"><span class="stm-current-cars-in-compare"
@@ -104,18 +104,20 @@
                                 <ul class="listing-menu-mobile heading-font visible-xs visible-sm clearfix">
                                     <li id="menu-item-5012"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4473 current_page_item menu-item-5012">
-                                        <a href="index.html" aria-current="page">Inicio</a></li>
+                                        <a href="#" aria-current="page" @click="redirectPage('home.index')">Inicio</a></li>
                                     <li id="menu-item-5286"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5286">
-                                        <a href="motos/index.html">Motos</a></li>
+                                        <a href="#" @click="redirectPage('motos.index')">Motos</a></li>
                                     <li id="menu-item-5013"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5013">
-                                        <a href="dealers-list/index.html">Patios</a></li>
+                                        <a href="#" @click="redirectPage('dealer.index')">Patios</a></li>
                                     <li id="menu-item-5014"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5014">
-                                        <a href="prices/index.html">Planes</a></li>
+                                        <a href="#" @click="redirectPage('planes.index')">Planes</a></li>
 
-                                    <li class="stm_compare_mobile"><a href="comparar/index.html">Comparar</a></li>
+                                    <li class="stm_compare_mobile">
+                                        <a href="#" @click="redirectPage('comparar.index')">Comparar</a>
+                                    </li>
                                 </ul>
                                 <div id="top-bar" class="">
                                     <div class="container">
@@ -177,9 +179,9 @@
 										<i class=" stm-service-icon-pin_2"
                                            style="color: rgba(255,255,255,1); font-size: 15px;"></i> Iñaquito y Amazonas									</span>
                                                     </li>
-                                                    <li><i class=" stm-service-icon-sales_phone"
-                                                           style="color: rgba(255,255,255,1); font-size: 15px;"></i> <a
-                                                        href="tel:+593 99 251 4694"> +593 99 251 4694</a>
+                                                    <li>
+                                                        <i class=" stm-service-icon-sales_phone" style="color: rgba(255,255,255,1); font-size: 15px;"></i>
+                                                        <a href="tel:+593 99 251 4694"> +593 99 251 4694</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -195,13 +197,14 @@
 
                     <ul class="listing-menu clearfix" style="margin-top: 17px; ">
                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4473 current_page_item menu-item-5012">
-                            <a href="index.html" aria-current="page">Inicio</a></li>
+                            <a href="#" aria-current="page" @click="redirectPage('home.index')">Inicio</a></li>
                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5286"><a
-                            href="motos/index.html">Motos</a></li>
+                            href="#" @click="redirectPage('motos.index')">Motos</a></li>
                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5013"><a
-                            href="dealers-list/index.html">Patios</a></li>
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5014"><a
-                            href="prices/index.html">Planes</a></li>
+                            href="#" @click="redirectPage('dealer.index')">Patios</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5014">
+                            <a href="#" @click="redirectPage('planes.index')">Planes</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -219,6 +222,11 @@
         components: {
             Head,
             Link,
+        },
+        methods: {
+            redirectPage(name) {
+                this.$inertia.get(this.route(name));
+            },
         },
         props: {},
     }

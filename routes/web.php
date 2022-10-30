@@ -16,13 +16,18 @@ use App\Http\Controllers\FrontEnd\PageController;
 |
 */
 
-Route::get('/', [PageController::class, 'home'])->name('frontend.home');
+Route::get('/', [PageController::class, 'home'])->name('home.index');
+Route::get('motos', [PageController::class, 'motos'])->name('motos.index');
 Route::get('producto', [PageController::class, 'producto'])->name('producto.index');
+Route::get('planes', [PageController::class, 'planes'])->name('planes.index');
+Route::get('dealer-list', [PageController::class, 'dealer'])->name('dealer.index');
+Route::get('comparar', [PageController::class, 'comparar'])->name('comparar.index');
+Route::get('login-register', [PageController::class, 'register'])->name('register.index');
 Route::get('welcome', [PageController::class, 'home'])->name('frontend.welcome');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return Inertia::render('Dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 

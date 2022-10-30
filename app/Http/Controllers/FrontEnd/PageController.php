@@ -23,11 +23,26 @@ class PageController extends Controller
 
     public function motos()
     {
+        return Inertia::render('Motos/index', []);
+    }
 
+    public function dealer()
+    {
+        return Inertia::render('Dealer/index', []);
     }
 
     public function planes()
     {
+        return Inertia::render('Planes/index', []);
+    }
 
+    public function comparar()
+    {
+        return Inertia::render('Comparar/index', []);
+    }
+
+    public function register()
+    {
+        return Inertia::render('Registrar/index', []);
     }
 }

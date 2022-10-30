@@ -575,4 +575,8 @@
         background-repeat: no-repeat !important;
         background-size: contain !important;
     }
+
+    .stm-template-listing .filter-sidebar:after {
+        background-image: url("../asset/theme/images/listing-directory-filter-bg.jpg");
+    }
 </style>

@@ -57,19 +57,15 @@
     ontouchstart="">
 <div id="wrapper" style="min-height: 626px;">
 
-    @include('layouts.top')
-
-    @include('layouts.nav')
-
-    {{--<div id="main">--}}
+    {{--@include('layouts.top')--}}
+    {{--@include('layouts.nav')--}}
 
     @inertia
 
     @env ('local')
-    {{--<script src="http://localhost:8080/js/bundle.js"></script>--}}
+
     @endenv
-    {{--</div>--}}
-    {{--<!--main-->--}}
+
 </div> <!--wrapper-->
 
 @include('layouts.footer')

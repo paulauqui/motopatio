@@ -28,19 +28,22 @@
 </style>
 
 <template>
-    <Head title="Home"/>
-    <div class="container">
-        <Slider/>
-        <div class="vc_row-full-width"></div>
-        <Search/>
-        <Destacados/>
-        <Planes/>
-        <Ultimasmotos/>
-        <Noticias/>
-    </div>
+    <Layout>
+        <Head title="Home"/>
+        <div class="container">
+            <Slider/>
+            <div class="vc_row-full-width"></div>
+            <Search/>
+            <Destacados/>
+            <Planes/>
+            <Ultimasmotos/>
+            <Noticias/>
+        </div>
+    </Layout>
 </template>
 
 <script>
+    import Layout from '@/Layouts/AppSite';
     import Slider from '@/Pages/Home/partials/slider.vue';
     import Search from '@/Pages/Home/partials/search.vue';
     import Destacados from '@/Pages/Home/partials/destacados.vue';
@@ -52,6 +55,7 @@
     export default {
         name: '@Home',
         components: {
+            Layout,
             Head,
             Slider,
             Search,

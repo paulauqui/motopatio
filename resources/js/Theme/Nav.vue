@@ -23,8 +23,9 @@
                         </a>
                         <div class="pull-right">
                             <div class="lOffer-account-unit">
-                                <a href="login-register/index.html" class="lOffer-account">
-                                    <i class=" stm-service-icon-user" style=""></i> </a>
+                                <a href="#" class="lOffer-account" @click="redirectPage('register.index')">
+                                    <i class=" stm-service-icon-user" style=""></i>
+                                </a>
                                 <div class="lOffer-account-dropdown stm-login-form-unregistered">
                                     <form method="post">
                                         <div class="form-group">

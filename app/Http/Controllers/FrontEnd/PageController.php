@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,10 @@ class PageController extends Controller
 
     public function planes()
     {
-        return Inertia::render('Planes/index', []);
+        $planes = Plan::getPlanes();
+        return Inertia::render('Planes/index', [
+            'planes' => $planes
+        ]);
     }
 
     public function comparar()

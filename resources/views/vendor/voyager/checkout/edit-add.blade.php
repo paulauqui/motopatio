@@ -51,12 +51,12 @@
                             {{ method_field("PUT") }}
                         @endif
 
+                        <input type="hidden" name="plan_id" class="form-control form-control-sm" value="{{$plan->id}}"/>
+
                         {{--<!-- CSRF TOKEN -->--}}
                         {{ csrf_field() }}
 
                         <div class="panel-body">
-
-
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     <ul>

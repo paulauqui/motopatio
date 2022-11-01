@@ -35,4 +35,12 @@ class Plan extends Model
     {
         return self::builder()->where('status', 1)->get();
     }
+
+    public static function getPlanDefault()
+    {
+        return self::builder()
+            ->where('status', 1)
+            ->where('default', 1)
+            ->first();
+    }
 }

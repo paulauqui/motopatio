@@ -26,6 +26,8 @@ Route::get('login-register', [PageController::class, 'register'])->name('registe
 Route::get('listings/{slug}', [PageController::class, 'listings'])->name('listings.index');
 Route::get('welcome', [PageController::class, 'home'])->name('frontend.welcome');
 
+Route::get('admin/checkout/create/{plan}', [\App\Http\Controllers\Voyager\CheckoutController::class, 'create'])->name('admin.checkout.create');
+
 //Route::get('/dashboard', function () {
 //    return Inertia::render('Dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');

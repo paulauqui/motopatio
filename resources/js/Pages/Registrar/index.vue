@@ -33,15 +33,18 @@
             <div class="container">
                 <div class="navxtBreads">
                     <!-- Breadcrumb NavXT 6.6.0 -->
-                    <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage"
-                                                                          title="Ir a Moto Patio."
-                                                                          href="../index.html"
-                                                                          class="home"><span
-                        property="name">Moto Patio</span></a><meta
-                        property="position" content="1"></span> &gt; <span property="itemListElement"
-                                                                           typeof="ListItem"><span
-                    property="name" class="post post-page current-item">Login/Register</span><meta
-                    property="url" content="index.html"><meta property="position" content="2"></span></div>
+                    <span property="itemListElement" typeof="ListItem">
+                        <Link :href="route('home.index')"
+                              class="home">
+                            <span property="name">Moto Patio</span>
+                        </Link>
+                        <meta property="position" content="1"/> </span> &gt; <span property="itemListElement"
+                                                                                   typeof="ListItem"><span
+                    property="name" class="post post-page current-item">Login/Register</span>
+                    <meta property="url" content="index.html"/>
+                    <meta property="position" content="2"/>
+                </span>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -57,91 +60,87 @@
                                     <div class="col-md-4">
                                         <h3>Registrarse</h3>
                                         <div class="stm-login-form">
-                                            <form method="post">
-                                                <div class="form-group">
-                                                    <h4>Usuario o correo electrónico</h4>
-                                                    <input type="text" name="stm_user_login"
-                                                           placeholder="Introducir usuario o correo electrónico"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <h4>Contraseña</h4>
-                                                    <input type="password" name="stm_user_password"
-                                                           placeholder="Introducir contraseña"/>
-                                                </div>
-                                                <div class="form-group form-checker">
-                                                    <label>
-                                                        <input type="checkbox" name="stm_remember_me"/>
-                                                        <span>Recuérdame</span>
-                                                    </label>
-                                                    <div class="stm-forgot-password">
-                                                        <a href="#">
-                                                            Olvidé la contraseña </a>
-                                                    </div>
-                                                </div>
-                                                <input type="submit" value="Iniciar sesión"/>
-                                                <span class="stm-listing-loader"><i class="stm-icon-load1"></i></span>
-                                                <div class="stm-validation-message"></div>
-                                            </form>
-                                            <form method="post" class="stm_forgot_password_send">
-                                                <div class="form-group">
-                                                    <h4>Usuario o correo electrónico</h4>
-                                                    <input type="hidden" name="stm_link_send_to"
-                                                           value="motopatio.com/login-register/" readonly/>
-                                                    <input type="text" name="stm_user_login"
-                                                           placeholder="Introducir usuario o correo electrónico"/>
-                                                    <input type="submit" value="Enviar contraseña"/>
-                                                    <span class="stm-listing-loader"><i
-                                                        class="stm-icon-load1"></i></span>
-                                                    <div class="stm-validation-message"></div>
-                                                </div>
-                                            </form>
+                                            <Login :canResetPassword="canResetPassword" :status="status"></Login>
+
+                                            <!--<form method="post">-->
+                                                <!--<div class="form-group">-->
+                                                    <!--<h4>Usuario o correo electrónico</h4>-->
+                                                    <!--<input type="text" name="stm_user_login"-->
+                                                           <!--placeholder="Introducir usuario o correo electrónico"/>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group">-->
+                                                    <!--<h4>Contraseña</h4>-->
+                                                    <!--<input type="password" name="stm_user_password"-->
+                                                           <!--placeholder="Introducir contraseña"/>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group form-checker">-->
+                                                    <!--<label>-->
+                                                        <!--<input type="checkbox" name="stm_remember_me"/>-->
+                                                        <!--<span>Recuérdame</span>-->
+                                                    <!--</label>-->
+                                                    <!--<div class="stm-forgot-password">-->
+                                                        <!--<a href="#">-->
+                                                            <!--Olvidé la contraseña </a>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<input type="submit" value="Iniciar sesión"/>-->
+                                                <!--<span class="stm-listing-loader"><i class="stm-icon-load1"></i></span>-->
+                                                <!--<div class="stm-validation-message"></div>-->
+                                            <!--</form>-->
+
+                                            <!--<form method="post" class="stm_forgot_password_send">-->
+                                            <!--<div class="form-group">-->
+                                            <!--<h4>Usuario o correo electrónico</h4>-->
+                                            <!--<input type="hidden" name="stm_link_send_to"-->
+                                            <!--value="motopatio.com/login-register/" readonly/>-->
+                                            <!--<input type="text" name="stm_user_login"-->
+                                            <!--placeholder="Introducir usuario o correo electrónico"/>-->
+                                            <!--<input type="submit" value="Enviar contraseña"/>-->
+                                            <!--<span class="stm-listing-loader"><i-->
+                                            <!--class="stm-icon-load1"></i></span>-->
+                                            <!--<div class="stm-validation-message"></div>-->
+                                            <!--</div>-->
+                                            <!--</form>-->
                                         </div>
-                                        <div class="stm-social-login-wrap">
-                                            <div class="wp-social-login-widget">
+                                        <!--<div class="stm-social-login-wrap">-->
+                                        <!--<div class="wp-social-login-widget">-->
+                                        <!--<div class="wp-social-login-connect-with">Connect with:</div>-->
+                                        <!--<div class="wp-social-login-provider-list">-->
+                                        <!--<a rel="nofollow"-->
+                                        <!--href="../wp-login7c37.html?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Facebook&amp;redirect_to=https%3A%2F%2Fmotopatio.com%2Flogin-register%2F"-->
+                                        <!--title="Connect with Facebook"-->
+                                        <!--class="wp-social-login-provider wp-social-login-provider-facebook"-->
+                                        <!--data-provider="Facebook" role="button">-->
+                                        <!--<img alt="Facebook"-->
+                                        <!--:src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/facebook.png'"-->
+                                        <!--aria-hidden="true"/>-->
+                                        <!--</a>-->
 
-                                                <div class="wp-social-login-connect-with">Connect with:</div>
+                                        <!--<a rel="nofollow"-->
+                                        <!--href="../wp-login09ce.html?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Google&amp;redirect_to=https%3A%2F%2Fmotopatio.com%2Flogin-register%2F"-->
+                                        <!--title="Connect with Google"-->
+                                        <!--class="wp-social-login-provider wp-social-login-provider-google"-->
+                                        <!--data-provider="Google" role="button">-->
+                                        <!--<img alt="Google"-->
+                                        <!--:src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/google.png'"-->
+                                        <!--aria-hidden="true"/>-->
+                                        <!--</a>-->
 
-                                                <div class="wp-social-login-provider-list">
+                                        <!--<a rel="nofollow"-->
+                                        <!--href="../wp-login91e5.html?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Twitter&amp;redirect_to=https%3A%2F%2Fmotopatio.com%2Flogin-register%2F"-->
+                                        <!--title="Connect with Twitter"-->
+                                        <!--class="wp-social-login-provider wp-social-login-provider-twitter"-->
+                                        <!--data-provider="Twitter" role="button">-->
+                                        <!--<img alt="Twitter"-->
+                                        <!--:src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/twitter.png'"-->
+                                        <!--aria-hidden="true"/>-->
+                                        <!--</a>-->
 
-                                                    <a rel="nofollow"
-                                                       href="../wp-login7c37.html?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Facebook&amp;redirect_to=https%3A%2F%2Fmotopatio.com%2Flogin-register%2F"
-                                                       title="Connect with Facebook"
-                                                       class="wp-social-login-provider wp-social-login-provider-facebook"
-                                                       data-provider="Facebook" role="button">
-                                                        <img alt="Facebook"
-                                                             :src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/facebook.png'"
-                                                             aria-hidden="true"/>
-                                                    </a>
-
-                                                    <a rel="nofollow"
-                                                       href="../wp-login09ce.html?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Google&amp;redirect_to=https%3A%2F%2Fmotopatio.com%2Flogin-register%2F"
-                                                       title="Connect with Google"
-                                                       class="wp-social-login-provider wp-social-login-provider-google"
-                                                       data-provider="Google" role="button">
-                                                        <img alt="Google"
-                                                             :src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/google.png'"
-                                                             aria-hidden="true"/>
-                                                    </a>
-
-                                                    <a rel="nofollow"
-                                                       href="../wp-login91e5.html?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Twitter&amp;redirect_to=https%3A%2F%2Fmotopatio.com%2Flogin-register%2F"
-                                                       title="Connect with Twitter"
-                                                       class="wp-social-login-provider wp-social-login-provider-twitter"
-                                                       data-provider="Twitter" role="button">
-                                                        <img alt="Twitter"
-                                                             :src="'/asset/plugins/wordpress-social-login/assets/img/32x32/wpzoom/twitter.png'"
-                                                             aria-hidden="true"/>
-                                                    </a>
-
-                                                </div>
-
-                                                <div class="wp-social-login-widget-clearing"></div>
-
-                                            </div>
-
-                                            <!-- wsl_render_auth_widget -->
-
-                                        </div>
+                                        <!--</div>-->
+                                        <!--<div class="wp-social-login-widget-clearing"></div>-->
+                                        <!--</div>-->
+                                        <!-- wsl_render_auth_widget -->
+                                        <!--</div>-->
                                     </div>
 
                                     <div class="col-md-8">
@@ -230,15 +229,23 @@
 </template>
 
 <script>
+    import Login from '@/Pages/Registrar/partials/Login'
     import Layout from '@/Layouts/AppSite';
-    import {Head} from '@inertiajs/inertia-vue3';
+    import {Head, Link} from '@inertiajs/inertia-vue3';
 
     export default {
         name: '@Planes',
         components: {
             Layout,
-            Head
+            Head,
+            Link,
+            Login
         },
+        props: {
+            canResetPassword: Boolean,
+            status: String,
+        },
+        methods: {},
         mounted() {
             jQuery(document).ready(function () {
                 var $ = jQuery;

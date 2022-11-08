@@ -47,7 +47,10 @@ class PageController extends Controller
 
     public function register()
     {
-        return Inertia::render('Registrar/index', []);
+        return Inertia::render('Registrar/index', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => session('status'),
+        ]);
     }
 
     public function listings($slug)

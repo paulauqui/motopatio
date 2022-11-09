@@ -146,75 +146,76 @@
                                     <div class="col-md-8">
                                         <h3>Registrarse</h3>
                                         <div class="stm-register-form">
-                                            <form id="page-register-form" method="post">
-                                                <div class="row form-group">
-                                                    <div class="col-md-6">
-                                                        <h4>Nombre</h4>
-                                                        <input class="user_validated_field" type="text"
-                                                               name="stm_user_first_name"
-                                                               placeholder="Introducir nombre"/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h4>Apellido</h4>
-                                                        <input class="user_validated_field" type="text"
-                                                               name="stm_user_last_name"
-                                                               placeholder="Introducir apellido"/>
-                                                    </div>
-                                                </div>
+                                            <Register></Register>
+                                            <!--<form id="page-register-form" method="post">-->
+                                                <!--<div class="row form-group">-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<h4>Nombre</h4>-->
+                                                        <!--<input class="user_validated_field" type="text"-->
+                                                               <!--name="stm_user_first_name"-->
+                                                               <!--placeholder="Introducir nombre"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<h4>Apellido</h4>-->
+                                                        <!--<input class="user_validated_field" type="text"-->
+                                                               <!--name="stm_user_last_name"-->
+                                                               <!--placeholder="Introducir apellido"/>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
 
-                                                <div class="row form-group">
-                                                    <div class="col-md-6">
-                                                        <h4>Numero de teléfono</h4>
-                                                        <input class="user_validated_field" type="tel"
-                                                               name="stm_user_phone"
-                                                               placeholder="Introducir teléfono"/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h4>Correo electrónico*</h4>
-                                                        <input class="user_validated_field" type="email"
-                                                               name="stm_user_mail"
-                                                               placeholder="Introducir correo electrónico"/>
-                                                    </div>
-                                                </div>
+                                                <!--<div class="row form-group">-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<h4>Numero de teléfono</h4>-->
+                                                        <!--<input class="user_validated_field" type="tel"-->
+                                                               <!--name="stm_user_phone"-->
+                                                               <!--placeholder="Introducir teléfono"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<h4>Correo electrónico*</h4>-->
+                                                        <!--<input class="user_validated_field" type="email"-->
+                                                               <!--name="stm_user_mail"-->
+                                                               <!--placeholder="Introducir correo electrónico"/>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
 
-                                                <div class="row form-group">
-                                                    <div class="col-md-6">
-                                                        <h4>Usuario*</h4>
-                                                        <input class="user_validated_field" type="text"
-                                                               name="stm_nickname"
-                                                               placeholder="Introducir usuario"/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h4>Contraseña*</h4>
-                                                        <div class="stm-show-password">
-                                                            <i class="fa fa-eye-slash"></i>
-                                                            <input class="user_validated_field" type="password"
-                                                                   name="stm_user_password"
-                                                                   placeholder="Introducir contraseña"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <!--<div class="row form-group">-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<h4>Usuario*</h4>-->
+                                                        <!--<input class="user_validated_field" type="text"-->
+                                                               <!--name="stm_nickname"-->
+                                                               <!--placeholder="Introducir usuario"/>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<h4>Contraseña*</h4>-->
+                                                        <!--<div class="stm-show-password">-->
+                                                            <!--<i class="fa fa-eye-slash"></i>-->
+                                                            <!--<input class="user_validated_field" type="password"-->
+                                                                   <!--name="stm_user_password"-->
+                                                                   <!--placeholder="Introducir contraseña"/>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
 
-                                                <div class="form-group form-checker">
-                                                    <label>
-                                                        <input type="checkbox" name="stm_accept_terms"/>
-                                                        <span>
-								Acepto las condiciones del																	<a
-                                                            href="../politicas/index.html" target="_blank">Términos y condiciones</a>
-															</span>
-                                                    </label>
-                                                </div>
+                                                <!--<div class="form-group form-checker">-->
+                                                    <!--<label>-->
+                                                        <!--<input type="checkbox" name="stm_accept_terms"/>-->
+                                                        <!--<span>-->
+								<!--Acepto las condiciones del																	<a-->
+                                                            <!--href="../politicas/index.html" target="_blank">Términos y condiciones</a>-->
+															<!--</span>-->
+                                                    <!--</label>-->
+                                                <!--</div>-->
 
-                                                <div class="form-group form-group-submit clearfix">
-                                                    <input type="submit" value="¡Regístrese ahora!" disabled/>
-                                                    <span class="stm-listing-loader"><i
-                                                        class="stm-icon-load1"></i></span>
-                                                </div>
+                                                <!--<div class="form-group form-group-submit clearfix">-->
+                                                    <!--<input type="submit" value="¡Regístrese ahora!" disabled/>-->
+                                                    <!--<span class="stm-listing-loader"><i-->
+                                                        <!--class="stm-icon-load1"></i></span>-->
+                                                <!--</div>-->
 
-                                                <div class="stm-validation-message"></div>
+                                                <!--<div class="stm-validation-message"></div>-->
 
 
-                                            </form>
+                                            <!--</form>-->
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +230,8 @@
 </template>
 
 <script>
-    import Login from '@/Pages/Registrar/partials/Login'
+    import Login from '@/Pages/Registrar/partials/Login';
+    import Register from '@/Pages/Registrar/partials/Register';
     import Layout from '@/Layouts/AppSite';
     import {Head, Link} from '@inertiajs/inertia-vue3';
 
@@ -239,7 +241,8 @@
             Layout,
             Head,
             Link,
-            Login
+            Login,
+            Register
         },
         props: {
             canResetPassword: Boolean,

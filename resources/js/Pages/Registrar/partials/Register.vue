@@ -10,16 +10,17 @@
                     <BreezeLabel for="name" value="Nombre"/>
                     <BreezeInput id="name" type="text" class="mt-1 block w-full"
                                  v-model="form.name"
-                                 required  placeholder="Introducir nombre"/>
+                                 placeholder="Introducir nombre"/>
                 </div>
             </div>
+            <!--required-->
             <!--autofocus-->
             <!--autocomplete="name"-->
             <div class="col-md-6">
                 <div>
                     <BreezeLabel for="last_name" value="Apellido"/>
-                    <BreezeInput id="last_name" type="text" class="mt-1 block w-full" v-model="form.last_name" required
-                                  placeholder="Introducir apellido"/>
+                    <BreezeInput id="last_name" type="text" class="mt-1 block w-full" v-model="form.last_name"
+                                 placeholder="Introducir apellido"/>
                 </div>
             </div>
         </div>
@@ -28,15 +29,15 @@
             <div class="col-md-6">
                 <div class="mt-4">
                     <BreezeLabel for="phone" value="Numero de teléfono"/>
-                    <BreezeInput id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required
-                                  placeholder="Introducir teléfono"/>
+                    <BreezeInput id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone"
+                                 placeholder="Introducir teléfono"/>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mt-4">
                     <BreezeLabel for="email" value="Correo electrónico"/>
-                    <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required
-                                  placeholder="Introducir correo electrónico"/>
+                    <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email"
+                                 placeholder="Introducir correo electrónico"/>
                 </div>
             </div>
         </div>
@@ -46,7 +47,7 @@
                 <div class="mt-4">
                     <BreezeLabel for="password" value="Password"/>
                     <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password"
-                                 required
+
                                  autocomplete="new-password" placeholder="Introducir contraseña"/>
                 </div>
             </div>
@@ -54,7 +55,8 @@
                 <div class="mt-4">
                     <BreezeLabel for="password_confirmation" value="Confirm Password"/>
                     <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full"
-                                 v-model="form.password_confirmation" required autocomplete="new-password"
+                                 v-model="form.password_confirmation"
+                                 autocomplete="new-password"
                                  placeholder="Repetir contraseña"/>
                 </div>
             </div>

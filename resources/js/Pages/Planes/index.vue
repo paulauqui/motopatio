@@ -99,8 +99,7 @@
                                                         <div class="stm-pricing-table__periods-link"
                                                              data-period="month">
                                                             <div class="stm-pricing-table__action">
-                                                                <a href="../checkout/indexc599.html?add-to-cart=5033"
-                                                                   class="button">
+                                                                <a href="#" @click="redirecPage('voyager.checkout.create', plan.id)" class="button">
                                                                     Entrar
                                                                     <i class="stm-icon stm-icon-arrow-right"></i>
                                                                 </a>
@@ -138,7 +137,12 @@
         props: {
             planes: Object,
         },
-        methods: {},
+        methods: {
+            redirecPage(name, plan){
+                // console.log(this.route(name, {plan:plan}));
+                window.location.href = this.route(name, {plan:plan});
+            }
+        },
         mounted() {
             (function ($) {
                 "use strict";

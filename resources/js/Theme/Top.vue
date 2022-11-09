@@ -7,12 +7,14 @@
                 <!-- Header Top bar Login -->
                 <div class="pull-right hidden-xs top-bar-auth">
                     <div class="header-login-url">
-                        <a href="#" @click="redirectPage('register.index')">
+                        <Link :href="route('register.index')">
                             <i class="fa fa-user"></i><span
                             class="vt-top">Iniciar sesión</span>
-                        </a>
+                        </Link>
                         <span class="vertical-divider"></span>
-                        <a href="#" @click="redirectPage('register.index')">Registrarse</a>
+                        <Link :href="route('register.index')">
+                            Registrarse
+                        </Link>
                     </div>
                 </div>
 

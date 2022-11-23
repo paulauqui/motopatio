@@ -6,15 +6,26 @@
                 <!--LANGS-->
                 <!-- Header Top bar Login -->
                 <div class="pull-right hidden-xs top-bar-auth">
-                    <div class="header-login-url">
+                    <div class="header-login-url" v-if="!$page.props.auth.user">
                         <Link :href="route('register.index')">
-                            <i class="fa fa-user"></i><span
-                            class="vt-top">Iniciar sesión</span>
+                        <i class="fa fa-user"></i>
+                        <span class="vt-top">Iniciar sesión</span>
                         </Link>
                         <span class="vertical-divider"></span>
                         <Link :href="route('register.index')">
-                            Registrarse
+                        Registrarse
                         </Link>
+                    </div>
+
+                    <div class="header-login-url" v-if="$page.props.auth.user">
+                        <a href="#" @click="redirectPage('voyager.profile')">
+                            <i class="fa fa-user"></i>
+                            <span class="vt-top">
+                                {{$page.props.auth.user.name}}
+                            </span>
+                        </a>
+                        <span class="vertical-divider"></span>
+                        <span>{{$page.props.auth.user.email}}</span>
                     </div>
                 </div>
 
@@ -81,7 +92,8 @@
         },
         methods: {
             redirectPage(name) {
-                this.$inertia.get(this.route(name));
+                window.location.href = this.route(name);
+                //this.$inertia.get(this.route(name));
             },
         },
         props: {},

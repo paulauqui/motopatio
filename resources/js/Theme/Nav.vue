@@ -33,69 +33,29 @@
                                 <i class=" stm-service-icon-user" style=""></i>
                                 </Link>
 
-                                <div class="lOffer-account-dropdown stm-login-form-unregistered">
+                                <div v-if="!$page.props.auth.user"
+                                     class="lOffer-account-dropdown stm-login-form-unregistered">
                                     <Login/>
-                                    <!--<form method="post">-->
-                                    <!--<div class="form-group">-->
-                                    <!--<h4>Usuario o correo electrónico</h4>-->
-                                    <!--<input type="text" name="stm_user_login" autocomplete="off"-->
-                                    <!--placeholder="Introducir usuario o correo electrónico"/>-->
-                                    <!--</div>-->
-
-                                    <!--<div class="form-group">-->
-                                    <!--<h4>Contraseña</h4>-->
-                                    <!--<input type="password" name="stm_user_password" autocomplete="off"-->
-                                    <!--placeholder="Introducir contraseña"/>-->
-                                    <!--</div>-->
-
-                                    <!--<div class="form-group form-checker">-->
-                                    <!--<label>-->
-                                    <!--<input type="checkbox" name="stm_remember_me"/>-->
-                                    <!--<span>Recuérdame</span>-->
-                                    <!--</label>-->
-                                    <!--</div>-->
-                                    <!--<input type="submit" value="Iniciar sesión"/>-->
-                                    <!--<span class="stm-listing-loader"><i class="stm-icon-load1"></i></span>-->
-                                    <!--<a href="login-register/index.html" class="stm_label">Registrarse</a>-->
-                                    <!--<div class="stm-validation-message"></div>-->
-                                    <!--</form>-->
                                 </div>
+                                <div v-if="$page.props.auth.user" class="lOffer-account-dropdown login">
+                                    <Auth/>
+                                </div>
+
                                 <div class="stm-user-mobile-info-wrapper">
-                                    <div class="stm-login-form-mobile-unregistered">
+                                    <div v-if="!$page.props.auth.user" class="stm-login-form-mobile-unregistered">
                                         <Login/>
-                                        <!--<form method="post">-->
+                                    </div>
 
-                                        <!--<div class="form-group">-->
-                                        <!--<h4>Usuario o correo electrónico</h4>-->
-                                        <!--<input type="text" name="stm_user_login"-->
-                                        <!--placeholder="Introducir usuario o correo electrónico"/>-->
-                                        <!--</div>-->
-
-                                        <!--<div class="form-group">-->
-                                        <!--<h4>Contraseña</h4>-->
-                                        <!--<input type="password" name="stm_user_password"-->
-                                        <!--placeholder="Introducir contraseña"/>-->
-                                        <!--</div>-->
-
-                                        <!--<div class="form-group form-checker">-->
-                                        <!--<label>-->
-                                        <!--<input type="checkbox" name="stm_remember_me"/>-->
-                                        <!--<span>Recuérdame</span>-->
-                                        <!--</label>-->
-                                        <!--</div>-->
-                                        <!--<input type="submit" value="Iniciar sesión"/>-->
-                                        <!--<span class="stm-listing-loader"><i class="stm-icon-load1"></i></span>-->
-                                        <!--<a href="login-register/index.html" class="stm_label">Registrarse</a>-->
-                                        <!--<div class="stm-validation-message"></div>-->
-                                        <!--</form>-->
+                                    <div v-if="$page.props.auth.user" class="lOffer-account-dropdown login">
+                                        <Auth/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="pull-right">
                             <Link :href="route('comparar.index')" class="lOffer-compare">
-                                <i class="list-icon stm-service-icon-listing-compare" style=""></i>
-                                <span class="list-badge">
+                            <i class="list-icon stm-service-icon-listing-compare" style=""></i>
+                            <span class="list-badge">
                                     <span class="stm-current-cars-in-compare" data-contains="compare-count"></span>
                                 </span>
                             </Link>
@@ -149,7 +109,7 @@
                                                 <div class="header-login-url">
                                                     <a href="login-register/index.html">
                                                         <i class="fa fa-user"></i><span
-                                                            class="vt-top">Iniciar sesión</span>
+                                                        class="vt-top">Iniciar sesión</span>
                                                     </a>
                                                     <span class="vertical-divider"></span>
                                                     <a href="login-register/index.html">Registrarse</a>
@@ -235,7 +195,7 @@
                         </li>
                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5014">
                             <Link :href="route('planes.index')" aria-current="page">
-                                Planes
+                            Planes
                             </Link>
                         </li>
                     </ul>
@@ -249,20 +209,27 @@
 
 <script>
     import Login from '@/Theme/Login';
+    import Auth from '@/Theme/Auth';
     import {Head, Link} from '@inertiajs/inertia-vue3';
+    import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 
     export default {
         name: 'Theme:Nav',
         components: {
             Head,
             Link,
-            Login
+            Login,
+            Auth,
+            BreezeDropdownLink
         },
         methods: {
             redirectPage(name) {
                 window.location.href = this.route(name);
-                // this.$inertia.get(this.route(name));
+
             },
+            logout() {
+                this.$inertia.post(this.route('logout'));
+            }
         },
         props: {},
     }

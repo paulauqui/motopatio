@@ -403,6 +403,11 @@ class CheckoutController extends VoyagerBaseController
 
         $slug = $this->getSlug($request);
 
+        $dataTypeUsers = Voyager::model('DataType')->where('slug', '=', 'users')->first();
+        $dataTypeContentUsers = (strlen($dataTypeUsers->model_name) != 0)
+            ? new $dataTypeUsers->model_name()
+            : false;
+
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         // Check permission
@@ -431,7 +436,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers'));
     }
 
     /**

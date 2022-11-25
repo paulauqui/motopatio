@@ -5,6 +5,10 @@
 
 @extends('voyager::master')
 
+@section('head')
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sidebars/">
+@endsection
+
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
@@ -70,6 +74,18 @@
                             <div class="col-12 col-md-6 border">
                                 <div class="form-group col-md-12" style="font-weight: bold; font-size: 20px;">
                                     Detalles de Facturación
+
+
+                                    {{--@php--}}
+                                    {{--dump(auth()->user()->can('read','users'))--}}
+                                    {{--//$users = \App\Models\User::permission('edit articles')->get();--}}
+                                    {{--//dump(auth()->user()->roles, $users);--}}
+                                    {{--@endphp--}}
+
+                                    {{--@dd(\App\Models\User::class)--}}
+                                    @can('add', $dataTypeContentUsers)
+                                        entroooooooo admin userse
+                                    @endcan
                                 </div>
                                 {{--<!-- Adding / Editing -->--}}
                                 @php

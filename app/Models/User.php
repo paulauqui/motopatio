@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -60,4 +61,24 @@ class User extends \TCG\Voyager\Models\User
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getNameEmailAttribute()
+    {
+        return $this->name . ' ' . "({$this->email})";
+    }
+
+    /**
+     * @return Builder
+     */
+    public static function builder()
+    {
+        return User::select('users.*');
+    }
+
+    public static function getUsers()
+    {
+        return self::builder()
+            ->orderBy('name', 'ASC')
+            ->get();
+    }
 }

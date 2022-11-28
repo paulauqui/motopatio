@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Voyager;
 
 use App\Models\PaymentMethod;
 use App\Models\Plan;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -401,6 +402,8 @@ class CheckoutController extends VoyagerBaseController
         $pagos = PaymentMethod::getPaymentMethods();
         $plan = (!$plan) ? Plan::getPlanDefault() : $plan;
 
+        $users = User::getUsers();
+
         $slug = $this->getSlug($request);
 
         $dataTypeUsers = Voyager::model('DataType')->where('slug', '=', 'users')->first();
@@ -436,7 +439,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users'));
     }
 
     /**

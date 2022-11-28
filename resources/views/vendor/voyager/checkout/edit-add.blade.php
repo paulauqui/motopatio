@@ -74,26 +74,13 @@
                             <div class="col-12 col-md-6 border">
                                 <div class="form-group col-md-12" style="font-weight: bold; font-size: 20px;">
                                     Detalles de Facturación
-
-
-                                    {{--@php--}}
-                                    {{--dump(auth()->user()->can('read','users'))--}}
-                                    {{--//$users = \App\Models\User::permission('edit articles')->get();--}}
-                                    {{--//dump(auth()->user()->roles, $users);--}}
-                                    {{--@endphp--}}
-
-                                    {{--@dd(\App\Models\User::class)--}}
-                                    @can('add', $dataTypeContentUsers)
-                                        entroooooooo admin userse
-                                    @endcan
                                 </div>
                                 {{--<!-- Adding / Editing -->--}}
                                 @php
                                     $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                                 @endphp
-                                {{--@dump(auth()->user()->role)--}}
+
                                 @foreach($dataTypeRows as $row)
-                                    {{--<!-- GET THE DISPLAY OPTIONS -->--}}
                                     @php
                                         $display_options = $row->details->display ?? NULL;
                                         if ($dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')}) {
@@ -102,6 +89,13 @@
 
                                         $side = (isset($row->details->side))?$row->details->side:'';
                                     @endphp
+
+                                    @if($row->field=='user_id')
+                                        @can('add',$dataTypeContentUsers)
+                                            @dump($row->field)
+                                            @dump($dataType,$dataTypeContent)
+                                        @endif
+                                    @endif
 
                                     @if (isset($row->details->legend) && isset($row->details->legend->text))
                                         <legend class="text-{{ $row->details->legend->align ?? 'center' }}"

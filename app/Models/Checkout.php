@@ -25,4 +25,9 @@ class Checkout extends Model
         'newsletter',
         'status'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

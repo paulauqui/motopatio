@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Voyager;
 use App\Models\PaymentMethod;
 use App\Models\Plan;
 use App\Models\User;
+use App\Models\UserPlan;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -400,7 +401,7 @@ class CheckoutController extends VoyagerBaseController
     public function create(Request $request, Plan $plan = null)
     {
         $pagos = PaymentMethod::getPaymentMethods();
-        $plan = (!$plan) ? Plan::getPlanDefault() : $plan;
+        $plan = (!$request->has('plan')) ? Plan::getPlanDefault() : Plan::find($request->plan);
 
         $users = User::getUsers();
 
@@ -451,32 +452,61 @@ class CheckoutController extends VoyagerBaseController
      */
     public function store(Request $request)
     {
-        $slug = $this->getSlug($request);
+        DB::beginTransaction();
 
-        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+        try {
+            $slug = $this->getSlug($request);
 
-        // Check permission
-        $this->authorize('add', app($dataType->model_name));
+            $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
-        // Validate fields with ajax
-        $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
-        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
+            // Check permission
+            $this->authorize('add', app($dataType->model_name));
 
-        event(new BreadDataAdded($dataType, $data));
-
-        if (!$request->has('_tagging')) {
-            if (auth()->user()->can('browse', $data)) {
-                $redirect = redirect()->route("voyager.{$dataType->slug}.index");
+            if ($request->has('user_id_admin')) {
+                $request->request->set('user_id', (int)$request->user_id_admin);
+                $request->request->remove('user_id_admin');
             } else {
-                $redirect = redirect()->back();
+                $request->request->set('user_id', Auth::user()->id);
             }
 
-            return $redirect->with([
-                'message' => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
-                'alert-type' => 'success',
-            ]);
-        } else {
-            return response()->json(['success' => true, 'data' => $data]);
+            $plan = (!$request->has('plan_id')) ? Plan::getPlanDefault() : Plan::find($request->plan_id);
+
+            //dd($request->all());
+            // Validate fields with ajax
+            $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
+            if ($data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name())) {
+                $userPlan = UserPlan::getUserPlanExist($request->user_id, $plan);
+
+                if ($userPlan->count() == 0) {
+                    $dataPlan = [
+                        'user_id' => $request->user_id,
+                        'plan_id' => $plan->id,
+                    ];
+
+                    $modelPlan = UserPlan::create($dataPlan);
+                }
+            }
+
+            event(new BreadDataAdded($dataType, $data));
+
+            DB::commit();
+
+            if (!$request->has('_tagging')) {
+                if (auth()->user()->can('browse', $data)) {
+                    $redirect = redirect()->route("voyager.{$dataType->slug}.index");
+                } else {
+                    $redirect = redirect()->back();
+                }
+
+                return $redirect->with([
+                    'message' => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
+                    'alert-type' => 'success',
+                ]);
+            } else {
+                return response()->json(['success' => true, 'data' => $data]);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
         }
     }
 

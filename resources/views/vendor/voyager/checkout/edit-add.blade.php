@@ -90,12 +90,30 @@
                                         $side = (isset($row->details->side))?$row->details->side:'';
                                     @endphp
 
-                                    @if($row->field=='user_id')
-                                        @can('add',$dataTypeContentUsers)
-                                            @dump($row->field)
-                                            @dump($dataType,$dataTypeContent)
-                                        @endif
-                                    @endif
+                                    {{--@if($row->field=='user_id')--}}
+                                        {{--@can('add',$dataTypeContentUsers)--}}
+                                            {{--<div class="form-group col-md-{{ $display_options->width ?? 12 }}">--}}
+                                                {{--<label class="control-label" for="users_id_admin">--}}
+                                                    {{--{{ $row->getTranslatedAttribute('display_name') }}--}}
+                                                    {{--@if($row->required)--}}
+                                                        {{--<span class="ml-2 text-danger">*</span>--}}
+                                                    {{--@endif--}}
+                                                {{--</label>--}}
+
+                                                {{--<select name="user_id_admin" id="user_id_admin"--}}
+                                                        {{--class="form-control ">--}}
+                                                    {{--<option value="">---</option>--}}
+                                                    {{--@foreach($users as $user)--}}
+                                                        {{--<option--}}
+                                                            {{--value="{{$user->id}}"--}}
+                                                            {{--@if($user->id == auth()->user()->id) selected @endif>--}}
+                                                            {{--{{$user->name_email}}--}}
+                                                        {{--</option>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</select>--}}
+                                            {{--</div>--}}
+                                        {{--@endif--}}
+                                    {{--@endif--}}
 
                                     @if (isset($row->details->legend) && isset($row->details->legend->text))
                                         <legend class="text-{{ $row->details->legend->align ?? 'center' }}"

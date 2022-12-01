@@ -16,6 +16,14 @@ class UserPlan extends Model
     protected $fillable = ['user_id', 'plan_id'];
     protected $name = null;
 
+
+
+    protected $appends = [
+        'NameUserPlan'
+    ];
+
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -24,6 +32,11 @@ class UserPlan extends Model
     public function plan()
     {
         return $this->belongsTo(Plan::class);
+    }
+
+    public function getNameUserPlanAttribute()
+    {
+        return $this->user->name . "(Full)"; //some logic to return numbers
     }
 
     public function getNameAttribute()

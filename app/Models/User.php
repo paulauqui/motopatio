@@ -21,6 +21,8 @@ class User extends \TCG\Voyager\Models\User
     use TwoFactorAuthenticatable;
     use HasRoles;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -60,6 +62,7 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $appends = [
         'profile_photo_url',
+        'name_email',
     ];
 
     public function getNameEmailAttribute()

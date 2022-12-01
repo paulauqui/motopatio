@@ -46,4 +46,19 @@ class UserPlan extends Model
             ->where('user_id', is_object($user) ? $user->id : $user)
             ->get();
     }
+
+    public static function getUserPlan($user)
+    {
+        return self::builder()
+            ->where('user_id', is_object($user) ? $user->id : $user)
+            ->get();
+    }
+
+    public static function getUserPlanLast($user)
+    {
+        return self::builder()
+            ->where('user_id', is_object($user) ? $user->id : $user)
+            ->orderBy('created_at', 'desc')
+            ->first();
+    }
 }

@@ -39,6 +39,10 @@ class CheckoutController extends VoyagerBaseController
 
     public function index(Request $request)
     {
+        $dataTypeUsers = Voyager::model('DataType')->where('slug', '=', 'users')->first();
+        $dataTypeContentUsers = (strlen($dataTypeUsers->model_name) != 0)
+            ? new $dataTypeUsers->model_name()
+            : false;
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -82,6 +86,10 @@ class CheckoutController extends VoyagerBaseController
                     $showSoftDeleted = true;
                     $query = $query->withTrashed();
                 }
+            }
+
+            if (!Auth::user()->can('add', $dataTypeContentUsers)) {
+                $query->where('user_id', Auth::user()->id);
             }
 
             // If a column has a relationship associated with it, we do not want to show that field
@@ -285,7 +293,15 @@ class CheckoutController extends VoyagerBaseController
 
     public function edit(Request $request, $id)
     {
+        $plan = [];
         $pagos = PaymentMethod::getPaymentMethods();
+        if ($userPlan = UserPlan::getUserPlanLast(Auth::user())) {
+            $plan = $userPlan->plan;
+        }
+        //$plan = (!$request->has('plan')) ? Plan::getPlanDefault() : Plan::find($request->plan);
+        $planes = Plan::getPlanes();
+        $users = User::getUsers();
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -329,7 +345,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'users', 'planes', 'plan'));
     }
 
     // POST BR(E)AD
@@ -402,7 +418,7 @@ class CheckoutController extends VoyagerBaseController
     {
         $pagos = PaymentMethod::getPaymentMethods();
         $plan = (!$request->has('plan')) ? Plan::getPlanDefault() : Plan::find($request->plan);
-
+        $planes = Plan::getPlanes();
         $users = User::getUsers();
 
         $slug = $this->getSlug($request);
@@ -440,7 +456,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users', 'planes'));
     }
 
     /**
@@ -462,12 +478,12 @@ class CheckoutController extends VoyagerBaseController
             // Check permission
             $this->authorize('add', app($dataType->model_name));
 
-            if ($request->has('user_id_admin')) {
-                $request->request->set('user_id', (int)$request->user_id_admin);
-                $request->request->remove('user_id_admin');
-            } else {
-                $request->request->set('user_id', Auth::user()->id);
-            }
+//            if ($request->has('user_id_admin')) {
+//                $request->request->set('user_id', (int)$request->user_id_admin);
+//                $request->request->remove('user_id_admin');
+//            } else {
+//                $request->request->set('user_id', Auth::user()->id);
+//            }
 
             $plan = (!$request->has('plan_id')) ? Plan::getPlanDefault() : Plan::find($request->plan_id);
 
@@ -919,11 +935,19 @@ class CheckoutController extends VoyagerBaseController
      */
     public function relation(Request $request)
     {
+        $dataTypeUsers = Voyager::model('DataType')->where('slug', '=', 'users')->first();
+        $dataTypeContentUsers = (strlen($dataTypeUsers->model_name) != 0)
+            ? new $dataTypeUsers->model_name()
+            : false;
+
+        //dump($dataTypeUsers, $dataTypeContentUsers);
+
         $slug = $this->getSlug($request);
         $page = $request->input('page');
         $on_page = 50;
         $search = $request->input('search', false);
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+        //dump($dataType);
 
         $method = $request->input('method', 'add');
 
@@ -949,6 +973,7 @@ class CheckoutController extends VoyagerBaseController
                 }
 
                 // If search query, use LIKE to filter results depending on field label
+                $get = false;
                 if ($search) {
                     // If we are using additional_attribute as label
                     if (in_array($options->label, $additional_attributes)) {
@@ -958,19 +983,26 @@ class CheckoutController extends VoyagerBaseController
                         });
                         $total_count = $relationshipOptions->count();
                         $relationshipOptions = $relationshipOptions->forPage($page, $on_page);
+                        $get = true;
                     } else {
                         $total_count = $model->where($options->label, 'LIKE', '%' . $search . '%')->count();
                         $relationshipOptions = $model->take($on_page)->skip($skip)
-                            ->where($options->label, 'LIKE', '%' . $search . '%')
-                            ->get();
+                            ->where($options->label, 'LIKE', '%' . $search . '%');
                     }
                 } else {
                     $total_count = $model->count();
-                    $relationshipOptions = $model->take($on_page)->skip($skip)->get();
+                    $relationshipOptions = $model->take($on_page)->skip($skip);
                 }
 
-                $results = [];
+                if ($model->getTable() == 'users') {
+                    if (!($status = Auth::user()->can('add', $dataTypeContentUsers))) {
+                        $relationshipOptions->where('id', Auth::user()->id);
+                    }
+                }
 
+                $relationshipOptions = (!$get) ? $relationshipOptions->get() : $relationshipOptions;
+
+                $results = [];
                 if (!$row->required && !$search && $page == 1) {
                     $results[] = [
                         'id' => '',
@@ -990,7 +1022,7 @@ class CheckoutController extends VoyagerBaseController
                 foreach ($relationshipOptions as $relationshipOption) {
                     $results[] = [
                         'id' => $relationshipOption->{$options->key},
-                        'text' => $relationshipOption->{$options->label},
+                        'text' => ($model->getTable() == 'users') ? $relationshipOption->name_email : $relationshipOption->{$options->label},
                     ];
                 }
 

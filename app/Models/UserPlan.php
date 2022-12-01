@@ -36,7 +36,7 @@ class UserPlan extends Model
 
     public function getNameUserPlanAttribute()
     {
-        return $this->user->name . "(Full)"; //some logic to return numbers
+        return $this->plan->name. " ({$this->user->name} | {$this->user->email})"; //some logic to return numbers
     }
 
     public function getNameAttribute()

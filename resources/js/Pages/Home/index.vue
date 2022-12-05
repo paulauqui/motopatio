@@ -34,9 +34,9 @@
             <Slider/>
             <div class="vc_row-full-width"></div>
             <Search/>
-            <Destacados/>
+            <Destacados :motorcycles="featured"/>
             <Planes/>
-            <Ultimasmotos/>
+            <Ultimasmotos :motorcycles="latest"/>
             <Noticias/>
         </div>
     </Layout>
@@ -54,6 +54,13 @@
 
     export default {
         name: '@Home',
+        props: {
+            featured: Object.assign({}, {}),
+            latest: Object.assign({}, {}),
+        },
+        created() {
+
+        },
         components: {
             Layout,
             Head,

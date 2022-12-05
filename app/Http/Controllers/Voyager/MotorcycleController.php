@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Helper\CustomUrl;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -35,6 +36,11 @@ class MotorcycleController extends VoyagerBaseController
 
     public function index(Request $request)
     {
+        $dataTypeUsers = Voyager::model('DataType')->where('slug', '=', 'users')->first();
+        $dataTypeContentUsers = (strlen($dataTypeUsers->model_name) != 0)
+            ? new $dataTypeUsers->model_name()
+            : false;
+
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -100,7 +106,16 @@ class MotorcycleController extends VoyagerBaseController
                 }
             }
 
+            /**
+             * Validacion de permisos de usuario
+             */
+            if (!($status = Auth::user()->can('add', $dataTypeContentUsers))) {
+                $query->join('user_plan', 'user_plan.id', '=', 'motorcycle.user_plan_id');
+                $query->where('user_plan.user_id', Auth::user()->id);
+            }
+
             $row = $dataType->rows->where('field', $orderBy)->firstWhere('type', 'relationship');
+
             if ($orderBy && (in_array($orderBy, $dataType->fields()) || !empty($row))) {
                 $querySortOrder = (!empty($sortOrder)) ? $sortOrder : 'desc';
                 if (!empty($row)) {
@@ -331,7 +346,6 @@ class MotorcycleController extends VoyagerBaseController
     public function update(Request $request, $id)
     {
         $slug = $this->getSlug($request);
-
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         // Compatibility with Model binding.
@@ -360,6 +374,8 @@ class MotorcycleController extends VoyagerBaseController
                 return $request->hasFile($item->field);
             });
         $original_data = clone($data);
+
+        $request->request->set('slug', CustomUrl::urlTitle($request->name));
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
@@ -443,6 +459,9 @@ class MotorcycleController extends VoyagerBaseController
 
         // Check permission
         $this->authorize('add', app($dataType->model_name));
+
+        /** Create Slug */
+        $request->request->set('slug', CustomUrl::urlTitle($request->name));
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();

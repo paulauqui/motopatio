@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Motorcycle;
 use App\Models\Plan;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -13,14 +14,29 @@ class PageController extends Controller
 {
     public function home()
     {
-        return Inertia::render('Home/index', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-        ]);
+        $motorcycle = Motorcycle::getMotorcycle();
+        $featured = $motorcycle->filter(function ($moto) {
+            return ($moto->featured);
+        });
 
+        $latest = $motorcycle->filter(function ($moto) {
+            return (!$moto->featured);
+        });
+
+        return Inertia::render('Home/index', [
+            'featured' => $featured,
+            'latest' => $latest,
+        ]);
     }
+
+    /**
+     * return Inertia::render('Home/index', [
+     * 'canLogin' => Route::has('login'),
+     * 'canRegister' => Route::has('register'),
+     * 'laravelVersion' => Application::VERSION,
+     * 'phpVersion' => PHP_VERSION,
+     * ]);
+     */
 
     public function motos()
     {

@@ -151,83 +151,147 @@
                                                 <div id="listings-result">
                                                     <div class="stm-isotope-sorting stm-isotope-sorting-grid">
                                                         <div class="row row-3 car-listing-row car-listing-modern-grid">
-                                                            <div v-for="model in motorcycles"
-                                                                 class="col-md-4 col-sm-4 col-xs-12 col-xxs-12  stm-directory-grid-loop stm-isotope-listing-item all  2020-17726 husqvarna-7221 husqvarna-fc250-7256 6-manual-317 noabs-17715 solid-white-146 usado-152 "
-                                                                 data-price="8800"
-                                                                 data-date="202203110152"
-                                                                 data-mileage="20"
-                                                            >
-                                                                <Link :href="route('listings.index',model.slug)"
-                                                                      class="rmv_txt_drctn">
-                                                                <div class="image">
-                                                                    <img :data-src="model.image_real"
-                                                                         :srcset="model.image_real"
-                                                                         src=""
-                                                                         class="lazy img-responsive"
-                                                                         alt="0EDC5E1E-80E1-465D-86FB-D5F96F84AD69"
-                                                                    />
 
-                                                                    <!--Hover blocks-->
-                                                                    <!---Media-->
-                                                                    <div class="stm-car-medias">
-                                                                        <div class="stm-listing-photos-unit stm-car-photos-6294 stm-car-photos-6294-325961922">
-                                                                            <i class="stm-service-icon-photo"></i>
-                                                                            <span>{{model.gallery_real.length}}</span>
+                                                            <!--Aqui-->
+                                                            <div v-for="motorcycle in motorcycles"
+                                                                 class="vc_grid-item vc_clearfix vc_col-sm-4 vc_grid-item-zone-c-bottom vc_visible-item fadeIn animated">
+                                                                <div class="vc_grid-item-mini vc_clearfix ">
+                                                                    <div class="vc_gitem-animated-block">
+                                                                        <div
+                                                                                class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-16-9 vc_gitem-is-link"
+                                                                                :style="'background-image: url('+motorcycle.image_real+') !important;'">
+
+                                                                            <Link :href="route('listings.index',motorcycle.slug)"
+                                                                                  :title="motorcycle.slug"
+                                                                                  class="vc_gitem-link vc-zone-link">
+                                                                            <img
+                                                                                    :src="motorcycle.image_real"
+                                                                                    class="vc_gitem-zone-img" :alt="motorcycle.slug"/>
+                                                                            </Link>
+
+                                                                            <div class="vc_gitem-zone-mini"></div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <!--Favorite-->
-                                                                    <div
-                                                                            class="stm-listing-favorite"
-                                                                            data-id="6294"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="right"
-                                                                            title="Añadir a favoritos"
-                                                                    >
-                                                                        <i class="stm-service-icon-staricon"></i>
                                                                     </div>
-
-                                                                    <!--Compare-->
-                                                                    <div
-                                                                            class="stm-listing-compare stm-compare-directory-new"
-                                                                            :data-id="model.id"
-                                                                            :data-title="model.name"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="left"
-                                                                            title="Añadir para comparar"
-                                                                    >
-                                                                        <i class="stm-service-icon-compare-new"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="listing-car-item-meta">
-                                                                    <div
-                                                                            class="car-meta-top heading-font clearfix">
-                                                                        <div class="price">
-                                                                            <div class="normal-price">
-                                                                                ${{model.price_format}}
+                                                                    <div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480">
+                                                                        <div class="vc_gitem-zone-mini">
+                                                                            <div class="vc_gitem_row vc_row vc_gitem-row-position-top">
+                                                                                <div class="vc_col-sm-8 vc_gitem-col vc_gitem-col-align-">
+                                                                                    <div
+                                                                                            class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title">
+                                                                                        <h3 style="font-size: 20px;color: #000000;text-align: left;font-family:Open Sans;font-weight:600;font-style:normal">
+                                                                                            <Link
+                                                                                                    :href="route('listings.index',motorcycle.slug)"
+                                                                                                    class="vc_gitem-link"
+                                                                                                    :title="motorcycle.slug">
+                                                                                            {{motorcycle.name}}
+                                                                                            </Link>
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                        class="vc_col-sm-4 cajaprice vc_gitem-col vc_gitem-col-align- vc_custom_1626887424630">
+                                                                                    <div
+                                                                                            class="vc_gitem-post-meta-field-price pricelist vc_gitem-align-right">
+                                                                                        <span class="vc_gitem-post-meta-label">$</span>{{motorcycle.price_format}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="vc_gitem_row vc_row vc_gitem-row-position-top">
+                                                                                <div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align-">
+                                                                                    <div
+                                                                                            class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text">
+                                                                    <span class="vc_sep_holder vc_sep_holder_l"><span
+                                                                            style="border-color:#a5a5a5;"
+                                                                            class="vc_sep_line"></span></span><span
+                                                                                            class="vc_sep_holder vc_sep_holder_r"><span
+                                                                                            style="border-color:#a5a5a5;"
+                                                                                            class="vc_sep_line"></span></span>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="car-title"
-                                                                             data-max-char="44">
-                                                                            {{model.name}}
-                                                                        </div>
                                                                     </div>
-                                                                    <div class="car-meta-bottom">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <i class="stm-icon-road"></i>
-                                                                                <span>20 mi</span>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="stm-icon-transmission_fill"></i>
-                                                                                <span>{{model.name_transmission}}</span>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-
                                                                 </div>
-                                                                </Link>
+                                                                <div class="vc_clearfix"></div>
                                                             </div>
+                                                            <!--<div v-for="model in motorcycles"-->
+                                                                 <!--class="col-md-4 col-sm-4 col-xs-12 col-xxs-12  stm-directory-grid-loop stm-isotope-listing-item all  2020-17726 husqvarna-7221 husqvarna-fc250-7256 6-manual-317 noabs-17715 solid-white-146 usado-152 "-->
+                                                                 <!--data-price="8800"-->
+                                                                 <!--data-date="202203110152"-->
+                                                                 <!--data-mileage="20"-->
+                                                            <!--&gt;-->
+                                                                <!--<Link :href="route('listings.index',model.slug)"-->
+                                                                      <!--class="rmv_txt_drctn">-->
+                                                                <!--<div class="image">-->
+                                                                    <!--<img :data-src="model.image_real"-->
+                                                                         <!--:srcset="model.image_real"-->
+                                                                         <!--src=""-->
+                                                                         <!--class="lazy img-responsive"-->
+                                                                         <!--alt="0EDC5E1E-80E1-465D-86FB-D5F96F84AD69"-->
+                                                                    <!--/>-->
+
+                                                                    <!--&lt;!&ndash;Hover blocks&ndash;&gt;-->
+                                                                    <!--&lt;!&ndash;-Media&ndash;&gt;-->
+                                                                    <!--<div class="stm-car-medias">-->
+                                                                        <!--<div class="stm-listing-photos-unit stm-car-photos-6294 stm-car-photos-6294-325961922">-->
+                                                                            <!--<i class="stm-service-icon-photo"></i>-->
+                                                                            <!--<span>{{model.gallery_real.length}}</span>-->
+                                                                        <!--</div>-->
+                                                                    <!--</div>-->
+
+                                                                    <!--&lt;!&ndash;Favorite&ndash;&gt;-->
+                                                                    <!--<div-->
+                                                                            <!--class="stm-listing-favorite"-->
+                                                                            <!--data-id="6294"-->
+                                                                            <!--data-toggle="tooltip"-->
+                                                                            <!--data-placement="right"-->
+                                                                            <!--title="Añadir a favoritos"-->
+                                                                    <!--&gt;-->
+                                                                        <!--<i class="stm-service-icon-staricon"></i>-->
+                                                                    <!--</div>-->
+
+                                                                    <!--&lt;!&ndash;Compare&ndash;&gt;-->
+                                                                    <!--<div-->
+                                                                            <!--class="stm-listing-compare stm-compare-directory-new"-->
+                                                                            <!--:data-id="model.id"-->
+                                                                            <!--:data-title="model.name"-->
+                                                                            <!--data-toggle="tooltip"-->
+                                                                            <!--data-placement="left"-->
+                                                                            <!--title="Añadir para comparar"-->
+                                                                    <!--&gt;-->
+                                                                        <!--<i class="stm-service-icon-compare-new"></i>-->
+                                                                    <!--</div>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="listing-car-item-meta">-->
+                                                                    <!--<div-->
+                                                                            <!--class="car-meta-top heading-font clearfix">-->
+                                                                        <!--<div class="price">-->
+                                                                            <!--<div class="normal-price">-->
+                                                                                <!--${{model.price_format}}-->
+                                                                            <!--</div>-->
+                                                                        <!--</div>-->
+                                                                        <!--<div class="car-title"-->
+                                                                             <!--data-max-char="44">-->
+                                                                            <!--{{model.name}}-->
+                                                                        <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--<div class="car-meta-bottom">-->
+                                                                        <!--<ul>-->
+                                                                            <!--<li>-->
+                                                                                <!--<i class="stm-icon-road"></i>-->
+                                                                                <!--<span>20 mi</span>-->
+                                                                            <!--</li>-->
+                                                                            <!--<li>-->
+                                                                                <!--<i class="stm-icon-transmission_fill"></i>-->
+                                                                                <!--<span>{{model.name_transmission}}</span>-->
+                                                                            <!--</li>-->
+                                                                        <!--</ul>-->
+                                                                    <!--</div>-->
+
+                                                                <!--</div>-->
+                                                                <!--</Link>-->
+                                                            <!--</div>-->
                                                         </div>
                                                     </div>
                                                     <div class="stm_ajax_pagination stm-blog-pagination">

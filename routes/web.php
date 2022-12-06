@@ -18,6 +18,7 @@ use App\Http\Controllers\FrontEnd\PageController;
 
 Route::get('/', [PageController::class, 'home'])->name('home.index');
 Route::get('motos', [PageController::class, 'motos'])->name('motos.index');
+Route::get('motos/condition/{slug}', [PageController::class, 'motosCondition'])->name('motos.condition.slug');
 Route::get('producto', [PageController::class, 'producto'])->name('producto.index');
 Route::get('planes', [PageController::class, 'planes'])->name('planes.index');
 Route::get('dealer-list', [PageController::class, 'dealer'])->name('dealer.index');

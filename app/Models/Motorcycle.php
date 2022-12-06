@@ -13,7 +13,49 @@ class Motorcycle extends Model
 {
     use HasFactory;
     protected $table = 'motorcycle';
-    protected $appends = ['image_real', 'gallery_real', 'price_format'];
+    protected $appends = [
+        'image_real',
+        'gallery_real',
+        'price_format',
+        'created_at_format',
+        'name_condition',
+        'name_transmission',
+        'name_braek',
+        'name_color',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function transmission()
+    {
+        return $this->belongsTo(Transmission::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function brake()
+    {
+        return $this->belongsTo(Brake::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
 
     /**
      * @return string
@@ -28,17 +70,20 @@ class Motorcycle extends Model
      */
     public function getGalleryRealAttribute()
     {
+        $gallery = collect([$this->image]);
         if ($this->gallery) {
-            if ($gallery = json_decode($this->gallery)) {
-                $gallery = collect($gallery)->map(function ($path) {
-                    return Helper::getVoyagerImages($path);
-                })->all();
-
-                return $gallery;
+            if ($gallery_ = json_decode($this->gallery)) {
+                foreach ($gallery_ as $item) {
+                    $gallery->push($item);
+                }
             }
         }
 
-        return [];
+        $gallery = $gallery->map(function ($item){
+            return Helper::getVoyagerImages($item);
+        });
+
+        return $gallery;
     }
 
     /**
@@ -47,6 +92,47 @@ class Motorcycle extends Model
     public function getPriceFormatAttribute()
     {
         return $this->price ? Helper::getFormatNumber($this->price) : '0.00';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAtFormatAttribute()
+    {
+        return $this->created_at->format('F d, Y');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNameConditionAttribute()
+    {
+        return $this->condition ? $this->condition->name : null;
+    }
+
+    /**
+     * @return null
+     */
+    public function getNameTransmissionAttribute()
+    {
+        return $this->transmission ? $this->transmission->name : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNameBraekAttribute()
+    {
+        //dd($this->brake);
+        return $this->brake ? $this->brake->name : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNameColorAttribute()
+    {
+        return $this->color ? $this->color->name : null;
     }
 
     /**
@@ -78,5 +164,17 @@ class Motorcycle extends Model
             ->where('status', 1)
             ->orderBy('created_at', 'DESC')
             ->get();
+    }
+
+    /**
+     * @param $slug
+     * @return Model|Builder|null|object
+     */
+    public static function getMotorcicleSlug($slug)
+    {
+        return self::builder()
+            ->where('slug', $slug)
+            ->orderBy('created_at', 'DESC')
+            ->first();
     }
 }

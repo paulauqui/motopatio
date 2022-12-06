@@ -43,6 +43,11 @@ class PageController extends Controller
         return Inertia::render('Motos/index', []);
     }
 
+    public function motosCondition($slug)
+    {
+        return Inertia::render('Motos/index', []);
+    }
+
     public function dealer()
     {
         return Inertia::render('Dealer/index', []);
@@ -71,6 +76,9 @@ class PageController extends Controller
 
     public function listings($slug)
     {
-        return Inertia::render('Producto/index', []);
+        $model = Motorcycle::getMotorcicleSlug($slug);
+        return Inertia::render('Producto/index', [
+            'model' => $model
+        ]);
     }
 }

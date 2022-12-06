@@ -1,43 +1,7 @@
 <template>
     <Layout>
-        <div class="stm_breadcrumbs_unit heading-font ">
-            <div class="container">
-                <div class="navxtBreads">
-                    <span property="itemListElement" typeof="ListItem">
-                        <a property="item" typeof="WebPage"
-                           title="Ir a Moto Patio."
-                           href="../../index.html"
-                           class="home"><span
-                            property="name">Moto Patio</span>
-                        </a>
-                        <meta property="position" content="1"/>
-                    </span> &gt; <span property="itemListElement"
-                                       typeof="ListItem">
-                    <a property="item"
-                       typeof="WebPage"
-                       title="Ir a Listings."
-                       href="../index.html"
-                       class="post post-listings-archive"><span
-                        property="name">Listings</span>
-                    </a>
-                    <meta property="position" content="2"/>
-                </span> &gt; <span
-                    property="itemListElement" typeof="ListItem">
-                    <a property="item" typeof="WebPage"
-                       title="Go to the Certificado usado Condición archives."
-                       href="../../indexad9b.html?taxonomy=condition&amp;term=certificado"
-                       class="taxonomy condition">
-                        <span property="name">Certificado usado</span>
-                    </a>
-                    <meta property="position" content="3"/>
-                </span> &gt; <span property="itemListElement" typeof="ListItem">
-                    <span property="name" class="post post-listings current-item">BMW BMW F 650 GS 2010</span>
-                    <meta property="url" content="index.html"/>
-                    <meta property="position" content="4"/>
-                </span>
-                </div>
-            </div>
-        </div>
+
+        <Breadcrumbs :model="model"/>
 
         <div class="stm-single-car-page">
             <div class="container">
@@ -45,148 +9,154 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="single-listing-car-inner">
                             <div class="stm-listing-single-price-title heading-font clearfix">
-                                <div class="price">Vendido</div>
+                                <div v-if="model.sold_out" class="price">Vendido</div>
                                 <div class="stm-single-title-wrap">
                                     <h1 class="title">
-                                        <div class="labels">BMW BMW F 650 GS</div>
-                                        2010
+                                        <div class="labels">{{model.name}}</div>
+                                        {{model.year}}
                                     </h1>
                                     <span class="normal_font"> <i
-                                        class="fa fa-clock-o"></i> AÑADIDO: enero 31, 2022</span>
+                                        class="fa fa-clock-o"></i> AÑADIDO: {{model.created_at_format}}</span>
                                 </div>
                             </div>
 
+                            <Gallery :model="model"/>
 
-                            <div class="stm-car-carousels stm-listing-car-gallery">
-                                <!--Actions-->
-                                <div class="stm-gallery-actions">
-                                    <div class="stm-gallery-action-unit stm-listing-print-action">
-                                        <a href="javascript:window.print()"
-                                           class="car-action-unit stm-car-print heading-font">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </div>
-                                    <div class="stm-gallery-action-unit stm-listing-favorite-action"
-                                         data-id="5600">
-                                        <i class="stm-service-icon-staricon"></i>
-                                    </div>
-                                    <div class="stm-gallery-action-unit compare" data-id="5600"
-                                         data-title="BMW BMW F 650 GS 2010">
-                                        <i class="stm-service-icon-compare-new"></i>
-                                    </div>
-                                    <div class="stm-gallery-action-unit stm-schedule" data-toggle="modal"
-                                         data-target="#test-drive"
-                                         onclick="stm_test_drive_car_title(5600, 'BMW BMW F 650 GS 2010')">
-                                        <i class="stm-icon-steering_wheel"></i>
-                                    </div>
-                                    <div class="stm-gallery-action-unit">
-                                        <i class="stm-icon-share"></i>
-                                        <div class="stm-a2a-popup">
-                                            <div class="addtoany_shortcode">
-                                                <div class="a2a_kit a2a_kit_size_32 addtoany_list"
-                                                     data-a2a-url="https://motopatio.com/listings/bmw-650gs/"
-                                                     data-a2a-title="BMW BMW F 650 GS 2010"><a
-                                                    class="a2a_button_facebook"
-                                                    href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fmotopatio.com%2Flistings%2Fbmw-650gs%2F&amp;linkname=BMW%20BMW%20F%20650%20GS%202010"
-                                                    title="Facebook" rel="nofollow noopener"
-                                                    target="_blank"></a><a class="a2a_button_twitter"
-                                                                           href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fmotopatio.com%2Flistings%2Fbmw-650gs%2F&amp;linkname=BMW%20BMW%20F%20650%20GS%202010"
-                                                                           title="Twitter"
-                                                                           rel="nofollow noopener"
-                                                                           target="_blank"></a><a
-                                                    class="a2a_button_email"
-                                                    href="https://www.addtoany.com/add_to/email?linkurl=https%3A%2F%2Fmotopatio.com%2Flistings%2Fbmw-650gs%2F&amp;linkname=BMW%20BMW%20F%20650%20GS%202010"
-                                                    title="Email" rel="nofollow noopener" target="_blank"></a><a
-                                                    class="a2a_dd addtoany_share_save addtoany_share"
-                                                    href="https://www.addtoany.com/share"></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <!--<div class="stm-car-carousels stm-listing-car-gallery">-->
+                                <!--&lt;!&ndash;Actions&ndash;&gt;-->
+                                <!--<div class="stm-gallery-actions">-->
+                                    <!--<div class="stm-gallery-action-unit stm-listing-print-action">-->
+                                        <!--<a href="javascript:window.print()"-->
+                                           <!--class="car-action-unit stm-car-print heading-font">-->
+                                            <!--<i class="fa fa-print"></i>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-gallery-action-unit stm-listing-favorite-action"-->
+                                         <!--data-id="5600">-->
+                                        <!--<i class="stm-service-icon-staricon"></i>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-gallery-action-unit compare" data-id="5600"-->
+                                         <!--data-title="BMW BMW F 650 GS 2010">-->
+                                        <!--<i class="stm-service-icon-compare-new"></i>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-gallery-action-unit stm-schedule" data-toggle="modal"-->
+                                         <!--data-target="#test-drive"-->
+                                         <!--onclick="stm_test_drive_car_title(5600, 'BMW BMW F 650 GS 2010')">-->
+                                        <!--<i class="stm-icon-steering_wheel"></i>-->
+                                    <!--</div>-->
 
-                                <div class="stm-big-car-gallery">
-                                    <div class="stm-single-image"
-                                         data-id="big-image-5602">
-                                        <a :href="'/asset/uploads/2021/09/DJI_20210913_122441_23.jpg'"
-                                           class="stm_fancybox" rel="stm-car-gallery">
-                                            <img width="798" height="466"
-                                                 :src="'/asset/uploads/2021/09/DJI_20210913_122441_23-798x466.jpg'"
-                                                 class="img-responsive wp-post-image" alt="" loading="lazy"
-                                                 srcset="https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-798x466.jpg 798w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-280x165.jpg 280w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-350x205.jpg 350w"
-                                                 sizes="(max-width: 798px) 100vw, 798px"/> </a>
-                                    </div>
+                                    <!--<div class="stm-gallery-action-unit">-->
+                                        <!--<i class="stm-icon-share"></i>-->
+                                        <!--<div class="stm-a2a-popup">-->
+                                            <!--<div class="addtoany_shortcode">-->
+                                                <!--<div class="a2a_kit a2a_kit_size_32 addtoany_list"-->
+                                                     <!--data-a2a-url="https://motopatio.com/listings/bmw-650gs/"-->
+                                                     <!--data-a2a-title="BMW BMW F 650 GS 2010">-->
+                                                    <!--<a-->
+                                                        <!--class="a2a_button_facebook"-->
+                                                        <!--href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fmotopatio.com%2Flistings%2Fbmw-650gs%2F&amp;linkname=BMW%20BMW%20F%20650%20GS%202010"-->
+                                                        <!--title="Facebook" rel="nofollow noopener"-->
+                                                        <!--target="_blank"></a>-->
+                                                    <!--<a class="a2a_button_twitter"-->
+                                                       <!--href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fmotopatio.com%2Flistings%2Fbmw-650gs%2F&amp;linkname=BMW%20BMW%20F%20650%20GS%202010"-->
+                                                       <!--title="Twitter"-->
+                                                       <!--rel="nofollow noopener"-->
+                                                       <!--target="_blank"></a>-->
+                                                    <!--<a-->
+                                                        <!--class="a2a_button_email"-->
+                                                        <!--href="https://www.addtoany.com/add_to/email?linkurl=https%3A%2F%2Fmotopatio.com%2Flistings%2Fbmw-650gs%2F&amp;linkname=BMW%20BMW%20F%20650%20GS%202010"-->
+                                                        <!--title="Email" rel="nofollow noopener" target="_blank"></a>-->
+                                                    <!--<a-->
+                                                        <!--class="a2a_dd addtoany_share_save addtoany_share"-->
+                                                        <!--href="https://www.addtoany.com/share"></a>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
 
-                                    <div class="stm-single-image" data-id="big-image-5603">
-                                        <a :href="'/asset/uploads/2021/09/DJI_20210913_122526_24.jpg'"
-                                           class="stm_fancybox" rel="stm-car-gallery">
-                                            <img
-                                                :src="'/asset/uploads/2021/09/DJI_20210913_122526_24-798x466.jpg'"
-                                                alt="BMW BMW F 650 GS 2010 lleno"/>
-                                        </a>
-                                    </div>
-                                    <div class="stm-single-image" data-id="big-image-5604">
-                                        <a :href="'/asset/uploads/2021/09/DJI_20210913_122603_25.jpg'"
-                                           class="stm_fancybox" rel="stm-car-gallery">
-                                            <img
-                                                :src="'/asset/uploads/2021/09/DJI_20210913_122603_25-798x466.jpg'"
-                                                alt="BMW BMW F 650 GS 2010 lleno"/>
-                                        </a>
-                                    </div>
-                                    <div class="stm-single-image" data-id="big-image-5605">
-                                        <a :href="'/asset/uploads/2021/09/DJI_20210913_122852_26.jpg'"
-                                           class="stm_fancybox" rel="stm-car-gallery">
-                                            <img
-                                                :src="'/asset/uploads/2021/09/DJI_20210913_122852_26-798x466.jpg'"
-                                                alt="BMW BMW F 650 GS 2010 lleno"/>
-                                        </a>
-                                    </div>
-                                    <div class="stm-single-image" data-id="big-image-5606">
-                                        <a :href="'/asset/uploads/2021/09/DJI_20210913_122917_27.jpg'"
-                                           class="stm_fancybox" rel="stm-car-gallery">
-                                            <img
-                                                :src="'/asset/uploads/2021/09/DJI_20210913_122917_27-798x466.jpg'"
-                                                alt="BMW BMW F 650 GS 2010 lleno"/>
-                                        </a>
-                                    </div>
+                                <!--<div class="stm-big-car-gallery">-->
+                                    <!--<div class="stm-single-image"-->
+                                         <!--data-id="big-image-5602">-->
+                                        <!--<a :href="'/asset/uploads/2021/09/DJI_20210913_122441_23.jpg'"-->
+                                           <!--class="stm_fancybox" rel="stm-car-gallery">-->
+                                            <!--<img width="798" height="466"-->
+                                                 <!--:src="'/asset/uploads/2021/09/DJI_20210913_122441_23-798x466.jpg'"-->
+                                                 <!--class="img-responsive wp-post-image" alt="" loading="lazy"-->
+                                                 <!--srcset="https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-798x466.jpg 798w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-280x165.jpg 280w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-350x205.jpg 350w"-->
+                                                 <!--sizes="(max-width: 798px) 100vw, 798px"/>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
 
-                                </div>
+                                    <!--<div class="stm-single-image" data-id="big-image-5603">-->
+                                        <!--<a :href="'/asset/uploads/2021/09/DJI_20210913_122526_24.jpg'"-->
+                                           <!--class="stm_fancybox" rel="stm-car-gallery">-->
+                                            <!--<img-->
+                                                <!--:src="'/asset/uploads/2021/09/DJI_20210913_122526_24-798x466.jpg'"-->
+                                                <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-single-image" data-id="big-image-5604">-->
+                                        <!--<a :href="'/asset/uploads/2021/09/DJI_20210913_122603_25.jpg'"-->
+                                           <!--class="stm_fancybox" rel="stm-car-gallery">-->
+                                            <!--<img-->
+                                                <!--:src="'/asset/uploads/2021/09/DJI_20210913_122603_25-798x466.jpg'"-->
+                                                <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-single-image" data-id="big-image-5605">-->
+                                        <!--<a :href="'/asset/uploads/2021/09/DJI_20210913_122852_26.jpg'"-->
+                                           <!--class="stm_fancybox" rel="stm-car-gallery">-->
+                                            <!--<img-->
+                                                <!--:src="'/asset/uploads/2021/09/DJI_20210913_122852_26-798x466.jpg'"-->
+                                                <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-single-image" data-id="big-image-5606">-->
+                                        <!--<a :href="'/asset/uploads/2021/09/DJI_20210913_122917_27.jpg'"-->
+                                           <!--class="stm_fancybox" rel="stm-car-gallery">-->
+                                            <!--<img-->
+                                                <!--:src="'/asset/uploads/2021/09/DJI_20210913_122917_27-798x466.jpg'"-->
+                                                <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
 
 
-                                <div class="stm-thumbs-car-gallery">
-                                    <div class="stm-single-image"
-                                         id="big-image-5602">
-                                        <img width="350" height="205"
-                                             :src="'/asset/uploads/2021/09/DJI_20210913_122441_23-350x205.jpg'"
-                                             class="img-responsive wp-post-image" alt="" loading="lazy"
-                                             srcset="https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-350x205.jpg 350w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-280x165.jpg 280w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-560x330.jpg 560w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-798x466.jpg 798w"
-                                             sizes="(max-width: 350px) 100vw, 350px"/></div>
-                                    <div class="stm-single-image" id="big-image-5603">
-                                        <img
-                                            :src="'/asset/uploads/2021/09/DJI_20210913_122526_24-350x205.jpg'"
-                                            alt="BMW BMW F 650 GS 2010 lleno"/>
-                                    </div>
-                                    <div class="stm-single-image" id="big-image-5604">
-                                        <img
-                                            :src="'/asset/uploads/2021/09/DJI_20210913_122603_25-350x205.jpg'"
-                                            alt="BMW BMW F 650 GS 2010 lleno"/>
-                                    </div>
-                                    <div class="stm-single-image" id="big-image-5605">
-                                        <img
-                                            :src="'/asset/uploads/2021/09/DJI_20210913_122852_26-350x205.jpg'"
-                                            alt="BMW BMW F 650 GS 2010 lleno"/>
-                                    </div>
-                                    <div class="stm-single-image" id="big-image-5606">
-                                        <img
-                                            :src="'/asset/uploads/2021/09/DJI_20210913_122917_27-350x205.jpg'"
-                                            alt="BMW BMW F 650 GS 2010 lleno"/>
-                                    </div>
+                                <!--<div class="stm-thumbs-car-gallery">-->
+                                    <!--<div class="stm-single-image"-->
+                                         <!--id="big-image-5602">-->
+                                        <!--<img width="350" height="205"-->
+                                             <!--:src="'/asset/uploads/2021/09/DJI_20210913_122441_23-350x205.jpg'"-->
+                                             <!--class="img-responsive wp-post-image" alt="" loading="lazy"-->
+                                             <!--srcset="https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-350x205.jpg 350w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-280x165.jpg 280w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-560x330.jpg 560w, https://motopatio.com/wp-content/uploads/2021/09/DJI_20210913_122441_23-798x466.jpg 798w"-->
+                                             <!--sizes="(max-width: 350px) 100vw, 350px"/></div>-->
+                                    <!--<div class="stm-single-image" id="big-image-5603">-->
+                                        <!--<img-->
+                                            <!--:src="'/asset/uploads/2021/09/DJI_20210913_122526_24-350x205.jpg'"-->
+                                            <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-single-image" id="big-image-5604">-->
+                                        <!--<img-->
+                                            <!--:src="'/asset/uploads/2021/09/DJI_20210913_122603_25-350x205.jpg'"-->
+                                            <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-single-image" id="big-image-5605">-->
+                                        <!--<img-->
+                                            <!--:src="'/asset/uploads/2021/09/DJI_20210913_122852_26-350x205.jpg'"-->
+                                            <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="stm-single-image" id="big-image-5606">-->
+                                        <!--<img-->
+                                            <!--:src="'/asset/uploads/2021/09/DJI_20210913_122917_27-350x205.jpg'"-->
+                                            <!--alt="BMW BMW F 650 GS 2010 lleno"/>-->
+                                    <!--</div>-->
 
-                                </div>
-                            </div>
-
+                                <!--</div>-->
+                            <!--</div>-->
 
                             <!--Enable carousel-->
-
                             <div class="stm-car-listing-data-single stm-border-top-unit">
                                 <div class="title heading-font">Detalles de la Moto</div>
                             </div>
@@ -203,8 +173,7 @@
                                                         Kilometros
                                                     </td>
                                                     <td class="heading-font">
-
-                                                        42700 mi
+                                                        {{model.kilometres}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -218,8 +187,7 @@
                                                         Motor
                                                     </td>
                                                     <td class="heading-font">
-
-                                                        650 cilindraje
+                                                        {{model.motor}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -233,8 +201,7 @@
                                                         Transmisión
                                                     </td>
                                                     <td class="heading-font">
-
-                                                        Manual
+                                                        {{model.name_transmission}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -250,8 +217,7 @@
                                                         Frenos
                                                     </td>
                                                     <td class="heading-font">
-
-                                                        ABS
+                                                        {{model.name_braek}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -265,8 +231,7 @@
                                                         Color
                                                     </td>
                                                     <td class="heading-font">
-
-                                                        Red
+                                                        {{model.name_color}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -280,7 +245,6 @@
                                                         Registrado
                                                     </td>
                                                     <td class="heading-font">
-
                                                         N/A
                                                     </td>
                                                 </tr>
@@ -313,8 +277,7 @@
                                                         Stock id
                                                     </td>
                                                     <td class="heading-font">
-
-                                                        5600
+                                                        {{model.stock_id}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -326,6 +289,9 @@
                                                     <td class="label-td">
                                                         <i class="stm-service-icon-vin_check"></i>
                                                         VIN:
+                                                    </td>
+                                                    <td class="heading-font">
+                                                        {{model.vin}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -339,15 +305,9 @@
                             <div class="stm-car-listing-data-single stm-border-top-unit">
                                 <div class="title heading-font">Nota del vendedor</div>
                             </div>
-                            <p>Vendo BMW 650GS</p>
-                            <p>Año 2010</p>
-                            <p>42700 km</p>
-                            <p>EXTRAS:</p>
-                            <p>Halogenos</p>
-                            <p>Parabrisas Givi</p>
-                            <p>Top Case</p>
-                            <p>Porta Maleteros&nbsp;</p>
-                            <p>Cubre Carter</p>
+
+                            <div v-html="model.notes"></div>
+
                         </div>
                     </div>
 
@@ -483,96 +443,103 @@
 
 <script>
     import Layout from '@/Layouts/AppSite';
+    import Breadcrumbs from '@/Pages/Producto/partials/breadcrumbs';
+    import Gallery from '@/Pages/Producto/partials/Gallery';
 
     export default {
         name: '@Listing',
+        props: {
+            model: Object.assign({}, {})
+        },
         components: {
-            Layout
+            Layout,
+            Breadcrumbs,
+            Gallery
         },
         mounted() {
-            jQuery(document).ready(function () {
-                var $ = jQuery;
-                var inputAuthor = '<input type="hidden" value="37" name="stm_changed_recepient"/>';
-                $('.stm_listing_car_form form').append(inputAuthor);
-            })
-
-            jQuery(document).ready(function () {
-                var $ = jQuery;
-                var inputAuthor = '<input type="hidden" value="37" name="stm_changed_recepient"/>';
-                $('.stm_listing_car_form form').append(inputAuthor);
-            });
-
-            jQuery(document).ready(function ($) {
-                var big = $('.stm-big-car-gallery');
-                var small = $('.stm-thumbs-car-gallery');
-                var flag = false;
-                var duration = 800;
-
-                var owlRtl = false;
-                if ($('body').hasClass('rtl')) {
-                    owlRtl = true;
-                }
-
-                big.owlCarousel({
-                    items: 1,
-                    rtl: owlRtl,
-                    smartSpeed: 800,
-                    dots: false,
-                    nav: false,
-                    margin: 0,
-                    autoplay: false,
-                    loop: false,
-                    responsiveRefreshRate: 1000
-                }).on('changed.owl.carousel', function (e) {
-                    $('.stm-thumbs-car-gallery .owl-item').removeClass('current');
-                    $('.stm-thumbs-car-gallery .owl-item').eq(e.item.index).addClass('current');
-                    if (!flag) {
-                        flag = true;
-                        small.trigger('to.owl.carousel', [e.item.index, duration, true]);
-                        flag = false;
-                    }
-                });
-
-                small.owlCarousel({
-                    items: 5,
-                    rtl: owlRtl,
-                    smartSpeed: 800,
-                    dots: false,
-                    margin: 22,
-                    autoplay: false,
-                    nav: true,
-                    loop: false,
-                    navText: [],
-                    responsiveRefreshRate: 1000,
-                    responsive: {
-                        0: {
-                            items: 2
-                        },
-                        500: {
-                            items: 4
-                        },
-                        768: {
-                            items: 5
-                        },
-                        1000: {
-                            items: 5
-                        }
-                    }
-                }).on('click', '.owl-item', function (event) {
-                    big.trigger('to.owl.carousel', [$(this).index(), 400, true]);
-                }).on('changed.owl.carousel', function (e) {
-                    if (!flag) {
-                        flag = true;
-                        big.trigger('to.owl.carousel', [e.item.index, duration, true]);
-                        flag = false;
-                    }
-                });
-
-                if ($('.stm-thumbs-car-gallery .stm-single-image').length < 6) {
-                    $('.stm-single-car-page .owl-controls').hide();
-                    $('.stm-thumbs-car-gallery').css({'margin-top': '22px'});
-                }
-            })
+            // jQuery(document).ready(function () {
+            //     var $ = jQuery;
+            //     var inputAuthor = '<input type="hidden" value="37" name="stm_changed_recepient"/>';
+            //     $('.stm_listing_car_form form').append(inputAuthor);
+            // })
+            //
+            // jQuery(document).ready(function () {
+            //     var $ = jQuery;
+            //     var inputAuthor = '<input type="hidden" value="37" name="stm_changed_recepient"/>';
+            //     $('.stm_listing_car_form form').append(inputAuthor);
+            // });
+            //
+            // jQuery(document).ready(function ($) {
+            //     var big = $('.stm-big-car-gallery');
+            //     var small = $('.stm-thumbs-car-gallery');
+            //     var flag = false;
+            //     var duration = 800;
+            //
+            //     var owlRtl = false;
+            //     if ($('body').hasClass('rtl')) {
+            //         owlRtl = true;
+            //     }
+            //
+            //     big.owlCarousel({
+            //         items: 1,
+            //         rtl: owlRtl,
+            //         smartSpeed: 800,
+            //         dots: false,
+            //         nav: false,
+            //         margin: 0,
+            //         autoplay: false,
+            //         loop: false,
+            //         responsiveRefreshRate: 1000
+            //     }).on('changed.owl.carousel', function (e) {
+            //         $('.stm-thumbs-car-gallery .owl-item').removeClass('current');
+            //         $('.stm-thumbs-car-gallery .owl-item').eq(e.item.index).addClass('current');
+            //         if (!flag) {
+            //             flag = true;
+            //             small.trigger('to.owl.carousel', [e.item.index, duration, true]);
+            //             flag = false;
+            //         }
+            //     });
+            //
+            //     small.owlCarousel({
+            //         items: 5,
+            //         rtl: owlRtl,
+            //         smartSpeed: 800,
+            //         dots: false,
+            //         margin: 22,
+            //         autoplay: false,
+            //         nav: true,
+            //         loop: false,
+            //         navText: [],
+            //         responsiveRefreshRate: 1000,
+            //         responsive: {
+            //             0: {
+            //                 items: 2
+            //             },
+            //             500: {
+            //                 items: 4
+            //             },
+            //             768: {
+            //                 items: 5
+            //             },
+            //             1000: {
+            //                 items: 5
+            //             }
+            //         }
+            //     }).on('click', '.owl-item', function (event) {
+            //         big.trigger('to.owl.carousel', [$(this).index(), 400, true]);
+            //     }).on('changed.owl.carousel', function (e) {
+            //         if (!flag) {
+            //             flag = true;
+            //             big.trigger('to.owl.carousel', [e.item.index, duration, true]);
+            //             flag = false;
+            //         }
+            //     });
+            //
+            //     if ($('.stm-thumbs-car-gallery .stm-single-image').length < 6) {
+            //         $('.stm-single-car-page .owl-controls').hide();
+            //         $('.stm-thumbs-car-gallery').css({'margin-top': '22px'});
+            //     }
+            // })
         }
     }
 </script>

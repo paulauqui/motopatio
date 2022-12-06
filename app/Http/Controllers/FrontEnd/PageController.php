@@ -40,7 +40,10 @@ class PageController extends Controller
 
     public function motos()
     {
-        return Inertia::render('Motos/index', []);
+        $motorcycles = Motorcycle::getMotorcycle();
+        return Inertia::render('Motos/index', [
+            'motorcycles' => $motorcycles
+        ]);
     }
 
     public function motosCondition($slug)

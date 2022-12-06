@@ -79,7 +79,7 @@ class Motorcycle extends Model
             }
         }
 
-        $gallery = $gallery->map(function ($item){
+        $gallery = $gallery->map(function ($item) {
             return Helper::getVoyagerImages($item);
         });
 

@@ -28,8 +28,8 @@ class Helper
      * @param $number
      * @return string|int|float
      */
-    public static function getFormatNumber($number)
+    public static function getFormatNumber($number, $decimal = 0)
     {
-        return number_format($number, '2', '.', ',');
+        return number_format($number, $decimal, '.', ',');
     }
 }

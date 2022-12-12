@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Voyager;
 
 use App\Helper\CustomUrl;
+use App\Models\UserPlan;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -909,6 +910,9 @@ class MotorcycleController extends VoyagerBaseController
             ? new $dataTypeUsers->model_name()
             : false;
 
+        $permisosAdmin = Auth::user()->can('add', $dataTypeContentUsers);
+        UserPlan::$permission_admin = $permisosAdmin;
+
         $slug = $this->getSlug($request);
         $page = $request->input('page');
         $on_page = 50;
@@ -960,13 +964,6 @@ class MotorcycleController extends VoyagerBaseController
                     $relationshipOptions = $model->take($on_page)->skip($skip);
                 }
 
-                if ($model->getTable() == 'user_plan') {
-                    if (!($status = Auth::user()->can('add', $dataTypeContentUsers))) {
-                        $relationshipOptions->where('user_id', Auth::user()->id);
-                    }
-                }
-
-                //dd($model->getTable(), $relationshipOptions->toSql());
                 $relationshipOptions = (!$get) ? $relationshipOptions->get() : $relationshipOptions;
 
                 $results = [];
@@ -989,10 +986,6 @@ class MotorcycleController extends VoyagerBaseController
 
                 foreach ($relationshipOptions as $relationshipOption) {
                     $name = $relationshipOption->{$options->label};
-                    if ($model->getTable() == 'user_plan') {
-                        $name = $relationshipOption->name_user_plan;
-                    }
-
                     $results[] = [
                         'id' => $relationshipOption->{$options->key},
                         'text' => $name,

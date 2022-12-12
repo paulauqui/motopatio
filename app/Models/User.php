@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -20,6 +22,8 @@ class User extends \TCG\Voyager\Models\User
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+
+    public static $permission_admin = false;
 
     protected $table = 'users';
 
@@ -83,5 +87,21 @@ class User extends \TCG\Voyager\Models\User
         return self::builder()
             ->orderBy('name', 'ASC')
             ->get();
+    }
+
+    /**
+     * @param  Builder $query
+     * @return mixed
+     */
+    public function scopeAutenticateUser($query)
+    {
+        $query->select('id')
+            ->addSelect(DB::raw("CONCAT(name,' (',email,')') name"));
+
+        if (!self::$permission_admin) {
+            $query->where('id', Auth::user()->id);
+        }
+
+        return $query;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Models\Cities;
 use App\Models\PaymentMethod;
 use App\Models\Plan;
 use App\Models\User;
@@ -940,15 +941,14 @@ class CheckoutController extends VoyagerBaseController
             ? new $dataTypeUsers->model_name()
             : false;
 
-        //dump($dataTypeUsers, $dataTypeContentUsers);
+        $permisosAdmin = Auth::user()->can('add', $dataTypeContentUsers);
+        User::$permission_admin = $permisosAdmin;
 
         $slug = $this->getSlug($request);
         $page = $request->input('page');
         $on_page = 50;
         $search = $request->input('search', false);
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-        //dump($dataType);
-
         $method = $request->input('method', 'add');
 
         $model = app($dataType->model_name);
@@ -994,12 +994,6 @@ class CheckoutController extends VoyagerBaseController
                     $relationshipOptions = $model->take($on_page)->skip($skip);
                 }
 
-                if ($model->getTable() == 'users') {
-                    if (!($status = Auth::user()->can('add', $dataTypeContentUsers))) {
-                        $relationshipOptions->where('id', Auth::user()->id);
-                    }
-                }
-
                 $relationshipOptions = (!$get) ? $relationshipOptions->get() : $relationshipOptions;
 
                 $results = [];
@@ -1022,7 +1016,7 @@ class CheckoutController extends VoyagerBaseController
                 foreach ($relationshipOptions as $relationshipOption) {
                     $results[] = [
                         'id' => $relationshipOption->{$options->key},
-                        'text' => ($model->getTable() == 'users') ? $relationshipOption->name_email : $relationshipOption->{$options->label},
+                        'text' => $relationshipOption->{$options->label}
                     ];
                 }
 

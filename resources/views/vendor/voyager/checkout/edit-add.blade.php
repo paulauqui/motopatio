@@ -166,7 +166,7 @@
                                             </label>
 
                                             <div class="">
-                                                {{$pago->description}}
+                                                {!! $pago->description !!}
                                             </div>
                                         </div>
                                     @endforeach

@@ -19,12 +19,17 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="stm_all_listing_tab">
                                 <form action="https://motopatio.com/motos/" method="GET">
-                                    <button type="submit" class="heading-font"><i
-                                        class="fa fa-search"></i> <span>14</span> Vehículos
+                                    <button type="submit" class="heading-font">
+                                        <i class="fa fa-search"></i> <span>14</span> Vehículos
                                     </button>
                                     <div class="stm-filter-tab-selects filter stm-vc-ajax-filter">
                                         <div class="row">
                                             <div class="col-md-3 col-sm-6 col-xs-12 stm-select-col">
+                                                <Select2 v-model="myValue" :options="myOptions"
+                                                         :settings="{ settingOption: value, settingOption: value }"
+                                                         @change="myChangeEvent($event)"
+                                                         @select="mySelectEvent($event)"/>
+
                                                 <div class="stm-ajax-reloadable">
                                                     <select name="condition" data-class="stm_select_overflowed">
                                                         <option value="">Escoger Condición</option>
@@ -162,10 +167,27 @@
 </template>
 
 <script>
+    import Select2 from 'vue3-select2-component';
 
     export default {
         name: 'Home:Search',
-        components: {},
+        components: {
+            Select2
+        },
+        data() {
+            return {
+                myValue: '',
+                myOptions: ['op1', 'op2', 'op3'] // or [{id: key, text: value}, {id: key, text: value}]
+            }
+        },
+        methods: {
+            myChangeEvent(val) {
+                console.log(val);
+            },
+            mySelectEvent({id, text}) {
+                console.log({id, text})
+            }
+        },
         mounted() {
 
         }

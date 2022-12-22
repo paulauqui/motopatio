@@ -16,11 +16,11 @@ class MotorcycleController extends Controller
     {
         $results = [];
 
-        if($motorcylces = Motorcycle::getMotorciclePrices()){
-            $results = $motorcylces->map(function ($item){
+        if ($motorcylces = Motorcycle::getMotorciclePrices()) {
+            $results = $motorcylces->map(function ($item) {
                 return [
-                    'id'=>$item->price,
-                    'text'=>$item->price
+                    'id' => $item->price,
+                    'text' => '$ ' . number_format($item->price, '0', '.', ',')
                 ];
             });
         }
@@ -38,11 +38,11 @@ class MotorcycleController extends Controller
     {
         $results = [];
 
-        if($motorcylces = Motorcycle::getMotorcicleYears()){
-            $results = $motorcylces->map(function ($item){
+        if ($motorcylces = Motorcycle::getMotorcicleYears()) {
+            $results = $motorcylces->map(function ($item) {
                 return [
-                    'id'=>$item->year,
-                    'text'=>$item->year
+                    'id' => $item->year,
+                    'text' => $item->year
                 ];
             });
         }

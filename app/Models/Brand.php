@@ -20,11 +20,17 @@ class Brand extends Model
         return Brand::select('brand.*');
     }
 
-    public static function getBrand()
+    public static function getBrand($exist = false)
     {
-        return self::builder()
+        $rs = self::builder()
             ->where('status', 1)
-            ->orderBy('order', 'ASC')
-            ->get();
+            ->orderBy('order', 'ASC');
+
+        if ($exist) {
+            $rs->selectRaw('DISTINCT brand.*')
+                ->join('motorcycle', 'motorcycle.brand_id', '=', 'brand.id');
+        }
+
+        return $rs->get();
     }
 }

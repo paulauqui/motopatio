@@ -13,9 +13,6 @@
         background-color: #636363 !important;
     }
 
-    /****
-
-     */
     .vc_custom_1419240516480 {
         background-color: #f9f9f9 !important;
     }
@@ -23,8 +20,6 @@
     .vc_custom_1419240516480 {
         background-color: #f9f9f9 !important;
     }
-
-
 </style>
 
 <template>
@@ -33,7 +28,11 @@
         <div class="container">
             <Slider/>
             <div class="vc_row-full-width"></div>
-            <Search/>
+            <Search
+                @submit="submit()"
+                :form="form"
+                :vehicles="vehicles"
+            />
             <Destacados :motorcycles="featured"/>
             <Planes/>
             <Ultimasmotos :motorcycles="latest"/>
@@ -57,6 +56,21 @@
         props: {
             featured: Object.assign({}, {}),
             latest: Object.assign({}, {}),
+            vehicles: 0
+        },
+        data() {
+            return {
+                form: Object.assign({}, {
+                    condition: null,
+                    brand: null,
+                    model: null,
+                    kilometer: null,
+                    year: null,
+                    price: null,
+                    select: null,
+                    location: null
+                }),
+            }
         },
         created() {
 

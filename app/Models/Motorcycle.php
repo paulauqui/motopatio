@@ -6,6 +6,7 @@ use App\Helper\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use TCG\Voyager\Voyager;
 
@@ -176,5 +177,28 @@ class Motorcycle extends Model
             ->where('slug', $slug)
             ->orderBy('created_at', 'DESC')
             ->first();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getMotorciclePrices()
+    {
+        return self::builder()
+            ->select(DB::raw('DISTINCT price'))
+            ->orderBy('price', 'ASC')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getMotorcicleYears()
+    {
+        return self::builder()
+            ->select(DB::raw('DISTINCT year'))
+            ->where('year', '>', 0)
+            ->orderBy('year', 'ASC')
+            ->get();
     }
 }

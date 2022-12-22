@@ -26,6 +26,7 @@ class PageController extends Controller
         return Inertia::render('Home/index', [
             'featured' => $featured,
             'latest' => $latest,
+            'vehicles' => $motorcycle->count(),
         ]);
     }
 

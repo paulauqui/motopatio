@@ -40,6 +40,7 @@
         "bootstrap3": "^3.3.5",
         "fontawesome-4.7": "^4.7.0",
         "moment": "^2.29.4",
-        "vue3-carousel": "^0.1.48"
+        "vue3-carousel": "^0.1.48",
+        "vue3-select2-component": "^0.1.7"
     }
 }

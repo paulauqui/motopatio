@@ -10,13 +10,15 @@
     <form @submit.prevent="submit">
         <div class="form-group">
             <h4>Usuario o correo electrónico</h4>
-            <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus
+            <BreezeInput :id="'email-'+key_id" type="email" class="mt-1 block w-full" v-model="form.email" required
+                         autofocus
                          autocomplete="username" placeholder="Introducir usuario o correo electrónico"/>
         </div>
 
         <div class="mt-4 form-group">
             <h4>Contraseña</h4>
-            <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
+            <BreezeInput :id="'password-'+key_id" type="password" class="mt-1 block w-full" v-model="form.password"
+                         required
                          autocomplete="current-password" placeholder="Introducir contraseña"/>
         </div>
 
@@ -66,6 +68,7 @@
         props: {
             canResetPassword: Boolean,
             status: String,
+            key_id: String
         },
 
         data() {

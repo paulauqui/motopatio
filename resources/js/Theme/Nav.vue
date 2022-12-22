@@ -35,7 +35,7 @@
 
                                 <div v-if="!$page.props.auth.user"
                                      class="lOffer-account-dropdown stm-login-form-unregistered">
-                                    <Login/>
+                                    <Login :key_id="'quick'"/>
                                 </div>
                                 <div v-if="$page.props.auth.user" class="lOffer-account-dropdown login">
                                     <Auth/>
@@ -43,7 +43,7 @@
 
                                 <div class="stm-user-mobile-info-wrapper">
                                     <div v-if="!$page.props.auth.user" class="stm-login-form-mobile-unregistered">
-                                        <Login/>
+                                        <Login :key_id="'quick-mobile'"/>
                                     </div>
 
                                     <div v-if="$page.props.auth.user" class="lOffer-account-dropdown login">

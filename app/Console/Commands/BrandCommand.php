@@ -25,7 +25,7 @@ class BrandCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Migrar marcas y modelos desde origen (excel)';
 
     /**
      * Create a new command instance.

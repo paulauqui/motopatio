@@ -10,7 +10,7 @@ class Brand extends Model
 {
     use HasFactory;
     protected $table = 'brand';
-    protected $fillable = ['name', 'order', 'status'];
+    protected $fillable = ['id', 'name', 'order', 'status'];
 
     /**
      * @return Builder

@@ -43,7 +43,8 @@ class PageController extends Controller
     {
         $motorcycles = Motorcycle::getMotorcycle();
         return Inertia::render('Motos/index', [
-            'motorcycles' => $motorcycles
+            'motorcycles' => $motorcycles,
+            'vehicles' => $motorcycles->count(),
         ]);
     }
 

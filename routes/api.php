@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ConditionController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\ModelController;
-use App\Http\Controllers\Api\KilometersController;
 use App\Http\Controllers\Api\MotorcycleController;
+use App\Http\Controllers\Api\TransmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +32,14 @@ Route::post('brand/select2', [BrandController::class, 'select2'])
 Route::post('model/select2', [ModelController::class, 'select2'])
     ->name('api.model.select2');
 
-Route::post('Motorcycle/kilometers-select2', [MotorcycleController::class, 'kilometersSelect2'])
+Route::post('motorcycle/kilometers-select2', [MotorcycleController::class, 'kilometersSelect2'])
     ->name('api.motorcycle-kilometer.select2');
 
-Route::post('Motorcycle/prices-select2', [MotorcycleController::class, 'pricesSelect2'])
+Route::post('motorcycle/prices-select2', [MotorcycleController::class, 'pricesSelect2'])
     ->name('api.motorcycle-prices.select2');
 
-Route::post('Motorcycle/years-select2', [MotorcycleController::class, 'yearsSelect2'])
+Route::post('motorcycle/years-select2', [MotorcycleController::class, 'yearsSelect2'])
     ->name('api.motorcycle-years.select2');
+
+Route::post('transmission/select2', [TransmissionController::class, 'select2'])
+    ->name('api.transmission.select2');

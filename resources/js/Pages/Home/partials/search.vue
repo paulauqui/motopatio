@@ -74,17 +74,6 @@
                                                          placeholder="Kilometros"
                                                 />
 
-                                                <!--<select name="mileage" data-class="stm_select_overflowed"-->
-                                                <!--data-sel-type="mileage">-->
-                                                <!--<option value="">Kilometros</option>-->
-                                                <!--<option value="< 10000">Menor 10000</option>-->
-                                                <!--<option value="10000-25000"> 10000-25000</option>-->
-                                                <!--<option value="25000-79777"> 25000-79777</option>-->
-                                                <!--<option value="79777-82557"> 79777-82557</option>-->
-                                                <!--<option value="82557-88297"> 82557-88297</option>-->
-                                                <!--<option value="88297-92549"> 88297-92549</option>-->
-                                                <!--<option value="> 95100">> 95100</option>-->
-                                                <!--</select>-->
                                                 <input type="hidden" name="min_mileage"/>
                                                 <input type="hidden" name="max_mileage"/>
                                             </div>
@@ -109,42 +98,18 @@
                                                          :settings="{ allowClear: true, multiple: false }"
                                                          placeholder="Máx Precio"
                                                 />
-
-
-                                                <!--<select-->
-                                                <!--class="stm-filter-ajax-disabled-field" name="max_price"-->
-                                                <!--data-class="stm_select_overflowed">-->
-                                                <!--<option value="">Máx Precio</option>-->
-                                                <!--<option value="1000">$1,000</option>-->
-                                                <!--<option value="2000">$2,000</option>-->
-                                                <!--<option value="6000">$6,000</option>-->
-                                                <!--<option value="10000">$10,000</option>-->
-                                                <!--<option value="15000">$15,000</option>-->
-                                                <!--<option value="20000">$20,000</option>-->
-                                                <!--<option value="25000">$25,000</option>-->
-                                                <!--<option value="30000">$30,000</option>-->
-                                                <!--<option value="35000">$35,000</option>-->
-                                                <!--<option value="40000">$40,000</option>-->
-                                                <!--<option value="45000">$45,000</option>-->
-                                                <!--<option value="50000">$50,000</option>-->
-                                                <!--<option value="70000">$70,000</option>-->
-                                                <!--<option value="80000">$80,000</option>-->
-                                                <!--<option value="100000">$100,000</option>-->
-                                                <!--<option value="1000000">$1,000,000</option>-->
-                                                <!--</select>-->
                                             </div>
                                             <div class="col-md-3 col-sm-6 col-xs-12 stm-select-col">
                                                 <div class="stm-ajax-reloadable">
-                                                    <Select2 v-model="form.select"
+                                                    <Select2 v-model="form.transmission"
                                                              id="select"
                                                              name="select"
-                                                             :options="myOptions"
+                                                             :options="transmissions"
                                                              :settings="{ allowClear: true, multiple: false }"
-                                                             placeholder="Escoger"
+                                                             placeholder="Escoger Transmision"
                                                              @change="myChangeEvent($event)"
                                                              @select="mySelectEvent($event)"
                                                     />
-
 
                                                     <!--<select name="chasis" data-class="stm_select_overflowed">-->
                                                     <!--<option value="">Escoger</option>-->
@@ -194,7 +159,7 @@
                 kilometer: null,
                 year: null,
                 price: null,
-                select: null,
+                transmission: null,
                 location: null
             }),
         },
@@ -206,6 +171,7 @@
                 kilometers: Object.assign({}, {}),
                 prices: Object.assign({}, {}),
                 years: Object.assign({}, {}),
+                transmissions: Object.assign({}, {}),
                 myOptions: ['op1', 'op2', 'op3'] // or [{id: key, text: value}, {id: key, text: value}]
             }
         },
@@ -240,6 +206,11 @@
                     this.years = response.data.results;
                 });
             },
+            getTransmition() {
+                axios.post(route('api.transmission.select2'), this.form).then(response => {
+                    this.transmissions = response.data.results;
+                });
+            },
             myChangeEvent(val) {
                 // console.log(val);
                 // this.$emit('submit');
@@ -254,6 +225,7 @@
             this.getKilometers();
             this.getPrices();
             this.getYears();
+            this.getTransmition();
         }
     }
 </script>

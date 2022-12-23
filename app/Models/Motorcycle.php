@@ -186,7 +186,7 @@ class Motorcycle extends Model
     {
         return self::builder()
             ->select(DB::raw('DISTINCT price'))
-            ->orderBy('price', 'ASC')
+            ->orderByRaw('CAST(price AS UNSIGNED) ASC')
             ->get();
     }
 

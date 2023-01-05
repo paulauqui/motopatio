@@ -8,6 +8,7 @@ use App\Models\Plan;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class PageController extends Controller
@@ -84,6 +85,23 @@ class PageController extends Controller
         $model = Motorcycle::getMotorcicleSlug($slug);
         return Inertia::render('Producto/index', [
             'model' => $model
+        ]);
+    }
+
+    public function sessionSelect2(Request $request)
+    {
+        $field = explode('_', $request->field);
+        $name = (isset($field[2]) && $field[2]) ? $field[2] : $request->field;
+
+        Session::forget($name);
+        Session::push($name, $request->id);
+
+        return response()->json([
+            'status' => 'OK',
+            'data' => [
+                'id' => $name,
+                'field' => $request->id
+            ]
         ]);
     }
 }

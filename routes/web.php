@@ -26,6 +26,7 @@ Route::get('comparar', [PageController::class, 'comparar'])->name('comparar.inde
 Route::get('login-register', [PageController::class, 'register'])->name('register.index');
 Route::get('listings/{slug}', [PageController::class, 'listings'])->name('listings.index');
 Route::get('welcome', [PageController::class, 'home'])->name('frontend.welcome');
+Route::post('session-select2', [PageController::class, 'sessionSelect2'])->name('session.select2');
 
 Route::get('admin/checkout/create/{plan}', [\App\Http\Controllers\Voyager\CheckoutController::class, 'create'])->name('admin.checkout.create');
 

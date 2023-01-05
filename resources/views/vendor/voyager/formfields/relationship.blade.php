@@ -21,15 +21,20 @@
                 @endif
 
             @else
-                {{--@dump($row, $dataType);--}}
+                {{--@dump($options->placeholder);--}}
                 <select
                     class="form-control select2-ajax" name="{{ $options->column }}"
                     data-get-items-route="{{route('voyager.' . $dataType->slug.'.relation')}}"
                     data-get-items-field="{{$row->field}}"
-                    @if(!is_null($dataTypeContent->getKey())) data-id="{{$dataTypeContent->getKey()}}" @endif
+                    @if(isset($options->placeholder)) data-placeholder="{{$options->placeholder}}" @endif
+                    @if(isset($options->parent)) data-parent="{{$options->parent}}" @endif
+                    @if(!is_null($dataTypeContent->getKey()))
+                    data-id="{{$dataTypeContent->getKey()}}"
+                    @endif
                     data-method="{{ !is_null($dataTypeContent->getKey()) ? 'edit' : 'add' }}"
                     @if($row->required == 1) required @endif
                 >
+                    {{--@dump($options->model)--}}
                     @php
                         $model = app($options->model);
                         $query = $model::where($options->key, old($options->column, $dataTypeContent->{$options->column}))->get();

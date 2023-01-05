@@ -12,7 +12,12 @@ class Cities extends Model
 
     protected $table = 'cities';
 
-    public static $country = null;
+    public $country = null;
+    public $state = null;
+
+    public function getTable(){
+        return $this->table;
+    }
 
     /**
      * @return Builder
@@ -26,16 +31,17 @@ class Cities extends Model
      * @param Builder $query
      * @return mixed
      */
-    public function scopeFilterCountries($query)
+    public function scopeFilterStates($query)
     {
         $query->select('cities.*')
-            ->join('states', 'states.id', '=', 'cities.id_state')
-            ->join('countries', 'countries.id', '=', 'states.id_country');
+            ->join('states', 'states.id', '=', 'cities.id_state');
+        //->join('countries', 'countries.id', '=', 'states.id_country');
 
-        if (self::$country) {
-            $query->where('countries.id', self::$country);
+        if ($this->state) {
+            $query->where('states.id', $this->state);
         }
 
+        //dd($query->toSql(), $this->country);
         return $query;
     }
 

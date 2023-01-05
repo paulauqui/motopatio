@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
@@ -934,7 +935,7 @@ class CheckoutController extends VoyagerBaseController
      *
      * @return mixed
      */
-    public function relation(Request $request)
+    public function relation(Request $request, $id = null)
     {
         $dataTypeUsers = Voyager::model('DataType')->where('slug', '=', 'users')->first();
         $dataTypeContentUsers = (strlen($dataTypeUsers->model_name) != 0)
@@ -963,12 +964,21 @@ class CheckoutController extends VoyagerBaseController
             if ($row->field === $request->input('type')) {
                 $options = $row->details;
                 $model = app($options->model);
+                $table_name = $model->getTable();
                 $skip = $on_page * ($page - 1);
 
                 $additional_attributes = $model->additional_attributes ?? [];
 
                 // Apply local scope if it is defined in the relationship-options
                 if (isset($options->scope) && $options->scope != '' && method_exists($model, 'scope' . ucfirst($options->scope))) {
+                    if ($options->id == 'state_id') {
+                        $model->country = Session::has('country') ? Session::get('country')[0] : null;
+                    }
+
+                    if ($options->id == 'city_id') {
+                        $model->state = Session::has('state') ? Session::get('state')[0] : null;
+                    }
+
                     $model = $model->{$options->scope}();
                 }
 
@@ -985,9 +995,10 @@ class CheckoutController extends VoyagerBaseController
                         $relationshipOptions = $relationshipOptions->forPage($page, $on_page);
                         $get = true;
                     } else {
-                        $total_count = $model->where($options->label, 'LIKE', '%' . $search . '%')->count();
-                        $relationshipOptions = $model->take($on_page)->skip($skip)
-                            ->where($options->label, 'LIKE', '%' . $search . '%');
+                        $total_count = $model->where("{$table_name}.{$options->label}", 'LIKE', '%' . $search . '%')->count();
+                        $relationshipOptions = $model->take($on_page)
+                            ->skip($skip)
+                            ->where("{$table_name}.{$options->label}", 'LIKE', '%' . $search . '%');
                     }
                 } else {
                     $total_count = $model->count();

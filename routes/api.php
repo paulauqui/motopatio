@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\ModelController;
 use App\Http\Controllers\Api\MotorcycleController;
 use App\Http\Controllers\Api\TransmissionController;
+use App\Http\Controllers\Voyager\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,6 @@ Route::post('motorcycle/years-select2', [MotorcycleController::class, 'yearsSele
 
 Route::post('transmission/select2', [TransmissionController::class, 'select2'])
     ->name('api.transmission.select2');
+
+Route::get('admin/checkout/relation/{id}', [CheckoutController::class, 'relation'])
+    ->name('voyager.checkout.relation.id');

@@ -12,6 +12,7 @@ class Models extends Model
     protected $table = 'model';
     protected $fillable = ['name', 'order', 'status', 'brand_id'];
 
+    public $brand = null;
     public static $brand_id;
 
     /**
@@ -33,5 +34,24 @@ class Models extends Model
         }
 
         return $rs->get();
+    }
+
+
+    /**
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeFilterModel($query)
+    {
+        $query->select('model.*');
+        //->join('model', 'states.id', '=', 'cities.id_state');
+        //->join('countries', 'countries.id', '=', 'states.id_country');
+
+        if ($this->brand) {
+            $query->where('brand_id', $this->brand);
+        }
+
+        //dd($query->toSql(), $this->country);
+        return $query;
     }
 }

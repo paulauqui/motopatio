@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
@@ -934,11 +935,16 @@ class MotorcycleController extends VoyagerBaseController
                 $options = $row->details;
                 $model = app($options->model);
                 $skip = $on_page * ($page - 1);
+                $table_name = $model->getTable();
 
                 $additional_attributes = $model->additional_attributes ?? [];
 
                 // Apply local scope if it is defined in the relationship-options
                 if (isset($options->scope) && $options->scope != '' && method_exists($model, 'scope' . ucfirst($options->scope))) {
+                    if ($options->id == 'model_id') {
+                        $model->brand = Session::has('brand') ? Session::get('brand')[0] : null;
+                    }
+
                     $model = $model->{$options->scope}();
                 }
 

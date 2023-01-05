@@ -240,6 +240,33 @@
 
             $("._center").appendTo($("#side-center"));
             $("._right").appendTo($("#side-right"));
+
+            $(".select2-ajax").each(function (e) {
+                var data = $(this).val();
+                var field = $(this).data('get-items-field');
+                setSessionSelect2(data, field);
+            });
+
+            $(".select2-ajax").on('select2:select', function (e) {
+                var data = e.params.data;
+                var field = $(this).data('get-items-field');
+                setSessionSelect2(data.id, field);
+            });
         });
+
+        function setSessionSelect2(data, field) {
+            $.ajax({
+                url: "{{route('session.select2')}}",
+                data: {
+                    id: data,
+                    field: field,
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: function (json) {
+
+                }
+            });
+        }
     </script>
 @stop

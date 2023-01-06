@@ -23,6 +23,7 @@ Route::get('producto', [PageController::class, 'producto'])->name('producto.inde
 Route::get('planes', [PageController::class, 'planes'])->name('planes.index');
 Route::get('dealer-list', [PageController::class, 'dealer'])->name('dealer.index');
 Route::get('comparar', [PageController::class, 'comparar'])->name('comparar.index');
+Route::get('comparar/add/{motorcycle}', [PageController::class, 'compararStore'])->name('comparar.store');
 Route::get('login-register', [PageController::class, 'register'])->name('register.index');
 Route::get('listings/{slug}', [PageController::class, 'listings'])->name('listings.index');
 Route::get('welcome', [PageController::class, 'home'])->name('frontend.welcome');

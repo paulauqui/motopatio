@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Helper\Compare;
 use App\Models\Motorcycle;
 use App\Models\Plan;
 use Illuminate\Foundation\Application;
@@ -69,7 +70,10 @@ class PageController extends Controller
 
     public function comparar()
     {
-        return Inertia::render('Comparar/index', []);
+        $compare = Compare::get();
+        return Inertia::render('Comparar/index', [
+            'motorcycles' => $compare
+        ]);
     }
 
     public function register()
@@ -103,5 +107,16 @@ class PageController extends Controller
                 'field' => $request->id
             ]
         ]);
+    }
+
+    public function compararStore(Motorcycle $motorcycle)
+    {
+        Compare::store($motorcycle);
+
+        return response()->json([
+            'status' => 'OK',
+            'data' => Compare::get(),
+        ], 200);
+        //dd($motorcycle);
     }
 }

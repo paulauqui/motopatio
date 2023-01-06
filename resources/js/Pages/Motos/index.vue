@@ -159,68 +159,76 @@
                                                                  data-date="202204040129"
                                                                  data-mileage="0"
                                                             >
-                                                                <Link :href="route('listings.index',motorcycle.slug)"
-                                                                      class="rmv_txt_drctn">
-                                                                <div class="image">
-                                                                    <img
-                                                                        :data-src="motorcycle.image_real"
-                                                                        :srcset="motorcycle.image_real +' 1x,'+ motorcycle.image_real + ' 2x' "
-                                                                        :src="motorcycle.image_real"
-                                                                        class="lazy img-responsive"
-                                                                        alt="402EDD94-1035-4607-94F2-39E682D56BA6"
-                                                                    />
+                                                                <Card :motorcycle="motorcycle"/>
+                                                                <!--&lt;!&ndash;<Link :href="route('listings.index',motorcycle.slug)"&ndash;&gt;-->
+                                                                <!--&lt;!&ndash;class="rmv_txt_drctn">&ndash;&gt;-->
+                                                                <!--<div class="image">-->
+                                                                <!--<Link :href="route('listings.index',motorcycle.slug)">-->
+                                                                <!--<img-->
+                                                                <!--:data-src="motorcycle.image_real"-->
+                                                                <!--:srcset="motorcycle.image_real +' 1x,'+ motorcycle.image_real + ' 2x' "-->
+                                                                <!--:src="motorcycle.image_real"-->
+                                                                <!--class="lazy img-responsive"-->
+                                                                <!--alt="402EDD94-1035-4607-94F2-39E682D56BA6"-->
+                                                                <!--/>-->
+                                                                <!--</Link>-->
 
-                                                                    <!--Hover blocks-->
-                                                                    <!---Media-->
-                                                                    <div class="stm-car-medias">
-                                                                        <div
-                                                                            class="stm-listing-photos-unit stm-car-photos-6360 stm-car-photos-6360-895275444">
-                                                                            <i class="stm-service-icon-photo"></i>
-                                                                            <span>6</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!--Favorite-->
-                                                                    <div
-                                                                        class="stm-listing-favorite"
-                                                                        data-id="6360"
-                                                                        data-toggle="tooltip" data-placement="right"
-                                                                        title="Añadir a favoritos"
-                                                                    >
-                                                                        <i class="stm-service-icon-staricon"></i>
-                                                                    </div>
+                                                                <!--&lt;!&ndash;Hover blocks&ndash;&gt;-->
+                                                                <!--&lt;!&ndash;-Media&ndash;&gt;-->
+                                                                <!--<div class="stm-car-medias">-->
+                                                                <!--<div-->
+                                                                <!--class="stm-listing-photos-unit stm-car-photos-6360 stm-car-photos-6360-895275444">-->
+                                                                <!--<i class="stm-service-icon-photo"></i>-->
+                                                                <!--<span>6</span>-->
+                                                                <!--</div>-->
+                                                                <!--</div>-->
+                                                                <!--&lt;!&ndash;Favorite&ndash;&gt;-->
+                                                                <!--<div-->
+                                                                <!--class="stm-listing-favorite"-->
+                                                                <!--data-id="6360"-->
+                                                                <!--data-toggle="tooltip" data-placement="right"-->
+                                                                <!--title="Añadir a favoritos"-->
+                                                                <!--&gt;-->
+                                                                <!--<i class="stm-service-icon-staricon"></i>-->
+                                                                <!--</div>-->
+                                                                <!---->
+                                                                <!--<button-->
+                                                                <!--@click="add(motorcycle.id)"-->
+                                                                <!--class="stm-listing-compare stm-compare-directory-new"-->
+                                                                <!--data-id="6360"-->
+                                                                <!--data-title="{{motorcycle.name}}"-->
+                                                                <!--data-toggle="tooltip"-->
+                                                                <!--data-placement="left"-->
+                                                                <!--title="Añadir para comparar"-->
+                                                                <!--&gt;-->
+                                                                <!--<i class="stm-service-icon-compare-new"></i>-->
+                                                                <!--</button>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="listing-car-item-meta">-->
+                                                                <!--<Link :href="route('listings.index',motorcycle.slug)">-->
+                                                                <!--<div class="car-meta-top heading-font clearfix">-->
+                                                                <!--<div class="price">-->
+                                                                <!--<div class="normal-price">-->
+                                                                <!--{{motorcycle.price_format}}-->
+                                                                <!--</div>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="car-title" data-max-char="44">-->
+                                                                <!--{{motorcycle.name}}-->
+                                                                <!--</div>-->
+                                                                <!--</div>-->
+                                                                <!--</Link>-->
 
-                                                                    <!--Compare-->
-                                                                    <div
-                                                                        class="stm-listing-compare stm-compare-directory-new"
-                                                                        data-id="6360"
-                                                                        data-title="Kawasaki Kawasaki VN 900 2013"
-                                                                        data-toggle="tooltip" data-placement="left"
-                                                                        title="Añadir para comparar"
-                                                                    >
-                                                                        <i class="stm-service-icon-compare-new"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="listing-car-item-meta">
-                                                                    <div class="car-meta-top heading-font clearfix">
-                                                                        <div class="price">
-                                                                            <div class="normal-price">
-                                                                                {{motorcycle.price_format}}
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="car-title" data-max-char="44">
-                                                                            {{motorcycle.name}}
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="car-meta-bottom">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <i class="stm-icon-transmission_fill"></i>&nbsp;
-                                                                                <span>{{motorcycle.name_transmission}}</span>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                </Link>
+                                                                <!--<div class="car-meta-bottom">-->
+                                                                <!--<Link :href="route('listings.index',motorcycle.slug)">-->
+                                                                <!--<ul>-->
+                                                                <!--<li>-->
+                                                                <!--<i class="stm-icon-transmission_fill"></i>&nbsp;-->
+                                                                <!--<span>{{motorcycle.name_transmission}}</span>-->
+                                                                <!--</li>-->
+                                                                <!--</ul>-->
+                                                                <!--</Link>-->
+                                                                <!--</div>-->
+                                                                <!--</div>-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -262,6 +270,7 @@
     import Banner from '@/Pages/Motos/partials/banner';
     import Breads from '@/Pages/Motos/partials/breads';
     import FormSearch from '@/Pages/Motos/partials/search';
+    import Card from '@/Pages/Motos/partials/card';
     import {Link} from '@inertiajs/inertia-vue3';
 
     export default {
@@ -271,7 +280,8 @@
             Banner,
             Breads,
             FormSearch,
-            Link
+            Link,
+            Card
         },
         props: {
             vehicles: 0,
@@ -296,7 +306,7 @@
             },
             redirectPage(slug) {
                 this.$inertia.get(this.route('listings.index', slug));
-            },
+            }
         },
         mounted() {
             // jQuery(document).ready(function () {

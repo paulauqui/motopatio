@@ -1,36 +1,21 @@
+<style scoped>
+    table > tbody tr td {
+        padding: 9px 0 8px;
+        font-size: 12px;
+        color: #888888;
+        border-bottom: 1px solid #d5d9e0;
+    }
+
+</style>
 <template>
     <Layout>
 
-        <div class="entry-header left small_title_box"
-             style="">
-            <div class="container">
-                <div class="entry-title">
-                    <h2 class="h1" style="">
-                        Comparar </h2>
-                </div>
-            </div>
-        </div>
+        <Banner/>
 
         <!-- Breads -->
-        <div class="stm_breadcrumbs_unit heading-font ">
-            <div class="container">
-                <div class="navxtBreads">
-                    <!-- Breadcrumb NavXT 6.6.0 -->
-                    <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage"
-                                                                          title="Ir a Moto Patio."
-                                                                          href="../index.html"
-                                                                          class="home"><span
-                        property="name">Moto Patio</span></a><meta
-                        property="position" content="1"></span> &gt; <span property="itemListElement"
-                                                                           typeof="ListItem"><span
-                    property="name" class="post post-page current-item">Comparar</span><meta property="url"
-                                                                                             content="index.html"><meta
-                    property="position" content="2"></span></div>
-            </div>
-        </div>
+        <Breads/>
+
         <div class="container">
-
-
             <div class="container">
                 <div class="row row-4 car-listing-row stm-car-compare-row">
                     <div class="col-md-3 col-sm-3">
@@ -41,43 +26,20 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 compare-col-stm-empty">
-                        <a href="../motos/index.html">
-                            <div class="image">
-                                <i class="stm-icon-add_car"></i>
-                                <img class="stm-compare-empty"
-                                     :src="'/asset/theme/images/compare-empty.jpg'"
-                                     alt="Vacío"/>
-                            </div>
-                            <div class="h5">Añadir Moto para comparar</div>
-                        </a>
+                        <ImageMotorCycle :motorcycle="motorcycle_1"/>
                     </div>
                     <div class="col-md-3 col-sm-3 compare-col-stm-empty">
-                        <a href="../motos/index.html">
-                            <div class="image">
-                                <i class="stm-icon-add_car"></i>
-                                <img class="stm-compare-empty"
-                                     :src="'/asset/theme/images/compare-empty.jpg'"
-                                     alt="Vacío"/>
-                            </div>
-                            <div class="h5">Añadir Moto para comparar</div>
-                        </a>
+                        <ImageMotorCycle :motorcycle="motorcycle_2"/>
                     </div>
                     <div class="col-md-3 col-sm-3 compare-col-stm-empty">
-                        <a href="../motos/index.html">
-                            <div class="image">
-                                <i class="stm-icon-add_car"></i>
-                                <img class="stm-compare-empty"
-                                     :src="'/asset/theme/images/compare-empty.jpg'"
-                                     alt="Vacío"/>
-                            </div>
-                            <div class="h5">Añadir Moto para comparar</div>
-                        </a>
+                        <ImageMotorCycle :motorcycle="motorcycle_3"/>
                     </div>
                 </div> <!--row-->
                 <div class="row row-4 stm-compare-row">
                     <div class="col-md-3 col-sm-3">
                         <div class="compare-options">
                             <table>
+                                <tbody>
                                 <tr>
                                     <td class="compare-value-hover"
                                         data-value="compare-value-mileage">
@@ -108,71 +70,18 @@
                                         Color
                                     </td>
                                 </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        <div class="compare-options">
-                            <table>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                        </div>
+                        <DetailMotorCycle :motorcycle="motorcycle_1"/>
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        <div class="compare-options">
-                            <table>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                        </div>
+                        <DetailMotorCycle :motorcycle="motorcycle_2"/>
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        <div class="compare-options">
-                            <table>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                        </div>
+                        <DetailMotorCycle :motorcycle="motorcycle_3"/>
                     </div>
                 </div> <!--row-->
 
@@ -222,36 +131,73 @@
 </template>
 
 <script>
+    import ImageMotorCycle from '@/Pages/Comparar/partials/image';
+    import DetailMotorCycle from '@/Pages/Comparar/partials/detail';
+    import Banner from '@/Pages/Comparar/partials/banner';
+    import Breads from '@/Pages/Comparar/partials/breads';
     import Layout from '@/Layouts/AppSite';
-    import {Head} from '@inertiajs/inertia-vue3';
+    import {Head, Link} from '@inertiajs/inertia-vue3';
 
     export default {
         name: '@Planes',
         components: {
             Layout,
-            Head
+            Head,
+            Breads,
+            Banner,
+            Link,
+            ImageMotorCycle,
+            DetailMotorCycle
+        },
+        props: {
+            motorcycles: Object.assign({}, {})
+        },
+        data() {
+            return {
+                motorcycle_1: Object.assign({}, {
+                    id: null
+                }),
+                motorcycle_2: Object.assign({}, {
+                    id: null
+                }),
+                motorcycle_3: Object.assign({}, {
+                    id: null
+                }),
+            }
         },
         mounted() {
-            jQuery(document).ready(function ($) {
-                var heigth = 0;
-                $('.compare-values table tbody tr td').each(function () {
-                    heigth = $(this).height();
+            if (this.motorcycles[0]) {
+                this.motorcycle_1 = this.motorcycles[0];
+            }
 
-                    $('.' + $(this).attr('data-value')).each(function () {
-                        if ($(this).height() > heigth || heigth > 0) {
-                            heigth = $(this).height() + 18;
-                            $('.' + $(this).attr('data-value')).css('height', heigth + 'px');
-                        }
-                    });
-                });
+            if (this.motorcycles[1]) {
+                this.motorcycle_2 = this.motorcycles[1];
+            }
 
-                $('.compare-value-hover').on('hover', function () {
-                    var dataValue = $(this).data('value');
-                    $('.compare-value-hover[data-value = ' + dataValue + ']').addClass('hovered');
-                }, function () {
-                    $('.compare-value-hover').removeClass('hovered');
-                })
-            })
+            if (this.motorcycles[2]) {
+                this.motorcycle_3 = this.motorcycles[2];
+            }
+
+            // jQuery(document).ready(function ($) {
+            //     var heigth = 0;
+            //     $('.compare-values table tbody tr td').each(function () {
+            //         heigth = $(this).height();
+            //
+            //         $('.' + $(this).attr('data-value')).each(function () {
+            //             if ($(this).height() > heigth || heigth > 0) {
+            //                 heigth = $(this).height() + 18;
+            //                 $('.' + $(this).attr('data-value')).css('height', heigth + 'px');
+            //             }
+            //         });
+            //     });
+            //
+            //     $('.compare-value-hover').on('hover', function () {
+            //         var dataValue = $(this).data('value');
+            //         $('.compare-value-hover[data-value = ' + dataValue + ']').addClass('hovered');
+            //     }, function () {
+            //         $('.compare-value-hover').removeClass('hovered');
+            //     })
+            // })
         }
     }
 </script>

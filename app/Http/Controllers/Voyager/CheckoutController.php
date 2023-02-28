@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Voyager;
 use App\Models\Cities;
 use App\Models\PaymentMethod;
 use App\Models\Plan;
+use App\Models\Status;
 use App\Models\User;
 use App\Models\UserPlan;
 use Exception;
@@ -419,6 +420,7 @@ class CheckoutController extends VoyagerBaseController
     public function create(Request $request, Plan $plan = null)
     {
         $pagos = PaymentMethod::getPaymentMethods();
+        $status = Status::getStatus();
         $plan = (!$request->has('plan')) ? Plan::getPlanDefault() : Plan::find($request->plan);
         $planes = Plan::getPlanes();
         $users = User::getUsers();
@@ -458,7 +460,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users', 'planes'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users', 'planes','status'));
     }
 
     /**
@@ -971,12 +973,14 @@ class CheckoutController extends VoyagerBaseController
 
                 // Apply local scope if it is defined in the relationship-options
                 if (isset($options->scope) && $options->scope != '' && method_exists($model, 'scope' . ucfirst($options->scope))) {
-                    if ($options->id == 'state_id') {
-                        $model->country = Session::has('country') ? Session::get('country')[0] : null;
-                    }
+                    if (isset($options->id)) {
+                        if ($options->id == 'state_id') {
+                            $model->country = Session::has('country') ? Session::get('country')[0] : null;
+                        }
 
-                    if ($options->id == 'city_id') {
-                        $model->state = Session::has('state') ? Session::get('state')[0] : null;
+                        if ($options->id == 'city_id') {
+                            $model->state = Session::has('state') ? Session::get('state')[0] : null;
+                        }
                     }
 
                     $model = $model->{$options->scope}();

@@ -15,7 +15,7 @@ class UserPlan extends Model
     use SoftDeletes;
 
     protected $table = 'user_plan';
-    protected $fillable = ['user_id', 'plan_id'];
+    protected $fillable = ['user_id', 'plan_id', 'checkout_id', 'deadline', 'status_id'];
     protected $name = null;
 
     public static $permission_admin = false;
@@ -59,6 +59,13 @@ class UserPlan extends Model
             ->where('plan_id', is_object($plan) ? $plan->id : $plan)
             ->where('user_id', is_object($user) ? $user->id : $user)
             ->get();
+    }
+
+    public static function getUserPlanCheckout($checkout)
+    {
+        return self::builder()
+            ->where('checkout_id', is_object($checkout) ? $checkout->id : $checkout)
+            ->first();
     }
 
     public static function getUserPlan($user)

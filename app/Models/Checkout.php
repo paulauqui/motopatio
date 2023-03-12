@@ -23,7 +23,8 @@ class Checkout extends Model
         'email',
         'information',
         'newsletter',
-        'status'
+        'status',
+        'status_id'
     ];
 
     public function user()

@@ -8,6 +8,7 @@ use App\Models\Plan;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserPlan;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -354,54 +355,86 @@ class CheckoutController extends VoyagerBaseController
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
-        $slug = $this->getSlug($request);
+        DB::beginTransaction();
 
-        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+        try {
+            $slug = $this->getSlug($request);
 
-        // Compatibility with Model binding.
-        $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
+            $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
-        $model = app($dataType->model_name);
-        $query = $model->query();
-        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
-            $query = $query->{$dataType->scope}();
+            // Compatibility with Model binding.
+            $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
+
+            $model = app($dataType->model_name);
+            $query = $model->query();
+            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
+                $query = $query->{$dataType->scope}();
+            }
+            if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
+                $query = $query->withTrashed();
+            }
+
+            $data = $query->findOrFail($id);
+
+            // Check permission
+            $this->authorize('edit', $data);
+
+            // Validate fields with ajax
+            $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
+
+            // Get fields with images to remove before updating and make a copy of $data
+            $to_remove = $dataType->editRows->where('type', 'image')
+                ->filter(function ($item, $key) use ($request) {
+                    return $request->hasFile($item->field);
+                });
+
+            $original_data = clone($data);
+
+            if ($data = $this->insertUpdateData($request, $slug, $dataType->editRows, $data)) {
+                $userPlan = UserPlan::getUserPlanCheckout($data);
+
+                if ($userPlan->count() == 0) {
+                    $plan = (!$request->has('plan_id')) ? Plan::getPlanDefault() : Plan::find($data->plan_id);
+                    $paymentPeriod = (isset($plan->paymentPeriod) && $plan->paymentPeriod) ? $plan->paymentPeriod->days + 1 : 3;
+                    $deadline = Carbon::now()->addDays($paymentPeriod);
+
+                    $dataPlan = [
+                        'user_id' => $request->user_id,
+                        'plan_id' => $plan->id,
+                        'checkout_id' => $data->id,
+                        'status_id' => $data->status_id,
+                        'deadline' => $deadline->format('Y-m-d'),
+                    ];
+
+                    $userPlan = UserPlan::create($dataPlan);
+                }
+
+                $userPlan->status_id = $data->status_id;
+                $userPlan->save();
+                //dd($userPlan);
+            }
+
+            // Delete Images
+            $this->deleteBreadImages($original_data, $to_remove);
+
+            event(new BreadDataUpdated($dataType, $data));
+
+            if (auth()->user()->can('browse', app($dataType->model_name))) {
+                $redirect = redirect()->route("voyager.{$dataType->slug}.index");
+            } else {
+                $redirect = redirect()->back();
+            }
+
+            DB::commit();
+
+            return $redirect->with([
+                'message' => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
+                'alert-type' => 'success',
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
         }
-        if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
-            $query = $query->withTrashed();
-        }
-
-        $data = $query->findOrFail($id);
-
-        // Check permission
-        $this->authorize('edit', $data);
-
-        // Validate fields with ajax
-        $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
-
-        // Get fields with images to remove before updating and make a copy of $data
-        $to_remove = $dataType->editRows->where('type', 'image')
-            ->filter(function ($item, $key) use ($request) {
-                return $request->hasFile($item->field);
-            });
-        $original_data = clone($data);
-
-        $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
-
-        // Delete Images
-        $this->deleteBreadImages($original_data, $to_remove);
-
-        event(new BreadDataUpdated($dataType, $data));
-
-        if (auth()->user()->can('browse', app($dataType->model_name))) {
-            $redirect = redirect()->route("voyager.{$dataType->slug}.index");
-        } else {
-            $redirect = redirect()->back();
-        }
-
-        return $redirect->with([
-            'message' => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
-            'alert-type' => 'success',
-        ]);
     }
 
     //***************************************
@@ -460,7 +493,7 @@ class CheckoutController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users', 'planes','status'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'pagos', 'plan', 'dataTypeUsers', 'dataTypeContentUsers', 'users', 'planes', 'status'));
     }
 
     /**
@@ -482,28 +515,25 @@ class CheckoutController extends VoyagerBaseController
             // Check permission
             $this->authorize('add', app($dataType->model_name));
 
-//            if ($request->has('user_id_admin')) {
-//                $request->request->set('user_id', (int)$request->user_id_admin);
-//                $request->request->remove('user_id_admin');
-//            } else {
-//                $request->request->set('user_id', Auth::user()->id);
-//            }
-
             $plan = (!$request->has('plan_id')) ? Plan::getPlanDefault() : Plan::find($request->plan_id);
+            $paymentPeriod = (isset($plan->paymentPeriod) && $plan->paymentPeriod) ? $plan->paymentPeriod->days + 1 : 3;
+            $deadline = Carbon::now()->addDays($paymentPeriod);
 
-            //dd($request->all());
             // Validate fields with ajax
             $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
             if ($data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name())) {
-                $userPlan = UserPlan::getUserPlanExist($request->user_id, $plan);
+                $userPlan = UserPlan::getUserPlanCheckout($data);
 
                 if ($userPlan->count() == 0) {
                     $dataPlan = [
                         'user_id' => $request->user_id,
                         'plan_id' => $plan->id,
+                        'checkout_id' => $data->id,
+                        'status_id' => $data->status_id,
+                        'deadline' => $deadline->format('Y-m-d'),
                     ];
 
-                    $modelPlan = UserPlan::create($dataPlan);
+                    UserPlan::create($dataPlan);
                 }
             }
 
@@ -527,6 +557,7 @@ class CheckoutController extends VoyagerBaseController
             }
         } catch (Exception $e) {
             DB::rollBack();
+            dd($e);
         }
     }
 
@@ -946,6 +977,7 @@ class CheckoutController extends VoyagerBaseController
 
         $permisosAdmin = Auth::user()->can('add', $dataTypeContentUsers);
         User::$permission_admin = $permisosAdmin;
+        Status::$permission_admin = $permisosAdmin;
 
         $slug = $this->getSlug($request);
         $page = $request->input('page');

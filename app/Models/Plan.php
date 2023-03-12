@@ -31,6 +31,11 @@ class Plan extends Model
         return Plan::select('plan.*')->orderby('order', 'ASC');
     }
 
+    public function paymentPeriod()
+    {
+        return $this->belongsTo(PaymentPeriod::class, 'payment_period_id', 'id');
+    }
+
     public static function getPlanes()
     {
         return self::builder()->where('status', 1)->get();

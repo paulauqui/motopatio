@@ -93,7 +93,9 @@ class UserPlan extends Model
         $query->select('user_plan.id')
             ->addSelect(DB::raw("CONCAT(plan.name,' (',users.name,' - ',users.email,')') plan_id"))
             ->join('plan', 'plan.id', '=', 'user_plan.plan_id')
-            ->join('users', 'users.id', '=', 'user_plan.user_id');
+            ->join('users', 'users.id', '=', 'user_plan.user_id')
+            ->join('status', 'status.id', '=', 'user_plan.status_id');
+        //->where('status.key', 'aprobado');
 
         if (!self::$permission_admin) {
             $query->where('user_id', Auth::user()->id);

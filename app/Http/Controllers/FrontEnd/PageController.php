@@ -16,7 +16,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $motorcycle = Motorcycle::getMotorcycle();
+        $motorcycle = Motorcycle::getMotorcycleAprobados();
         $featured = $motorcycle->filter(function ($moto) {
             return ($moto->featured);
         });
@@ -43,7 +43,7 @@ class PageController extends Controller
 
     public function motos()
     {
-        $motorcycles = Motorcycle::getMotorcycle();
+        $motorcycles = Motorcycle::getMotorcycleAprobados();
         return Inertia::render('Motos/index', [
             'motorcycles' => $motorcycles,
             'vehicles' => $motorcycles->count(),

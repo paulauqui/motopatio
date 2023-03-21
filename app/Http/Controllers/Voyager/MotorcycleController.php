@@ -941,7 +941,7 @@ class MotorcycleController extends VoyagerBaseController
 
                 // Apply local scope if it is defined in the relationship-options
                 if (isset($options->scope) && $options->scope != '' && method_exists($model, 'scope' . ucfirst($options->scope))) {
-                    if ($options->id == 'model_id') {
+                    if (isset($options->id) && $options->id == 'model_id') {
                         $model->brand = Session::has('brand') ? Session::get('brand')[0] : null;
                     }
 

@@ -24,7 +24,7 @@
                         <a href="#" @click="redirectPage('voyager.motorcycle.create')"
                            class="listing_add_cart heading-font">
                             <div>
-                                <i class=" stm-lt-icon-add_car" style=""></i> Añadir Moto
+                                <i class=" stm-lt-icon-add_car" style=""></i> Añadir Motos
                             </div>
                         </a>
                         <div class="pull-right">
@@ -174,7 +174,6 @@
 
                             </div>
                         </div>
-
                     </div>
 
                     <ul class="listing-menu clearfix" style="margin-top: 17px; ">

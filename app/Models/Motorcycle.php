@@ -201,4 +201,23 @@ class Motorcycle extends Model
             ->orderBy('year', 'ASC')
             ->get();
     }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getMotorcycleAprobados()
+    {
+        $rs = self::builder()
+            ->join('user_plan', 'user_plan.id', '=', 'motorcycle.user_plan_id')
+            ->join('status', 'status.id', '=', 'user_plan.status_id')
+            ->orderBy('created_at', 'ASC')
+            ->where('status', 1);
+
+        if ($aprobado = Status::getAprobado()) {
+            $rs->where('status.key', $aprobado->key);
+        }
+
+        // dd($rs->toSql(), $aprobado);
+        return $rs->get();
+    }
 }

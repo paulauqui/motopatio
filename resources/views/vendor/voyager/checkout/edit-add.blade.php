@@ -74,17 +74,33 @@
                                     Detalles de Facturación
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <label for="plan_id">Plan</label>
-                                    <select name="plan_id" id="plan_id" class="form-control">
-                                        <option value=""></option>
-                                        @foreach($planes as $_plan)
-                                            <option value="{{$_plan->id}}" @if($plan->id == $_plan->id) selected @endif>
-                                                {{$_plan->name}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                {{--<div class="form-group col-md-12">--}}
+                                    {{--<label for="plan_id">Plan</label>--}}
+                                    {{--<select name="plan_id" id="plan_id" class="form-control">--}}
+                                        {{--<option value=""></option>--}}
+                                        {{--@foreach($planes as $_plan)--}}
+                                            {{--<option value="{{$_plan->id}}" @if($plan->id == $_plan->id) selected @endif>--}}
+                                                {{--{{$_plan->name}}--}}
+                                            {{--</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+
+                                {{--<div class="form-group  col-md-12 right">--}}
+                                    {{--<label class="control-label" for="name">--}}
+                                        {{--Estado--}}
+                                    {{--</label>--}}
+
+                                    {{--<span class="text-left small block pb-2">(Solo administradores)</span>--}}
+
+                                    {{--<select class="form-control" id="status_plan_id" name="status_plan_id"--}}
+                                            {{--placeholder="Seleccionar">--}}
+                                        {{--<option value="">Seleccionar</option>--}}
+                                        {{--@foreach($status as $stat)--}}
+                                            {{--<option value="{{$stat->id}}">{{$stat->description}}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
 
                                 {{--<!-- Adding / Editing -->--}}
                                 @php
@@ -103,7 +119,9 @@
 
                                     @if (isset($row->details->legend) && isset($row->details->legend->text))
                                         <legend class="text-{{ $row->details->legend->align ?? 'center' }}"
-                                                style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
+                                                style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">
+                                            {{ $row->details->legend->text }}
+                                        </legend>
                                     @endif
 
                                     <div
@@ -182,16 +200,6 @@
                                 <div class="form-group col-md-12" style="font-weight: bold; font-size: 20px;">
                                     Información Adicional
                                 </div>
-                            </div>
-
-                            <div>
-                                <select class="form-control" id="status_plan_id" name="status_plan_id">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
                             </div>
                         </div>
 

@@ -37,12 +37,24 @@ class UserPlan extends Model
 
     public function getNameUserPlanAttribute()
     {
-        return $this->plan->name . " ({$this->user->name} | {$this->user->email})"; //some logic to return numbers
+        dd($this->plan, $this->user_name, $this->user_email);
+
+        return $this->plan->name . " ({$this->user_name} | {$this->user_email})"; //some logic to return numbers
     }
 
     public function getNameAttribute()
     {
         return $this->user->name . "(Full)"; //some logic to return numbers
+    }
+
+    public function getUserNameAttribute()
+    {
+        return $this->user ? $this->user->name : null; //some logic to return numbers
+    }
+
+    public function getUserEmailAttribute()
+    {
+        return $this->user ? $this->user->email : null; //some logic to return numbers
     }
 
     /**
@@ -91,7 +103,9 @@ class UserPlan extends Model
     public function scopeAutenticateUserPlan($query)
     {
         $query->select('user_plan.id')
-            ->addSelect(DB::raw("CONCAT(plan.name,' (',users.name,' - ',users.email,')') plan_id"))
+            ->addSelect(DB::raw("CONCAT(plan.name,' (',users.name,' - ',users.email,')') name_user_plan"))
+            ->addSelect(DB::raw("users.name user_name"))
+            ->addSelect(DB::raw("users.email user_email"))
             ->join('plan', 'plan.id', '=', 'user_plan.plan_id')
             ->join('users', 'users.id', '=', 'user_plan.user_id')
             ->join('status', 'status.id', '=', 'user_plan.status_id');

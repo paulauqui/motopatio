@@ -16,3 +16,10 @@ yarn-error.log
 package-lock.json
 composer.lock
 composer.lock
+package-lock.json
+public/mix-manifest.json
+public/css/app.css
+public/css/voyager.css
+public/fonts/vendor/fontawesome-4.7/fontawesome-webfont.svg
+public/js/app.js
+.env
